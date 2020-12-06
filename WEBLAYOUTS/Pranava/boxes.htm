@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .box-container {
+            display: inline-block;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #afdcdf;
+            width: 100vw;
+        }
+        
+        .card {
+            position: relative;
+            display: inline-block;
+            width: 290px;
+            height: 420px;
+            background-color: #3d2d46;
+            border-radius: 20px;
+            overflow: hidden;
+            font-family: 'Didact Gothic', sans-serif;
+            margin: 20px;
+            box-shadow: #4d4b4b 4px 4px 5px 3px;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .card .save {
+            position: absolute;
+            top: 0;
+            right: 30px;
+            z-index: 200;
+            color: #dbdbdb;
+            font-size: 30px;
+            background-color: rgb(0, 112, 146);
+            padding: 3px 10px 2px 10px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .card:hover {
+            transform: scale(1.05, 1.05);
+            box-shadow: #4d4b4b 10px 8px 7px 5px;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -43%;
+            width: 100%;
+            height: 100%;
+            background: #7c21f3;
+            transition: 0.5s;
+        }
+        
+        .card:nth-child(4n+0)::before {
+            background: #f32160;
+        }
+        
+        .card:nth-child(4n+1)::before {
+            background: #f36421;
+        }
+        
+        .card:nth-child(4n+2)::before {
+            background: #a621f3;
+        }
+        
+        .card:hover::before {
+            top: 0;
+        }
+        
+        .card .imgBx {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1;
+        }
+        
+        .card .imgBx img {
+            width: 250px;
+            height: 200px;
+            border: #000000 solid 1px;
+            border-radius: 20px;
+        }
+        
+        .card .contentBx {
+            position: relative;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1;
+        }
+        
+        .card .contentBx h1 {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        .card .contentBx h5 {
+            color: darkgray;
+            padding: 5px;
+        }
+        
+        .card .contentBx .price {
+            font-size: 24px;
+            color: #fff;
+            font-weight: 1000;
+            letter-spacing: 2px;
+        }
+        
+        .card .contentBx .buy {
+            position: relative;
+            top: 80px;
+            opacity: 0;
+            padding: 10px 30px;
+            margin-top: 15px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #2196f3;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.5s;
+        }
+        
+        .card .contentBx .buy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            border-radius: 30px;
+            height: 100%;
+            background-color: #e0e0e0;
+            pointer-events: none;
+            transform-style: linear;
+            opacity: 0;
+            transition-property: width, opacity transform, box-shadow;
+            transition-duration: 0.5s;
+        }
+        
+        .card:hover .contentBx .buy {
+            top: 0;
+            opacity: 1;
+            background: #09161d;
+        }
+        
+        .card .contentBx .buy:hover::before {
+            width: 100%;
+            opacity: .4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box-container">
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+            <div class="save">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+            <div class="save">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+            <div class="save">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+            <div class="save">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+            <div class="save">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="imgBx">
+                <img src="https://www.w3schools.com/css/paris.jpg">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>Adgimane</h1>
+                <h5>Prestige</h5>
+                <h2 class="price">400Rs</h2>
+                <a href="#" class="buy">More Info</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

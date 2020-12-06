@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: lemonchiffon;
+        }
+        
+        .profile-block {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95, 0.95);
+            background-color: #186eb4;
+            color: whitesmoke;
+            padding: 20px 50px 50px 50px;
+            border-radius: 30px;
+            box-sizing: border-box;
+            font-family: 'Varela Round', sans-serif;
+            width: 50%;
+            min-width: 450px;
+            box-shadow: 1px 1px 8px #333;
+        }
+        
+        .profile-block h1 {
+            color: antiquewhite;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 45px;
+        }
+        
+        .profile-block hr {
+            margin-bottom: 30px;
+        }
+        
+        .profile-block .profile-img {
+            position: relative;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .profile-block .profile-img img {
+            width: 20vw;
+            min-width: 200px;
+            border-radius: 50%;
+            background-color: rgb(53, 92, 92);
+            border: 5px dashed #111;
+        }
+        
+        .profile-block .profile-items h3 {
+            background: none;
+            border: none;
+            outline: none;
+            width: 75%;
+            height: 20px;
+            color: cornsilk;
+            font-size: 20px;
+            padding: 5px 10px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ebe9e9;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .profile-block .profile-items p {
+            font-size: 18px;
+            color: rgb(219, 213, 186);
+        }
+        
+        .profile-block .profile-items a {
+            position: relative;
+            top: 70px;
+            outline: none;
+            border: none;
+            color: cornsilk;
+            background-color: rgb(109, 3, 3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: 100px;
+            letter-spacing: 1px;
+            font-size: 23px;
+            text-decoration: none;
+            margin: 0 0 40px 0;
+        }
+        
+        .profile-block .profile-items {
+            padding-bottom: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-block">
+        <h1>Profile</h1>
+        <hr/>
+        <div class="profile-img">
+            <img src="profile.jpg" alt="profile" id="profile-op">
+        </div>
+        <div class="profile-items">
+            <p>Full Name</p>
+            <h3>Pranav</h3>
+            <p>Email</p>
+            <h3></h3>
+            <p>Phone-No</p>
+            <h3></h3>
+            <p>Address</p>
+            <h3></h3>
+            <p>State</p>
+            <h3></h3>
+            <p>City</p>
+            <h3></h3>
+            <br>
+            <a href="#">Update</a>
+        </div>
+    </div>
+</body>
+<script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profile-op');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+</html>

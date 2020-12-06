@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>NAV</title>
+    <style>
+        * {
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #09161d;
+        }
+        
+        .logo {
+            width: 20%;
+            height: auto;
+            min-width: 200px;
+        }
+        
+        nav {
+            background: #2195f3;
+            height: 80px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            padding: 0;
+            margin: 0;
+        }
+        
+        label.logo {
+            color: white;
+            font-size: 30px;
+            line-height: 80px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            float: right;
+            margin-right: 20px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+            padding: 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 10px 30px;
+            margin: 0;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+        
+        nav ul li a:hover {
+            background: #1a1a20;
+            transition: .7s;
+        }
+        
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        #check {
+            display: none;
+        }
+        
+        @media screen and (max-width: 850px) {
+            label.logo {
+                padding: 0 50px;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+            }
+            .checkbtn {
+                display: block;
+            }
+            .list {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #014b4e;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+            nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+            nav ul li a {
+                font-size: 20px;
+            }
+            #check:checked~ul {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fa fa-bars"></i>
+        </label>
+        <label class="logo"><a href="#" style="color: aliceblue;">P-cube</a></label>
+        <ul class="list">
+            <li class="ls"><a class="active" href="#">Home</a></li>
+            <li class="ls"><a href="#">Posts</a></li>
+            <li class="ls"><a href="#">about</a></li>
+            <li class="ls"><a href="#">sign-in</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>

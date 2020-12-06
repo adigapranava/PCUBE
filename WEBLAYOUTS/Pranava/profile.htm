@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: lemonchiffon;
+        }
+        
+        .profile-block {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95, 0.95);
+            background-color: #186eb4;
+            color: whitesmoke;
+            padding: 20px 50px 50px 50px;
+            border-radius: 30px;
+            box-sizing: border-box;
+            font-family: 'Varela Round', sans-serif;
+            width: 50%;
+            min-width: 450px;
+            box-shadow: 1px 1px 8px #333;
+        }
+        
+        .profile-block h1 {
+            color: antiquewhite;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 45px;
+        }
+        
+        .profile-block hr {
+            margin-bottom: 30px;
+        }
+        
+        .profile-block .profile-img {
+            position: relative;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .profile-block .profile-img img {
+            width: 20vw;
+            min-width: 200px;
+            border-radius: 50%;
+            background-color: rgb(53, 92, 92);
+            border: 5px dashed #111;
+        }
+        
+        .profile-block .profile-img .prof-img-cngr {
+            position: relative;
+            background-color: floralwhite;
+            border-radius: 30px;
+            color: rgb(0, 0, 0);
+            padding: 10px 15px;
+            width: 150px;
+            font-size: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .profile-block .profile-img .prof-img-cngr input {
+            display: none;
+        }
+        
+        .profile-block .profile-img .prof-img-cngr label {
+            cursor: pointer;
+        }
+        
+        .profile-block .profile-items input:not(:last-child),
+        textarea {
+            background: none;
+            border: none;
+            outline: none;
+            width: 75%;
+            height: 20px;
+            color: cornsilk;
+            font-size: 15px;
+            padding: 5px 10px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ebe9e9;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .profile-block .profile-items textarea {
+            max-width: 440px;
+        }
+        
+        .profile-block .profile-items p {
+            font-size: 22px;
+        }
+        
+        .profile-block .profile-items input[type=submit] {
+            position: relative;
+            margin-top: 30px;
+            outline: none;
+            border: none;
+            color: cornsilk;
+            background-color: #111;
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: 120px;
+            letter-spacing: 1px;
+            font-size: 23px;
+            float: right;
+        }
+        
+        .profile-block .profile-items input[type=submit]:hover {
+            transition: 0.5s;
+            background-color: rgb(14, 14, 14);
+            box-shadow: 1px 1px 10px 4px #00ccff;
+            color: #aedbff;
+            cursor: pointer;
+        }
+        
+        .profile-block .profile-items a {
+            position: relative;
+            top: 70px;
+            outline: none;
+            border: none;
+            color: cornsilk;
+            background-color: rgb(109, 3, 3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: 100px;
+            letter-spacing: 1px;
+            font-size: 23px;
+            text-decoration: none;
+            margin: 0 0 40px 0;
+        }
+        
+        .profile-block .profile-items {
+            padding-bottom: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-block">
+        <h1>Profile Update</h1>
+        <hr/>
+        <form action="">
+            <div class="profile-img">
+                <img src="profile.jpg" alt="profile" id="profile-op">
+                <div class="prof-img-cngr">
+                    <input type="file" name="photo" id="pic" accept="image/*" onchange="preview_image(event)">
+                    <label for="pic">Choose Img</label>
+                </div>
+            </div>
+            <div class="profile-items">
+                <p>Full Name</p>
+                <input type="text" name="full-name" id="full-title">
+                <p>Email</p>
+                <input type="text" name="email" id="email">
+                <p>Phone-No</p>
+                <input type="text" name="phoneno" id="phoneno">
+                <p>Address</p>
+                <textarea id="address" name="address" cols="40" rows="5"></textarea>
+                <p>State</p>
+                <input type="text" name="state" id="state">
+                <p>City</p>
+                <input type="text" name="city" id="city">
+                <br>
+                <a href="#">Cancel</a>
+                <div class="btns">
+                    <input type="submit" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profile-op');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+</html>

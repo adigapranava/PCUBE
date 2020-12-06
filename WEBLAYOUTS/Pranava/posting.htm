@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #333;
+        }
+        
+        .post-container {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95, 0.95);
+            background-color: #186eb4;
+            color: whitesmoke;
+            padding: 20px 50px 50px 50px;
+            border-radius: 30px;
+            box-sizing: border-box;
+            font-family: 'Varela Round', sans-serif;
+            width: 90vw;
+            max-width: 800px;
+        }
+        
+        .post-container h1 {
+            color: antiquewhite;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 45px;
+        }
+        
+        .post-container hr {
+            margin-bottom: 30px;
+        }
+        
+        .post-container form {
+            display: flex;
+        }
+        
+        .post-container form .post-details {
+            width: 50%;
+            font-size: 20px;
+        }
+        
+        .post-container form .post-details input,
+        textarea {
+            background: none;
+            border: none;
+            outline: none;
+            width: 200px;
+            height: 20px;
+            color: cornsilk;
+            font-size: 15px;
+            padding: 5px 10px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ebe9e9;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .post-container form .post-details input:focus,
+        textarea:focus {
+            border-bottom: 1px solid #00ff4c;
+            transition: 0.5s;
+        }
+        
+        .post-container form .post-details p {
+            padding: 15px 0;
+        }
+        
+        .post-container form .post-details p::after {
+            content: '*';
+            color: chartreuse;
+        }
+        
+        .post-container form .post-images {
+            width: 50%;
+            font-size: 20px;
+        }
+        
+        .post-container form .post-images .post-image {
+            margin-top: 20px;
+        }
+        
+        .post-container form .post-images img {
+            width: 300px;
+            max-height: 350px;
+            border: 3px dashed #555;
+        }
+        
+        .post-container form .post-images label {
+            padding: 10px 20px;
+            background-color: #004141;
+            margin-bottom: 20px;
+        }
+        
+        .post-container form .post-images input[type=submit] {
+            position: absolute;
+            bottom: 20px;
+            right: 100px;
+            outline: none;
+            border: none;
+            color: cornsilk;
+            background-color: #111;
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: 100px;
+            letter-spacing: 1px;
+            font-size: 18px;
+        }
+        
+        .post-container form .post-images input[type=submit]:hover {
+            transition: 0.5s;
+            background-color: rgb(14, 14, 14);
+            box-shadow: 1px 1px 10px 4px #00ccff;
+            color: #aedbff;
+        }
+        
+        .post-container form .post-images input[type=file] {
+            display: none;
+        }
+        
+        @media screen and (max-width: 712px) {
+            .post-container form {
+                display: block;
+            }
+            .post-container form .post-images {
+                width: 100%;
+                margin-top: 20px;
+            }
+            .post-container form .post-details {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="post-container">
+        <h1>POST Product</h1>
+        <hr>
+        <form>
+            <div class="post-details">
+                <p>Product Title</p>
+                <input type="text" name="product-name" id="product-title" required>
+                <p>Brand</p>
+                <input type="text" name="product-brand" id="product-brand" required>
+                <p>Discription</p>
+                <textarea id="product-disc" name="product-disc" cols="40" rows="5" required></textarea>
+                <p>Old price</p>
+                <div class="price">
+                    <label for="">&#8377;</label>
+                    <input id="price" name="old-price" id="old-price" type="number" min="10">
+                </div>
+                <p>Your price</p>
+                <div class="price">
+                    <label for="">&#8377;</label>
+                    <input id="price" name="new-price" id="new-price" type="number" min="10">
+                </div>
+            </div>
+
+            <div class="post-images">
+                <input type="file" name="file-input" id="file-input" accept="image/*" onchange="preview_image(event)" required>
+                <label for="file-input">Choose Img<i class="fas fa-camera"></i></label>
+                <div class="post-image">
+                    <img id="output_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVVhf6YdO-D4g_VPX9EA0wGBD0SwfpakZJTQ&usqp=CAU">
+                </div>
+                <input type="submit" value="Post">
+            </div>
+        </form>
+    </div>
+</body>
+<script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('output_image');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+</html>
