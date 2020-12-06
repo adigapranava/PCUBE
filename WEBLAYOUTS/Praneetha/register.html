@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>login</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            body 
+            {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background: url("https://image.shutterstock.com/image-photo/artistic-cloudy-sky-pastel-gradient-260nw-767776375.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+            .inputbox{
+                width: 400px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding-top: 10px;
+                padding-left: 20px;
+                padding-bottom: 20px;
+                background:rgb(12, 12, 15);
+                border-radius: 10px;
+                transform: translate(-50%,-50%);
+                color:white;
+            }
+            .inputbox h2{
+                float: left;
+                font-size: 30px;
+                border-bottom: 3px solid rgb(187, 174, 133);
+                margin-bottom: 20px;
+                padding: 5px 0;
+            }
+            .textbox{
+                width: 95%;
+                overflow: hidden;
+                font-size: 20px;
+                padding: 6px 0;
+                margin: 10px 0;
+                border-bottom: 2px solid rgb(236, 64, 64);
+            }
+            .textbox input{
+                border: none;
+                outline: none;
+                background: none;
+                color: white;
+                font-size: 15px;
+                width: 80%;
+                float: left;
+                margin: 0 10px;
+            }
+            .btn{
+                width: 95%;
+                background: none;
+                border: 2px solid rgb(194, 67, 67);
+                color: whitesmoke;
+                padding: 5px;
+                font-size: 15px;
+                cursor: pointer;
+                margin: 12px 0;
+            }
+           
+        </style>
+    </head>
+    <body>
+        <form>
+            <div class="inputbox">
+                <h2>Sign Up</h2>
+                <div class="textbox">
+                    <input type="text" placeholder="e-mail" name="" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Username" name="" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Password" name="" required>
+                </div>
+                <a href="homepage.html">
+                <input class="btn" type="submit" name="" value="register"></a>
+                <div class="relative"><b>Already have an account?</b>
+                <a href="signin1.html" target="_self">login</a>   </div>
+            </div>
+        </form>
+    </body>
+</html>
