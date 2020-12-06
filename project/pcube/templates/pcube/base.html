@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'pcube/main.css' %}">
+    <title>PCUBE</title>
+    {% block headers %}
+    {% endblock headers %}
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fa fa-bars"></i>
+        </label>
+        <label class="logo"><a href="{% url 'pcube-home' %}" style="color: aliceblue;">P-cube</a></label>
+        <ul class="list">
+            <li class="ls"><a class="active" href="{% url 'pcube-home' %}">Home</a></li>
+            <li class="ls"><a href="{% url 'pcube-about' %}">about</a></li>
+            {% if user.is_authenticated %}
+                <li class="ls"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="ls"><a href="{% url 'logout' %}">Logout</a></li> 
+            {% else %} 
+                <li class="ls"><a href="{% url 'login' %}">sign-in</a></li>              
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="block">
+    {% block content %}
+    {% endblock content %}
+    </div>
+    {% if messages %}
+        <div class="noti-box">
+            <div class="noti-top">
+                <div class="noti-logo">
+                    P-CUBE
+                </div>
+                <div class="noti-cancel">
+                    <i class="fa fa-remove"></i>
+                </div>
+            </div>
+            <div class="noti-text">
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('.noti-box .noti-top .noti-cancel').on('click', function() {
+        document.getElementsByClassName("noti-box")[0].style.display = 'none';
+        console.log("hai");
+    });
+</script>
+</html>

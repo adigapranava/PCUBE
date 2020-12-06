@@ -1,0 +1,53 @@
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+        <link rel="stylesheet" type="text/css" href="{% static 'users/profile_update.css' %}">
+{% endblock headers %}
+
+
+{% block content %}
+        <div class="profile-block">
+        <h1>Profile Update</h1>
+        <hr/>
+        <form method="POST" action="{% url 'profile_update'%}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-img">
+                <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+                <div class="prof-img-cngr">
+                    <input type="file" name="pic" id="pic" accept="image/*" onchange="preview_image(event)" value="{{ user.profile.image.url }}">
+                    <label for="pic">Choose Img</label>
+                </div>
+            </div>
+            <div class="profile-items">
+                <p>Full Name</p>
+                <input type="text" name="full-name" id="full-title" value="{{ user.profile.fullname }}" required>
+                <p>Email</p>
+                <input type="text" name="email" value="{{ user.email }}" id="email" required>
+                <p>Phone-No</p>
+                <input type="text" name="phoneno" id="phoneno" value="{{ user.profile.phoneno }}" required>
+                <p>Address</p>
+                <input type="text" id="address" name="address" value="{{ user.profile.address }}" required>
+                <p>State</p>
+                <input type="text" name="state" id="state" value="{{ user.profile.state }}" required>
+                <p>City</p>
+                <input type="text" name="city" id="city" value="{{ user.profile.city }}" required>
+                <br>
+                <a href="{% url 'profile' %}">Cancel</a>
+                <div class="btns">
+                    <input type="submit" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('profile-op');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+    </script>
+{% endblock content %}

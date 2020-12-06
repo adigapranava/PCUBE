@@ -1,0 +1,91 @@
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            display: flex;
+            margin-top: 40px;
+            background-color: brown/*{{object.title}}*/;
+            color: cornsilk;
+            padding: 20px;
+        }
+        
+        .container .post_info {
+            margin-left: 200px;
+        }
+        
+        .small-profile {
+            width: 350px;
+            height: 150px;
+            padding: 30px;
+            background: rgb(38 40 51);
+            border-radius: 30px;
+            position: relative;
+            top: 20px;
+        }
+        
+        .small-profile .profile-img img {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            border-radius: 50%;
+            top: -10%;
+            border: 3px solid rgb(206 221 236);
+        }
+        
+        .small-profile .profile-text {
+            float: right;
+        }
+        
+        .small-profile .profile-text h2 {
+            font-size: 40px;
+            max-width: 200px;
+            margin: 0;
+            text-align: center;
+            color: rgb(206 221 236);
+            font-weight: 700;
+        }
+        
+        .small-profile .profile-text h5 {
+            color: rgb(206 221 236);
+            text-align: center;
+            font-weight: 300;
+        }
+    </style>
+{% endblock headers %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="owner_info">
+            <div class="small-profile">
+                <div class="profile-img">
+                    <img src="{{object.owner.profile.image.url}}" alt="">
+                </div>
+                <div class="profile-text">
+                    <a href="#"><h2>{{object.owner.profile.fullname}}</h2></a>
+                    <h5>{{ object.owner.email }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="post_info">
+            <h6>{{ object.date_posted|date:"F d, Y"}}</h6>
+            <h1>{{ object.title }}</h1>
+            <h5>{{ object.brand }}</h5>
+            <h3>Old Price: {{ object.oldprice }}</h3>
+            <h3>New Price: {{ object.newprice }}</h3>
+            <p>discription:<br>{{ object.discription }}</p>
+            <img src="{{ object.image.url }}" alt="" width="300">
+            <br>
+            <p>{{ object.address }}</p>
+            <p>{{ object.state }}</p>
+            <p>{{ object.city }}</p>
+        </div>
+    </div>
+{% endblock content %}

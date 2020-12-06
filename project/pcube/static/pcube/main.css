@@ -1,0 +1,187 @@
+* {
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #09161d;
+}
+
+
+/* notification */
+
+.noti-box {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 400px;
+    background-color: #363636;
+    z-index: 10;
+    border: rgb(187, 189, 188) solid 5px;
+}
+
+.noti-box .noti-top {
+    padding: 15px 20px 5px 20px;
+    display: flex;
+    position: relative;
+    font-size: 20px;
+    color: cornsilk;
+    font-weight: 900;
+    background-color: #0d7ea0;
+    margin: 0;
+}
+
+.noti-box .noti-top .noti-cancel {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-size: 30px;
+}
+
+.noti-box .noti-text {
+    padding: 25px;
+    font-size: 18px;
+    color: rgb(235, 255, 248);
+    text-transform: capitalize;
+}
+
+.logo {
+    width: 20%;
+    height: auto;
+    min-width: 200px;
+}
+
+nav {
+    /* animate background */
+    animation-name: bckcngr;
+    animation-duration: 10s;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: infinite;
+    background: #4e017a;
+    height: 65px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    padding: 0;
+    margin: 0;
+    transition: height 0.7s;
+}
+
+nav:hover {
+    height: 80px;
+}
+
+label.logo {
+    color: white;
+    font-size: 35px;
+    line-height: 65px;
+    padding: 0 100px;
+    font-weight: bold;
+    transition: line-height 0.7s;
+}
+
+nav:hover label.logo {
+    line-height: 80px;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 65px;
+    margin: 0 5px;
+    padding: 0;
+    font-weight: 600;
+    transition: line-height 0.7s;
+}
+
+nav:hover ul li {
+    line-height: 80px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 18px;
+    padding: 10px 30px;
+    margin: 0;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover {
+    background: #1a1a20;
+    transition: .7s;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media screen and (max-width: 850px) {
+    label.logo {
+        padding: 0 50px;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+    }
+    .checkbtn {
+        display: block;
+    }
+    .list {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #014b4e;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    nav ul li a {
+        font-size: 20px;
+    }
+    #check:checked~ul {
+        left: 0;
+    }
+}
+
+.block {
+    margin: 0;
+    padding-top: 20px;
+}
+
+@keyframes bckcngr {
+    from {
+        background-color: #03899b;
+    }
+    to {
+        background-color: #194753;
+    }
+}

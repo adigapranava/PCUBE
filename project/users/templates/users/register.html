@@ -1,0 +1,35 @@
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
+{% endblock headers %}
+
+
+{% block content %}
+    <form method="POST" action="{% url 'register'%}">
+        {% csrf_token %}
+        <div class="inputbox">
+            <h2>Sign Up</h2>
+            <div class="textbox">
+                <input type="text" placeholder="e-mail" name="email" required>
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="Username" name="username" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Password" name="password1" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="confirm-Password" name="password2" required>
+            </div>
+            {% if error %}
+                <h5 style="color: rgb(252, 110, 15);font-size: 18px;">{{error}}</h5>
+            {% endif %}
+            <a href="homepage.html">
+            <input class="btn" type="submit" name="" value="register"></a>
+            <div class="relative"><b>Already have an account?</b>
+            <a href="{% url 'login' %}" target="_self">login</a>   </div>
+        </div>
+    </form>
+{% endblock content %}

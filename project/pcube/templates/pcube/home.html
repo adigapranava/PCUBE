@@ -1,0 +1,40 @@
+
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcube/home.css' %}">
+{% endblock headers %}
+
+
+{% block content %}
+    <div class="box-container">
+    {% for post in posts %}
+        <div class="card">
+            <div class="imgBx">
+                <img src="{{ post.image.url }}">
+            </div>
+            <div class="contentBx">
+                <hr style="width:100%">
+                <h1>{{ post.title }}</h1>
+                <h5>{{ post.brand }}</h5>
+                <h2 class="price">&#8377;{{ post.newprice }}</h2>
+                <a href="{% url 'post-detail' post.id %}" class="buy">More Info</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <script>
+    function onPageLoad() {
+    var url = "http://127.0.0.1:8000/allposts/";
+    $.get(url,function(data, status) {
+        console.log("got response for give_details request");
+        if(data) {
+            console.log( data );
+        }
+    });
+    }
+
+    window.onload = onPageLoad;
+    </script>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+        <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
+{% endblock headers %}
+
+
+{% block content %}
+        <div class="profile-block">
+        <h1>Profile</h1>
+        <hr/>
+        <div class="profile-img">
+            <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+        </div>
+        <div class="profile-items">
+            <p>Full Name</p>
+            <h3>{{ user.profile.fullname }}</h3>
+            <p>Email</p>
+            <h3>{{ user.email }}</h3>
+            <p>Phone-No</p>
+            <h3>{{ user.profile.phoneno }}</h3>
+            <p>Address</p>
+            <h3>{{ user.profile.address }}</h3>
+            <p>State</p>
+            <h3>{{ user.profile.state }}</h3>
+            <p>City</p>
+            <h3>{{ user.profile.city }}</h3>
+            <br>
+            <a href="{% url 'profile_update' %}">Update</a>
+        </div>
+    </div>
+{% endblock content %}

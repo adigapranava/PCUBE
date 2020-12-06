@@ -1,0 +1,56 @@
+
+{% extends 'pcube/base.html' %}
+{% load static %}
+
+{% block headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcube/addpost.css' %}">
+{% endblock headers %}
+
+
+{% block content %}
+    <div class="post-container">
+        <h1>UPDATE POST </h1>
+        <hr>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="post-details">
+                <p>Product Title</p>
+                <input type="text" name="title" id="product-title" required value="{{post.title}}">
+                <p>Brand</p>
+                <input type="text" name="brand" id="product-brand" required value="{{post.brand}}">
+                <p>Discription</p>
+                <textarea id="product-disc" name="product-disc" cols="40" rows="5" required >{{post.discription}}</textarea>
+                <p>Old price</p>
+                <div class="price">
+                    <label for="">&#8377;</label>
+                    <input id="price" name="old-price" id="old-price" type="number" min="10" required value="{{post.oldprice}}">
+                </div>
+                <p>Your price</p>
+                <div class="price">
+                    <label for="">&#8377;</label>
+                    <input id="price" name="new-price" id="new-price" type="number" min="10" required value="{{post.newprice}}">
+                </div>
+            </div>
+
+            <div class="post-images">
+                <input type="file" name="img" id="file-input" accept="image/x-png,image/gif,image/jpeg" onchange="preview_image(event)">
+                <label for="file-input">Choose Img<i class="fas fa-camera"></i></label>
+                <div class="post-image">
+                    <img id="output_image" src="{{post.image.url}}">
+                </div>
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+    <script type='text/javascript'>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('output_image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+{% endblock content %}

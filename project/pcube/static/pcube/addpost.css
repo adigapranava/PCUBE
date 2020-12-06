@@ -1,0 +1,125 @@
+.post-container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95, 0.95);
+    background-color: #186eb4;
+    color: whitesmoke;
+    padding: 20px 50px 50px 50px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    width: 90vw;
+    max-width: 800px;
+}
+
+.post-container h1 {
+    color: antiquewhite;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 45px;
+}
+
+.post-container hr {
+    margin-bottom: 30px;
+}
+
+.post-container form {
+    display: flex;
+}
+
+.post-container form .post-details {
+    width: 50%;
+    font-size: 20px;
+}
+
+.post-container form .post-details input,
+textarea {
+    background: none;
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 20px;
+    color: cornsilk;
+    font-size: 15px;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ebe9e9;
+    font-family: 'Raleway', sans-serif;
+}
+
+.post-container form .post-details input:focus,
+textarea:focus {
+    border-bottom: 1px solid #00ff4c;
+    transition: 0.5s;
+}
+
+.post-container form .post-details p {
+    padding: 15px 0;
+}
+
+.post-container form .post-details p::after {
+    content: '*';
+    color: chartreuse;
+}
+
+.post-container form .post-images {
+    width: 50%;
+    font-size: 20px;
+}
+
+.post-container form .post-images .post-image {
+    margin-top: 20px;
+}
+
+.post-container form .post-images img {
+    width: 300px;
+    max-height: 350px;
+    border: 3px dashed #555;
+}
+
+.post-container form .post-images label {
+    padding: 10px 20px;
+    background-color: #004141;
+    margin-bottom: 20px;
+}
+
+.post-container form .post-images input[type=submit] {
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    outline: none;
+    border: none;
+    color: cornsilk;
+    background-color: #111;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: 100px;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+.post-container form .post-images input[type=submit]:hover {
+    transition: 0.5s;
+    background-color: rgb(14, 14, 14);
+    box-shadow: 1px 1px 10px 4px #00ccff;
+    color: #aedbff;
+}
+
+.post-container form .post-images input[type=file] {
+    display: none;
+}
+
+@media screen and (max-width: 712px) {
+    .post-container form {
+        display: block;
+    }
+    .post-container form .post-images {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .post-container form .post-details {
+        width: 100%;
+    }
+}
