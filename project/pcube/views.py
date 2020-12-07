@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
+import json
 # Create your views here.
 
 '''def home(request):
@@ -73,7 +74,16 @@ def about(request):
     return render(request, 'pcube/about.html')
 
 
+##Api handler
+def filter(request):
+    return render(request, 'pcube/filter.htm')    
+
 # API OF ALL POSTS
 def allposts(request):
     response = serializers.serialize('json', Post.objects.all())
+    return HttpResponse(response, content_type='application/json')
+
+def send_company_name(request):
+    f = open('/home/pranava_adiga/Desktop/PCUBE/project/pcube/company_name.json')
+    response = json.load(f)
     return HttpResponse(response, content_type='application/json')

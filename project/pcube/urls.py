@@ -10,7 +10,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', PostListView.as_view(), name='pcube-home'),
+    path('filter/', views.filter, name='filter'),
     path('allposts/', views.allposts, name='pcube-posts'),
+    path('companynames/', views.send_company_name , name='pcube-company'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/<int:pk>/update/', views.UpdatePost, name='post-update'),
     path('addpost/', views.AddPost, name='add-post'),

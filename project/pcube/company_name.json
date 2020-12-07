@@ -1,0 +1,12 @@
+[{
+    "fashion": ["sparks", "puma", "nike", "wrong",
+        "addidas", "fendi", "burbery", "H&M", "raymond"
+    ],
+    "mobile": ["apple", "samsung", "motorola", "nokia",
+        "realme", "mi", "lenova", "lg", "vivo", "appo",
+        "gione"
+    ],
+    "electronic": ["pegion", "samsung", "lg", "hp", "mac",
+        "butterfly", "bajaj", "havells", "philips", "bosch"
+    ]
+}]

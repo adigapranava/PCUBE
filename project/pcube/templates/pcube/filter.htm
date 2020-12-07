@@ -1,0 +1,31 @@
+ {% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'pcube/filter.css' %}"> {% endblock headers %} {% block content %}
+<div class="box-container"></div>
+
+<script>
+    var posts;
+
+    function displayall() {
+        var i;
+        for (i = 0; i < posts.length; i++) {
+            console.log(posts[i].fields);
+            //$('.box-container').append('<div style="background-color: red; width: 100px; height: 100px">hello</div>');
+            $('.box-container').append('<div class="card"><div class="imgBx"><img src="http://127.0.0.1:8000/media/' + posts[i].fields.image + '"></div><div class="contentBx"><hr style="width:100%"><h1>' + posts[i].fields.title + '</h1><h5>' + posts[i].fields.brand + '</h5><h2 class="price">&#8377;' + posts[i].fields.newprice + '</h2><a href="http://127.0.0.1:8000/post/' + posts[i].pk + '" class="buy">More Info</a></div></div>');
+        }
+    }
+
+    function onPageLoad() {
+        var url = "http://127.0.0.1:8000/allposts/";
+        $.get(url, function(data, status) {
+            console.log("got response for allpost request");
+            if (data) {
+                console.log(data);
+                posts = data;
+                displayall();
+            }
+        });
+    }
+
+    window.onload = onPageLoad;
+</script>
+{% endblock content %}
