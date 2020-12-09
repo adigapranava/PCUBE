@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from .models import Profile
 
-queue = []
+# queue = []
 
 # Create your views here.
 def register(request):
@@ -61,7 +61,7 @@ def profile(request):
         user = User.objects.get(username=request.user)
         return render(request, 'users/profile.html')
     except:
-        queue.append('profile')
+        # queue.append('profile')
         return redirect('login')
 
 @login_required

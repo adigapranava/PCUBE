@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from .models import Post
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import json
 # Create your views here.
 
@@ -23,24 +24,29 @@ class PostDetailView(DetailView):
     model = Post
 
 def AddPost(request):
-    #login required
-    if request.method == "POST":
-        post = Post(title = request.POST['title'],
-                    brand = request.POST['brand'],
-                    discription = request.POST['product-disc'],
-                    oldprice = int(request.POST['old-price']),
-                    newprice = int(request.POST['new-price']),
-                    owner = request.user,
-                    address = request.user.profile.address,
-                    phone = request.user.profile.phoneno,
-                    state = request.user.profile.state,
-                    city = request.user.profile.city,
-                    image = request.FILES['img']
-                    )
-        post.save()
-        messages.success(request, f"Posted Product Successfully")
-        return HttpResponseRedirect("/post/{id}/".format(id= post.id))
-    return render(request, 'pcube/addpost.html')
+    try:
+        user = User.objects.get(username=request.user)
+        if request.method == "POST":
+            post = Post(title = request.POST['title'],
+                        brand = request.POST['brand'],
+                        discription = request.POST['product-disc'],
+                        oldprice = int(request.POST['old-price']),
+                        newprice = int(request.POST['new-price']),
+                        owner = request.user,
+                        address = request.user.profile.address,
+                        phone = request.user.profile.phoneno,
+                        state = request.user.profile.state,
+                        city = request.user.profile.city,
+                        image = request.FILES['img']
+                        )
+            post.save()
+            messages.success(request, f"Posted Product Successfully")
+            return HttpResponseRedirect("/post/{id}/".format(id= post.id))
+        return render(request, 'pcube/addpost.html')
+    except:
+        # queue.append('profile')
+        return redirect('login')
+    
 
 
 def UpdatePost(request, pk):
@@ -85,5 +91,6 @@ def allposts(request):
 
 def send_company_name(request):
     f = open('/home/pranava_adiga/Desktop/PCUBE/project/pcube/company_name.json')
-    response = json.load(f)
-    return HttpResponse(response, content_type='application/json')
+    response =  json.load(f)
+    return JsonResponse(response)
+    # return JsonResponse(response, safe = False)
