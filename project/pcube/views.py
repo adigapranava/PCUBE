@@ -4,7 +4,7 @@ from .models import Post
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
 import json
 # Create your views here.
 
@@ -32,6 +32,7 @@ def AddPost(request):
                         discription = request.POST['product-disc'],
                         oldprice = int(request.POST['old-price']),
                         newprice = int(request.POST['new-price']),
+                        post_type = request.POST['type'],
                         owner = request.user,
                         address = request.user.profile.address,
                         phone = request.user.profile.phoneno,
@@ -45,36 +46,63 @@ def AddPost(request):
         return render(request, 'pcube/addpost.html')
     except:
         # queue.append('profile')
+        request.session['prev'] = 'add-post'
         return redirect('login')
     
 
 
 def UpdatePost(request, pk):
     #tODO: login required and owner == user?
-    if request.method == "POST":
-        post = Post.objects.get(id = pk)
-        post.brand = request.POST['brand']
-        post.title = request.POST['title']
-        post.discription = request.POST['product-disc']
-        post.oldprice = int(request.POST['old-price'])
-        post.newprice = int(request.POST['new-price'])
-        #tODO: changing the address and phone
-        post.address = request.user.profile.address
-        post.phone = request.user.profile.phoneno
-        post.state = request.user.profile.state
-        post.city = request.user.profile.city
-        try:            
-            post.image = request.FILES['img']
+    try:
+        user = User.objects.get(username=request.user)
+        try:
+            post = Post.objects.get(id = pk)
         except:
-            pass        
-        post.save()
-        messages.success(request, f"Updated Product Successfully")
-        return HttpResponseRedirect("/post/{id}/".format(id= post.id))
-    post = Post.objects.get(id = pk)   
-    context = {
-        'post': post
-    }
-    return render(request, 'pcube/updatepost.html',context)
+            return HttpResponseNotFound()
+        if(post.owner.username==str(request.user)):
+            print(type(request.user), post.owner.username)
+            if request.method == "POST":
+                post = Post.objects.get(id = pk)
+                post.brand = request.POST['brand']
+                post.title = request.POST['title']
+                post.discription = request.POST['product-disc']
+                post.oldprice = int(request.POST['old-price'])
+                post.newprice = int(request.POST['new-price'])
+                post.post_type = request.POST['type']
+                #tODO: changing the address and phone
+                post.address = request.user.profile.address
+                post.phone = request.user.profile.phoneno
+                post.state = request.user.profile.state
+                post.city = request.user.profile.city
+                try:            
+                    post.image = request.FILES['img']
+                except:
+                    pass        
+                post.save()
+                messages.success(request, f"Updated Product Successfully")
+                return HttpResponseRedirect("/post/{id}/".format(id= post.id))
+            post = Post.objects.get(id = pk)   
+            context = {
+                'post': post
+            }
+            return render(request, 'pcube/updatepost.html',context)
+        else:
+          return HttpResponseNotFound("Forbidden")
+            
+    except:
+        # queue.append('profile')
+        request.session['prev'] = f'/post/{pk}/update'
+        return redirect('login')
+
+def UserPosts(request, username):
+    try:
+        user = User.objects.get(username = username)
+        context = {
+            'user': user
+        }
+        return render(request, 'pcube/users_post.html',context)
+    except:
+        return HttpResponseNotFound()
 
 def about(request):
     return render(request, 'pcube/about.html')

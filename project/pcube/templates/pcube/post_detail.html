@@ -69,7 +69,7 @@
                     <img src="{{object.owner.profile.image.url}}" alt="">
                 </div>
                 <div class="profile-text">
-                    <a href="#"><h2>{{object.owner.profile.fullname}}</h2></a>
+                    <a href="{% url 'user-posts' object.owner.username %}"><h2>{{object.owner.profile.fullname}}</h2></a>
                     <h5>{{ object.owner.email }}</h5>
                 </div>
             </div>

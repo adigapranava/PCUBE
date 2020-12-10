@@ -44,7 +44,7 @@ def login(request):
                 messages.success(request, f'Please fill your Details')
                 return redirect('profile_update')
             try:   
-                return redirect(queue.pop(0))
+                return redirect(request.session["prev"])
             except:
                 return redirect('pcube-home')
         else:
@@ -62,10 +62,16 @@ def profile(request):
         return render(request, 'users/profile.html')
     except:
         # queue.append('profile')
+        request.session['prev'] = 'profile'
         return redirect('login')
 
-@login_required
+
 def profile_update(request):
+    try:
+        user = User.objects.get(username=request.user)
+    except:
+        request.session['prev'] = 'profile_update'
+        return redirect('login')
     if request.method == "POST":
         if(request.POST['address'] == "None" or 
         request.POST['phoneno'] == "None" or
@@ -76,19 +82,6 @@ def profile_update(request):
         else:
             usr = request.user 
             pro = Profile.objects.get(user = usr)
-            '''
-            try:#SAVE image
-                fs = FileSystemStorage()
-                filename = fs.save(request.FILES['pic'].name, request.FILES['pic'])
-                request.FILES['pic']:
-
-                pro = Profile(user = usr, 
-                    address = request.POST['address'],
-                    phoneno = request.POST['phoneno'],
-                    city = request.POST['city'],
-                    )
-            except:#SAVE other details
-            '''
             pro.fullname = request.POST['full-name'] 
             pro.address = request.POST['address']
             pro.phoneno = request.POST['phoneno']

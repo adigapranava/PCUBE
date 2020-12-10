@@ -16,8 +16,20 @@
             <div class="post-details">
                 <p>Product Title</p>
                 <input type="text" name="title" id="product-title" required>
+                <p>Product type</p>
+                <div class="radios">
+                    <input type="radio" id="fashion" name="type" value="fashion" onchange="handleChange(this);" required>
+                    <label for="fashion">Fashion</label>
+                    <input type="radio" id="electronics" name="type" value="electronics" onchange="handleChange(this);"required>
+                    <label for="electronics">Electronics</label>
+                    <input type="radio" id="mobiles" name="type" value="mobiles" onchange="handleChange(this);" required>
+                    <label for="mobiles">Mobiles</label>
+                </div>
                 <p>Brand</p>
-                <input type="text" name="brand" id="product-brand" required>
+                <div class="selects" id="selects">
+                    <select name="brand" id="company">
+                    </select>
+                </div>
                 <p>Discription</p>
                 <textarea id="product-disc" name="product-disc" cols="40" rows="5" required></textarea>
                 <p>Old price</p>
@@ -38,19 +50,10 @@
                 <div class="post-image">
                     <img id="output_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVVhf6YdO-D4g_VPX9EA0wGBD0SwfpakZJTQ&usqp=CAU">
                 </div>
+                <a href="{% url 'pcube-home' %}">Cancle</a>
                 <input type="submit" value="Post">
             </div>
         </form>
     </div>
-    <script type='text/javascript'>
-        function preview_image(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('output_image');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
-
+    <script src="{% static 'pcube/addpost.js' %}"></script>
 {% endblock content %}

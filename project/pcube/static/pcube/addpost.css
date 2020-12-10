@@ -2,7 +2,7 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%) scale(0.95, 0.95);
-    background-color: #186eb4;
+    background-color: #273d50;
     color: whitesmoke;
     padding: 20px 50px 50px 50px;
     border-radius: 30px;
@@ -10,6 +10,7 @@
     font-family: 'Varela Round', sans-serif;
     width: 90vw;
     max-width: 800px;
+    box-shadow: 0px 0px 10px #67b2e4;
 }
 
 .post-container h1 {
@@ -51,7 +52,7 @@ textarea {
 
 .post-container form .post-details input:focus,
 textarea:focus {
-    border-bottom: 1px solid #00ff4c;
+    border-bottom: 1px solid #00ccff;
     transition: 0.5s;
 }
 
@@ -81,7 +82,8 @@ textarea:focus {
 
 .post-container form .post-images label {
     padding: 10px 20px;
-    background-color: #004141;
+    background-color: #025b9e;
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
@@ -122,4 +124,63 @@ textarea:focus {
     .post-container form .post-details {
         width: 100%;
     }
+}
+
+.radios {
+    margin-top: 10px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.radios input[type="radio"] {
+    display: none;
+}
+
+.radios label {
+    padding: 5px 10px;
+    background-color: rgb(14, 20, 44);
+    margin-left: 5px;
+    width: 25%;
+    color: rgb(0, 199, 189);
+    box-shadow: 0px 0px 4px #3f3e3e;
+    transition: background-color 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.radios input[type="radio"]:checked+label {
+    background-color: rgb(0, 165, 177);
+    color: rgb(14, 12, 12);
+}
+
+.selects select {
+    width: 200px;
+    padding: 2px 10px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: rgb(14, 20, 44);
+    color: rgb(0, 199, 189);
+    border-radius: 5px;
+    align-self: center;
+}
+
+.selects {
+    color: cornsilk;
+    margin-top: 10px;
+}
+
+.post-images a {
+    border: none;
+    outline: none;
+    background-color: rgb(31, 31, 34);
+    color: rgb(165, 165, 165);
+    font-size: 20px;
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    width: 100px;
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
 }

@@ -7,6 +7,7 @@ from PIL import Image
 
 class Post(models.Model):
     title = models.CharField(max_length= 30)
+    post_type = models.CharField(max_length= 30)
     brand = models.CharField(max_length= 20)
     discription = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)

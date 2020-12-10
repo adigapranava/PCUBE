@@ -28,7 +28,7 @@ function filter() {
         filtered2 = filtered;
     } else {
         for (var i = 0; i < filtered.length; i++) {
-            if (filtered[i].fields["title"].toLowerCase() == type)
+            if (filtered[i].fields["post_type"].toLowerCase() == type)
                 filtered2.push(filtered[i]);
         }
     }
