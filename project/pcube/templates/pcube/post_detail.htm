@@ -1,0 +1,63 @@
+{% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'pcube/postdetails.css' %}"> {% endblock headers %} {% block content %}
+<div class="container">
+    <div class="owner_info">
+        <div class="small-profile">
+            <div class="profile-img">
+                <img src="{{object.owner.profile.image.url}}" alt="">
+            </div>
+            <div class="profile-text">
+                <a href="{% url 'user-posts' object.owner.username %}">
+                    <h2>{{object.owner.profile.fullname}}</h2>
+                </a>
+                <h5>{{ object.owner.email }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="post_info">
+        <h6>{{ object.date_posted|date:"F d, Y"}}</h6>
+        <div class="disc">
+            <div class="disc1">
+                <div class="title">
+                    <h1>{{ object.title }}</h1>
+                    <h5>{{ object.brand }}</h5>
+                </div>
+                <div class="prices">
+                    <h3>Old Price: <span> &#8377;{{ object.oldprice }}</span></h3>
+                    <h3>New Price: <span> &#8377;{{ object.newprice }}</span></h3>
+                </div>
+                <span>discription:</span>
+                <p>{{ object.discription }}</p>
+            </div>
+            <div class="disc2">
+                <img src="{{ object.image.url }}" alt="" width="300">
+                <br>
+                <div class="add">
+                    <p>{{ object.address }}</p>
+                    <p>{{ object.state }}</p>
+                    <p>{{ object.city }}</p>
+                </div>
+            </div>
+        </div>
+        {% if request.user == object.owner %}
+        <div class="sure" id="sure">
+            <h3>Are you sure? You wan't to Delete it.</h3>
+            <form method="POST" action="{% url 'post-detail' object.id%}" class="buttons">
+
+                {% csrf_token %}
+                <input class="btn" onclick="cncl()" type="button" value="Cancel">
+                <input type="submit" value="Yes">
+            </form>
+        </div>
+        {% endif %}
+        <hr>
+        <div class="buttons">
+            {% if request.user == object.owner %}
+            <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
+            <input class="btn dgr" onclick="del()" type="button" value="Delete"> {% else %}
+            <input class="btn" type="button" value="Buy"> {% endif %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'pcube/postdetails.js' %}"></script>
+{% endblock content %}

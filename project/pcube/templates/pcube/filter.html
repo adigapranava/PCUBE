@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'pcube/filter.css' %}">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-{% endblock headers %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endblock headers %} {% block content %}
 <div class="box-container"></div>
 <div class="filter-div">
     <div class="filter-div2">
@@ -38,6 +38,19 @@
         </div>
         <div class="filter-msg">
             filter
+        </div>
+    </div>
+</div>
+
+
+
+<div class="addpost-div">
+    <div class="addpost-div2">
+        <div id="addpost">
+            <a href="{% url 'add-post' %}"><i class="fa fa-paper-plane" style="font-size:36px"></i></a>
+        </div>
+        <div class="addpost-msg">
+            Add Post
         </div>
     </div>
 </div>

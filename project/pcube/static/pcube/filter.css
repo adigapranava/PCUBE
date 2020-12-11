@@ -272,3 +272,50 @@
         right: 20px;
         box-shadow: 0px 0px 4px #1a1919;
     }
+    /*//////////////////*/
+    
+    #addpost {
+        background-color: darkcyan;
+        color: rgb(255, 187, 0);
+        text-shadow: 3px 3px #122936;
+        padding: 10px;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        position: relative;
+        text-align: center;
+        box-shadow: 0px 0px 10px #050505;
+        cursor: pointer;
+    }
+    
+    .addpost-div {
+        position: fixed;
+        top: 85%;
+        right: 20px;
+        z-index: 100;
+    }
+    
+    .addpost-div2 {
+        position: relative;
+    }
+    
+    .addpost-div .addpost-msg {
+        background-color: rgb(34, 32, 32);
+        color: rgb(206, 221, 166);
+        font-size: 16px;
+        padding: 3px;
+        text-align: center;
+        border-radius: 4px;
+        margin-top: 2px;
+        display: none;
+        position: relative;
+        top: -10px;
+    }
+    
+    #addpost a {
+        color: rgb(255, 187, 0);
+    }
+    
+    .addpost-div:hover .addpost-msg {
+        display: block;
+    }

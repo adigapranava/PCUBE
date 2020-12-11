@@ -1,0 +1,214 @@
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-color: rgb(29, 36, 53);
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 2px;
+        color: cornsilk;
+        padding: 20px;
+    }
+    
+    .small-profile {
+        width: 350px;
+        height: 150px;
+        padding: 30px;
+        background-color: rgb(29, 29, 43);
+        border-radius: 30px;
+        position: relative;
+        top: 20px;
+        box-shadow: 0px 0px 1px rgb(146, 142, 142);
+    }
+    
+    .small-profile .profile-img img {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        border-radius: 50%;
+        top: -10%;
+        border: 3px solid rgb(206 221 236);
+    }
+    
+    .small-profile .profile-text {
+        float: right;
+    }
+    
+    .small-profile .profile-text h2 {
+        font-size: 40px;
+        max-width: 200px;
+        margin: 0;
+        text-align: center;
+        color: rgb(206 221 236);
+        font-weight: 700;
+    }
+    
+    .small-profile .profile-text h2:hover {
+        color: floralwhite;
+    }
+    
+    .small-profile .profile-text h5 {
+        color: rgb(206 221 236);
+        text-align: center;
+        font-weight: 300;
+    }
+    
+    .post_info {
+        width: 90%;
+        padding: 30px;
+        margin: 20px;
+        background-color: rgb(20, 25, 36);
+        border-radius: 20px;
+    }
+    
+    .post_info h6 {
+        font-size: 15px;
+        color: rgb(167, 165, 165);
+        border-bottom: 5px solid lightcoral;
+        padding-bottom: 10px;
+    }
+    
+    .post_info .title h1 {
+        text-transform: capitalize;
+        font-size: 5rem;
+    }
+    
+    .post_info .title h5 {
+        font-size: 1.2rem;
+        color: rgb(233, 138, 138);
+        text-transform: capitalize;
+    }
+    
+    .title {
+        margin-bottom: 5vh;
+    }
+    
+    .prices span {
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+    
+    .post_info .disc {
+        display: flex;
+    }
+    
+    .disc1,
+    .disc2 {
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    
+    .disc .prices {
+        margin-bottom: 10px;
+    }
+    
+    .disc1 span {
+        text-transform: capitalize;
+    }
+    
+    .disc1 p {
+        font-size: 20px;
+        padding: 10px 20px 10px 10px;
+        text-align: justify;
+        color: rgb(211, 202, 185);
+        max-width: 300px;
+    }
+    
+    .disc2 img,
+    .add {
+        margin-top: 30px;
+    }
+    
+    .buttons {
+        display: flex;
+        margin-top: 15px;
+        color: snow;
+    }
+    
+    .buttons .btn,
+    input[type=submit] {
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        background-color: rgb(77, 77, 97);
+        font-weight: 1000;
+        border-radius: 30px;
+        font-size: 20px;
+        color: seashell;
+        margin-right: 20px;
+        width: 100px;
+        text-align: center;
+    }
+    
+    .sure {
+        padding: 20px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-25%);
+        display: none;
+    }
+    
+    .post_info .active {
+        display: block;
+    }
+    
+    .buttons .dgr,
+    input[type=submit] {
+        background: tomato;
+        width: 100px;
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width: 1060px) {
+        .post_info .disc {
+            display: block;
+        }
+        .disc1,
+        .disc2 {
+            width: 100%;
+        }
+        .disc1 p {
+            max-width: 80%;
+        }
+    }
+    
+    @media screen and (max-width: 810px) {
+        .small-profile {
+            width: 70%;
+            margin: 20px 20px 50px 20px;
+            height: auto;
+            text-align: center;
+            position: relative;
+        }
+        .small-profile .profile-img img {
+            position: relative;
+        }
+        .small-profile .profile-text {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            float: none;
+        }
+        .small-profile .profile-text h2 {
+            font-size: 40px;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            text-align: center;
+            color: rgb(206 221 236);
+            font-weight: 700;
+        }
+        .container {
+            display: block;
+        }
+        .post_info {
+            width: 70%;
+        }
+    }

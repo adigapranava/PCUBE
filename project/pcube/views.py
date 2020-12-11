@@ -20,8 +20,22 @@ class PostListView(ListView):
     template_name='pcube/home.html' #<app>/<model>_<view_type>.html
     ordering = ['-date_posted']
 
-class PostDetailView(DetailView):
-    model = Post
+def PostDetailView(request, pk):
+    try:
+        post = Post.objects.get(id = pk)
+    except:
+        return HttpResponseNotFound()
+    if request.method == "POST":
+        if(post.owner.username==str(request.user)):
+            Post.objects.get(id = pk).delete()
+            messages.success(request, f"Deleted the Post Successfully")
+            return redirect('pcube-home')
+        else:
+          return HttpResponseNotFound("Forbidden")
+    context = {
+        'object': post
+    }
+    return render(request, 'pcube/post_detail.htm',context)
 
 def AddPost(request):
     try:
@@ -52,7 +66,6 @@ def AddPost(request):
 
 
 def UpdatePost(request, pk):
-    #tODO: login required and owner == user?
     try:
         user = User.objects.get(username=request.user)
         try:
@@ -90,10 +103,9 @@ def UpdatePost(request, pk):
           return HttpResponseNotFound("Forbidden")
             
     except:
-        # queue.append('profile')
         request.session['prev'] = f'/post/{pk}/update'
         return redirect('login')
-
+        
 def UserPosts(request, username):
     try:
         user = User.objects.get(username = username)
@@ -110,7 +122,7 @@ def about(request):
 
 ##Api handler
 def filter(request):
-    return render(request, 'pcube/filter.htm')    
+    return render(request, 'pcube/filter.html')    
 
 # API OF ALL POSTS
 def allposts(request):
