@@ -1,6 +1,6 @@
 {
     "fashion": ["sparks", "puma", "nike", "wrong",
-        "addidas", "fendi", "burbery", "H&M", "raymond"
+        "addidas", "fendi", "burbery", "H&M", "raymond", "manyavar"
     ],
     "mobile": ["apple", "samsung", "motorola", "nokia",
         "realme", "mi", "lenovo", "lg", "vivo", "oppo",
@@ -8,6 +8,6 @@
     ],
     "electronic": ["pegion", "samsung", "lg", "hp", "mac",
         "butterfly", "bajaj", "havells", "philips", "bosch",
-        "sony", "boat", "crompton", "prestige", "parasonic", "casio"
+        "sony", "boat", "crompton", "prestige", "parasonic", "casio", "apple", "nicon", "canon"
     ]
 }

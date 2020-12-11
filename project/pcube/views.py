@@ -109,8 +109,10 @@ def UpdatePost(request, pk):
 def UserPosts(request, username):
     try:
         user = User.objects.get(username = username)
+        post = serializers.serialize('json', user.post_set.all())
         context = {
-            'user': user
+            'user': user,
+            'post': post
         }
         return render(request, 'pcube/users_post.html',context)
     except:

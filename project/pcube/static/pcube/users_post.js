@@ -1,5 +1,5 @@
-var posts = new Array(),
-    companys;
+// var posts = new Array(),
+// companys;
 
 $("#filter-search").click(function() {
     $(".filter-box").toggle();
@@ -93,9 +93,8 @@ function handleChange(src) {
 
 function display(selected_posts) {
     var i;
-    for (i = 0; i < selected_posts.length; i++) {
+    for (i = selected_posts.length - 1; i >= 0; i--) {
         // console.log(posts[i].fields);
-        //$('.box-container').append('<div style="background-color: red; width: 100px; height: 100px">hello</div>');
         $('.box-container').append('<div class="card"><div class="imgBx"><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '"></div><div class="contentBx"><hr style="width:100%"><h1>' + selected_posts[i].fields.title + '</h1><h5>' + selected_posts[i].fields.brand + '</h5><h2 class="price">&#8377;' + selected_posts[i].fields.newprice + '</h2><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '" class="buy">More Info</a></div></div>');
     }
 }
@@ -115,23 +114,7 @@ function filter_companies(y) {
 function onPageLoad() {
 
     $(".filter-box").toggle();
-
-    var url = "http://127.0.0.1:8000/allposts/";
-    $.get(url, function(data, status) {
-        // console.log("got response for allpost request");
-        if (data) {
-            var posts1;
-            posts1 = data;
-            var usr = parseInt(document.getElementById("user_pk").innerHTML);
-            for (var i = 0; i < posts1.length; i++) {
-                if (posts1[i].fields["owner"] == usr) {
-                    // console.log(posts1[i].fields["owner"]);
-                    posts.push(posts1[i]);
-                }
-            }
-            display(posts);
-        }
-    });
+    display(posts);
 
     var url = "http://127.0.0.1:8000/companynames/";
     $.get(url, function(data, status) {

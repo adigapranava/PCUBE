@@ -30,20 +30,23 @@
         top: -43%;
         width: 100%;
         height: 100%;
-        background: #2196f3;
+        /* background: #2196f3; */
+        background: #f32160;
         transition: 0.5s;
     }
     
     .card:nth-child(4n+0)::before {
-        background: #f32160;
+        background: #03ddae;
     }
     
     .card:nth-child(4n+1)::before {
-        background: #f36421;
+        /* background: #f36421; */
+        background: #ca06ba;
     }
     
     .card:nth-child(4n+2)::before {
         background: #a621f3;
+        background: #2196f3;
     }
     
     .card:hover::before {
@@ -61,14 +64,10 @@
     }
     
     .card .imgBx img {
-        width: 250px;
+        max-width: 250px;
         height: 200px;
-        border: #000000 solid 1px;
         border-radius: 20px;
     }
-    /*.card:hover .imgBx img {
-    width: 75%;
-}*/
     
     .card .contentBx {
         position: relative;
@@ -146,8 +145,8 @@
     /*/////////*/
     
     #filter-search {
-        background-color: darkcyan;
-        color: rgb(255, 187, 0);
+        background-color: rgb(38, 197, 197);
+        color: rgb(228, 207, 19);
         text-shadow: 3px 3px #122936;
         padding: 10px;
         border-radius: 50%;

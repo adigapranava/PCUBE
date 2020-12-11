@@ -3,6 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'pcube/users_post.css' %}">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+    var posts, companys;
+    posts = {{ post| safe }};
+    console.log(posts);
+</script>
 {% endblock headers %} {% block content %}
 <div class="small-profile">
     <div class="profile-img">
