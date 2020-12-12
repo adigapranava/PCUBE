@@ -13,6 +13,27 @@
                 <h5>{{ object.owner.email }}</h5>
             </div>
         </div>
+        {% if request.user == object.owner %}
+            <div class="buyers-list">
+                <table>
+                    <th colspan = "4" style="border-radius: 30px 30px 0 0;border-bottom:5px solid #aaa;">Buyers</th>
+                    <tr>
+                        <th>username</th>
+                        <th>price</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for buyer in buyers %}
+                    <tr>
+                        <td>{{buyer.user_id.username}}</td>
+                        <td>&#8377; {{buyer.price}}</td>
+                        <td> <span class="sell">sell</span></td>
+                        <td> <span class="del">del</span></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
     </div>
     <div class="post_info">
         <h6>{{ object.date_posted|date:"F d, Y"}}</h6>
@@ -31,7 +52,7 @@
                 <p>{{ object.discription }}</p>
             </div>
             <div class="disc2">
-                <img src="{{ object.image.url }}" alt="" width="300">
+                <img src="{{ object.image.url }}" alt="object.image.url">
                 <br>
                 <div class="add">
                     <p>{{ object.address }}</p>
@@ -56,6 +77,7 @@
                 {% csrf_token %}
                 <input class="btn" onclick="cncl()" type="button" value="Cancel">
                 <input class="btn" type="number" name="price" id="price" min="{{ object.newprice }}" required>
+                
                 <button class="btn dn" type="submit" name="post_id" value="{{ object.id }}">Done</button>
             </form>
             {% endif %}
@@ -64,18 +86,45 @@
         <hr>
         <div class="buttons">
             {% if request.user == object.owner %}
-            <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
-            <input class="btn dgr" onclick="del()" type="button" value="Delete"> {% else %} {% if is_requested %}
-            <input class="btn" type="button" value="Cancel Request"> {% else %}
-            <input class="btn" onclick="del()" type="button" value="Request"> {% endif %}
-            <form action="{% url 'post-like' %}" method="POST">
-                {% csrf_token %} {% if is_liked %}
-                <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% else %}
-                <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button> {% endif %}
-            </form>
+                <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
+                <input class="btn dgr" onclick="del()" type="button" value="Delete"> 
+                <button class="btn lk">{{total_likes}} Like{{total_likes|pluralize}}</button>
+            {% else %} 
+                {% if is_requested %}
+                    <form method="POST" action="{% url 'post-buy' %}" class="buttons">
+                    {% csrf_token %}
+                        <button class="btn" type="submit" name="post_id" value="{{object.id}}">Cancel Request</button>
+                    </form>
+                {% else %}
+                    <input class="btn" onclick="del()" type="button" value="Request"> 
+                {% endif %}
+                <form action="{% url 'post-like' %}" method="POST">
+                    {% csrf_token %} {% if is_liked %}
+                    <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% else %}
+                    <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button> {% endif %}
+                </form>
             {% endif %}
         </div>
     </div>
 </div>
 <script src="{% static 'pcube/postdetails.js' %}"></script>
+{% if request.user == object.owner %}
+   <style>
+        .post_info {
+        width: 50%;
+    }
+    .owner_info{
+        width: 50%;
+    }
+    .disc2 img{
+        max-height: 400px;
+        max-width: 300px;
+        z-index: -10;
+    }
+    .small-profile {
+        postition:relative;
+        left: 25%;
+    }
+   </style>
+{%endif%}
 {% endblock content %}

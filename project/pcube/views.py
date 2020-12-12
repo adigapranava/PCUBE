@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Buy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
@@ -59,14 +59,23 @@ def PostDetailView(request, pk):
     
     #check if user has liked the post
     is_liked = False
+    is_requested = False
+    buyers = Buy.objects.order_by('-price').filter(post_id = pk)
+
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
 
+    if Buy.objects.filter(post_id = pk, user_id = request.user.id).exists():
+        is_requested = True
+
     context = {
         'object': post,
-        'is_liked': is_liked
+        'is_liked': is_liked,
+        'is_requested': is_requested,
+        'buyers': buyers,
+        'total_likes': post.total_likes()
     }
-    return render(request, 'pcube/post_detail.htm',context)
+    return render(request, 'pcube/post_detail.html',context)
 
 # update a post
 def UpdatePost(request, pk):
@@ -124,6 +133,23 @@ def like_post(request):
             else:
                 post.likes.add(request.user)
                 is_liked = True
+            return HttpResponseRedirect("/post/{id}/#like".format(id= post.id))
+        except:
+            return HttpResponseNotFound()
+    else:
+        request.session['prev'] = f"/post/{request.POST.get('post_id')}/#like"
+        return redirect('login')
+
+#buy post
+def buy_post(request):
+    if request.user.is_authenticated:
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+            if Buy.objects.filter(post_id = post, user_id = request.user).exists():
+                Buy.objects.filter(post_id = post, user_id = request.user).delete()
+            else:
+                buyer = Buy(post_id = post, user_id = request.user, price = request.POST.get('price'))
+                buyer.save()
             return HttpResponseRedirect("/post/{id}/#like".format(id= post.id))
         except:
             return HttpResponseNotFound()

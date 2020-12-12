@@ -129,6 +129,8 @@
     .disc2 img,
     .add {
         margin-top: 30px;
+        max-height: 500px;
+        max-width: 400px;
     }
     
     .buttons {
@@ -149,7 +151,7 @@
         font-size: 20px;
         color: seashell;
         margin-right: 20px;
-        width: 100px;
+        min-width: 100px;
         text-align: center;
     }
     
@@ -157,7 +159,6 @@
         /* background: rgb(228, 29, 122); */
         background-color: rgb(71, 49, 70);
         color: #e2b8dd;
-        width: 100px;
         cursor: pointer;
         position: absolute;
         right: 10px;
@@ -168,10 +169,13 @@
         background-color: #e2b8dd;
         /* color: rgb(228, 29, 122); */
         color: rgb(71, 49, 70);
-        width: 100px;
         cursor: pointer;
         position: absolute;
         right: 10px;
+    }
+    
+    .buttons .dn {
+        background-color: rgb(49, 71, 49);
     }
     
     .sure {
@@ -191,6 +195,64 @@
         background: tomato;
         width: 100px;
         cursor: pointer;
+    }
+    
+    .buyers-list {
+        margin-top: 50px;
+    }
+    
+    table {
+        background-color: rgb(41, 52, 66);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border-collapse: collapse;
+        width: 500px;
+        border-radius: 30px;
+        box-shadow: 0px 0px 10px 1px #807b7b;
+    }
+    
+    th,
+    td {
+        width: 100px;
+        text-transform: capitalize;
+        font-size: 20px;
+        padding: 12px 16px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: rgb(29, 36, 46);
+        letter-spacing: 1px;
+    }
+    
+    td {
+        color: seashell;
+        letter-spacing: 1px;
+    }
+    
+    .sell {
+        padding: 6px 10px;
+        background-color: rgb(4, 148, 100);
+        font-weight: 1000;
+        border-radius: 10px;
+        font-size: 20px;
+        color: seashell;
+        min-width: 100px;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    .del {
+        cursor: pointer;
+        padding: 6px 10px;
+        font-weight: 1000;
+        border-radius: 10px;
+        font-size: 20px;
+        color: seashell;
+        min-width: 100px;
+        text-align: center;
+        background-color: rgb(148, 62, 4);
     }
     
     @media screen and (max-width: 1060px) {
