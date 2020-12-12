@@ -94,6 +94,12 @@
         letter-spacing: 1px;
     }
     
+    h4 .old {
+        font-size: 23px;
+        color: rgb(194, 168, 168);
+        text-decoration: line-through;
+    }
+    
     .post_info .disc {
         display: flex;
     }
@@ -129,6 +135,7 @@
         display: flex;
         margin-top: 15px;
         color: snow;
+        position: relative;
     }
     
     .buttons .btn,
@@ -144,6 +151,27 @@
         margin-right: 20px;
         width: 100px;
         text-align: center;
+    }
+    
+    .buttons .lk {
+        /* background: rgb(228, 29, 122); */
+        background-color: rgb(71, 49, 70);
+        color: #e2b8dd;
+        width: 100px;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+    }
+    
+    .buttons .ulk {
+        /* background: rgb(231, 194, 179); */
+        background-color: #e2b8dd;
+        /* color: rgb(228, 29, 122); */
+        color: rgb(71, 49, 70);
+        width: 100px;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
     }
     
     .sure {

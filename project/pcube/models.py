@@ -11,6 +11,7 @@ class Post(models.Model):
     brand = models.CharField(max_length= 20)
     discription = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     address = models.CharField(max_length= 60)
     state = models.CharField(max_length= 20)
     city = models.CharField(max_length= 20)
@@ -32,4 +33,11 @@ class Post(models.Model):
             output_size = (600, 600)
             img.thumbnail(output_size)
             img.save(self.image.path)
-    
+
+class Buy(models.Model):
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.post_id.title

@@ -14,32 +14,10 @@ import json
     }
     return render(request, 'pcube/home.html', context)'''
 
-class PostListView(ListView):
-    model = Post
-    context_object_name = 'posts'
-    template_name='pcube/home.html' #<app>/<model>_<view_type>.html
-    ordering = ['-date_posted']
 
-def PostDetailView(request, pk):
-    try:
-        post = Post.objects.get(id = pk)
-    except:
-        return HttpResponseNotFound()
-    if request.method == "POST":
-        if(post.owner.username==str(request.user)):
-            Post.objects.get(id = pk).delete()
-            messages.success(request, f"Deleted the Post Successfully")
-            return redirect('pcube-home')
-        else:
-          return HttpResponseNotFound("Forbidden")
-    context = {
-        'object': post
-    }
-    return render(request, 'pcube/post_detail.htm',context)
-
+#add A post
 def AddPost(request):
-    try:
-        user = User.objects.get(username=request.user)
+    if request.user.is_authenticated:
         if request.method == "POST":
             post = Post(title = request.POST['title'],
                         brand = request.POST['brand'],
@@ -58,22 +36,50 @@ def AddPost(request):
             messages.success(request, f"Posted Product Successfully")
             return HttpResponseRedirect("/post/{id}/".format(id= post.id))
         return render(request, 'pcube/addpost.html')
-    except:
-        # queue.append('profile')
+    else:
         request.session['prev'] = 'add-post'
         return redirect('login')
-    
 
-
-def UpdatePost(request, pk):
+#detail view of a post and delete a post
+def PostDetailView(request, pk):
+    # if post exists?
     try:
-        user = User.objects.get(username=request.user)
+        post = Post.objects.get(id = pk)
+    except:
+        return HttpResponseNotFound()
+    
+    # if method == POST delete the post
+    if request.method == "POST":
+        if(post.owner.username==str(request.user)):
+            Post.objects.get(id = pk).delete()
+            messages.success(request, f"Deleted the Post Successfully")
+            return redirect('pcube-home')
+        else:
+          return HttpResponseNotFound("Forbidden")
+    
+    #check if user has liked the post
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
+
+    context = {
+        'object': post,
+        'is_liked': is_liked
+    }
+    return render(request, 'pcube/post_detail.htm',context)
+
+# update a post
+def UpdatePost(request, pk):
+    # if user is logge in else go to login
+    if request.user.is_authenticated:
+        #if post exists
         try:
             post = Post.objects.get(id = pk)
         except:
             return HttpResponseNotFound()
+        # if user is owner
         if(post.owner.username==str(request.user)):
-            print(type(request.user), post.owner.username)
+            # print(type(request.user), post.owner.username)
             if request.method == "POST":
                 post = Post.objects.get(id = pk)
                 post.brand = request.POST['brand']
@@ -100,12 +106,39 @@ def UpdatePost(request, pk):
             }
             return render(request, 'pcube/updatepost.html',context)
         else:
-          return HttpResponseNotFound("Forbidden")
-            
-    except:
+          return HttpResponseNotFound("Forbidden")            
+    else:
         request.session['prev'] = f'/post/{pk}/update'
         return redirect('login')
-        
+
+# like a post
+def like_post(request):
+    # if logged in
+    if request.user.is_authenticated:
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+            is_liked = False
+            if post.likes.filter(id=request.user.id).exists():
+                post.likes.remove(request.user)
+                is_liked = False
+            else:
+                post.likes.add(request.user)
+                is_liked = True
+            return HttpResponseRedirect("/post/{id}/#like".format(id= post.id))
+        except:
+            return HttpResponseNotFound()
+    else:
+        request.session['prev'] = f"/post/{request.POST.get('post_id')}/#like"
+        return redirect('login')
+
+#display all the post
+class PostListView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name='pcube/home.html' #<app>/<model>_<view_type>.html
+    ordering = ['-date_posted']
+
+# Render all the userames post
 def UserPosts(request, username):
     try:
         user = User.objects.get(username = username)

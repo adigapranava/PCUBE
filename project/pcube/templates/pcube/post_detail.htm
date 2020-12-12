@@ -24,8 +24,8 @@
                 </div>
                 <div class="prices">
                     <h3>New Price: <span> &#8377;{{ object.newprice }}</span></h3>
-                    <h3>Old Price: <span>&#8377;{{ object.oldprice }}</span>
-                    </h3>
+                    <h4>Old Price: <span class="old"> &#8377;{{ object.oldprice }}</span>
+                    </h4>
                 </div>
                 <span>discription:</span>
                 <p>{{ object.discription }}</p>
@@ -56,7 +56,13 @@
             {% if request.user == object.owner %}
             <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
             <input class="btn dgr" onclick="del()" type="button" value="Delete"> {% else %}
-            <input class="btn" type="button" value="Buy"> {% endif %}
+            <input class="btn" type="button" value="Buy">
+            <form action="{% url 'post-like' %}" method="POST">
+                {% csrf_token %} {% if is_liked %}
+                <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% else %}
+                <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button> {% endif %}
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>
