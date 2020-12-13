@@ -18,7 +18,7 @@ class Post(models.Model):
     phone = models.CharField(max_length= 15)
     oldprice = models.PositiveIntegerField()
     newprice = models.PositiveIntegerField()
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ImageField(default='placeholder.jpg', upload_to='Posts', height_field=None)
 
     def __str__(self):
@@ -44,3 +44,11 @@ class Buy(models.Model):
 
     def __str__(self):
         return self.post_id.title
+
+class Notification(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length= 30)
+    h1 = models.CharField(max_length= 30)
+    discription = discription = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)

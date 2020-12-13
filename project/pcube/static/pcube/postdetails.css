@@ -1,304 +1,377 @@
-    * {
-        margin: 0;
-        padding: 0;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(29, 36, 53);
+}
+
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 2px;
+    color: cornsilk;
+    padding: 20px;
+}
+
+.small-profile {
+    width: 350px;
+    height: 150px;
+    padding: 30px;
+    background-color: rgb(29, 29, 43);
+    border-radius: 30px;
+    position: relative;
+    top: 20px;
+    box-shadow: 0px 0px 1px rgb(146, 142, 142);
+}
+
+.small-profile .profile-img img {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 50%;
+    top: -10%;
+    border: 3px solid rgb(206 221 236);
+}
+
+.small-profile .profile-text {
+    float: right;
+}
+
+.small-profile .profile-text h2 {
+    font-size: 40px;
+    max-width: 200px;
+    margin: 0;
+    text-align: center;
+    color: rgb(206 221 236);
+    font-weight: 700;
+}
+
+.small-profile .profile-text h2:hover {
+    color: floralwhite;
+}
+
+.small-profile .profile-text h5 {
+    color: rgb(206 221 236);
+    text-align: center;
+    font-weight: 300;
+}
+
+.post_info {
+    width: 90%;
+    padding: 30px;
+    margin: 20px;
+    background-color: rgb(20, 25, 36);
+    border-radius: 20px;
+}
+
+.post_info h6 {
+    font-size: 15px;
+    color: rgb(167, 165, 165);
+    border-bottom: 5px solid lightcoral;
+    padding-bottom: 10px;
+}
+
+.post_info .title h1 {
+    text-transform: capitalize;
+    font-size: 5rem;
+}
+
+.post_info .title h5 {
+    font-size: 1.2rem;
+    color: rgb(233, 138, 138);
+    text-transform: capitalize;
+}
+
+.title {
+    margin-bottom: 5vh;
+}
+
+.prices span {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+h4 .old {
+    font-size: 23px;
+    color: rgb(194, 168, 168);
+    text-decoration: line-through;
+}
+
+.post_info .disc {
+    display: flex;
+}
+
+.disc1,
+.disc2 {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.disc .prices {
+    margin-bottom: 10px;
+}
+
+.disc1 span {
+    text-transform: capitalize;
+}
+
+.disc1 p {
+    font-size: 20px;
+    padding: 10px 20px 10px 10px;
+    text-align: justify;
+    color: rgb(211, 202, 185);
+    max-width: 300px;
+}
+
+.disc2 img,
+.add {
+    margin-top: 30px;
+    max-height: 500px;
+    max-width: 400px;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 15px;
+    color: snow;
+    position: relative;
+}
+
+.buttons .btn,
+input[type=submit] {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: rgb(77, 77, 97);
+    font-weight: 1000;
+    border-radius: 30px;
+    font-size: 20px;
+    color: seashell;
+    margin-right: 20px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.buttons .lk {
+    /* background: rgb(228, 29, 122); */
+    background-color: rgb(71, 49, 70);
+    color: #e2b8dd;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+.buttons .ulk {
+    /* background: rgb(231, 194, 179); */
+    background-color: #e2b8dd;
+    /* color: rgb(228, 29, 122); */
+    color: rgb(71, 49, 70);
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+.buttons .dn {
+    background-color: rgb(49, 71, 49);
+}
+
+.sure {
+    padding: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-25%);
+    display: none;
+}
+
+.post_info .active {
+    display: block;
+}
+
+.buttons .dgr,
+input[type=submit] {
+    background: tomato;
+    width: 100px;
+    cursor: pointer;
+}
+
+.buyers-list {
+    margin-top: 50px;
+}
+
+table {
+    background-color: rgb(41, 52, 66);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-collapse: collapse;
+    width: 500px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 1px #807b7b;
+}
+
+th,
+td {
+    width: 100px;
+    text-transform: capitalize;
+    font-size: 20px;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+th {
+    background-color: rgb(29, 36, 46);
+    letter-spacing: 1px;
+}
+
+td {
+    color: seashell;
+    letter-spacing: 1px;
+}
+
+.sell {
+    padding: 6px 10px;
+    background-color: rgb(4, 148, 100);
+    font-weight: 1000;
+    border-radius: 10px;
+    font-size: 20px;
+    color: seashell;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.del {
+    cursor: pointer;
+    padding: 6px 10px;
+    font-weight: 1000;
+    border-radius: 10px;
+    font-size: 20px;
+    color: seashell;
+    min-width: 100px;
+    text-align: center;
+    background-color: rgb(148, 62, 4);
+    border: none;
+    outline: none;
+}
+
+.msg1,
+.msg2 {
+    position: fixed;
+    top: 90px;
+    right: 10px;
+    background-color: #b8dae2;
+    padding: 10px;
+    border-radius: 30px;
+    display: none;
+}
+
+.msgs .active,
+.msgs .active {
+    display: block;
+}
+
+.msg1 .head,
+.msg2 .head {
+    color: rgb(49, 53, 53);
+    font-size: 25px;
+    border-bottom: 3px solid rgb(104, 104, 104);
+}
+
+.msg1 .msg,
+.msg2 .msg {
+    color: rgb(27, 27, 27);
+    padding: 10px 16px;
+}
+
+.msg1 .msg .btn,
+.msg2 .msg .btn {
+    padding: 7px 12px;
+}
+
+.msg1 .msg .yes {
+    background-color: rgb(41, 102, 22);
+}
+
+#del {
+    display: none;
+}
+
+#del2 {
+    display: none;
+}
+
+.notifications {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #201e1e;
+    border-radius: 30px;
+    color: aliceblue;
+}
+
+.notifications .notification {
+    margin: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #b8dae2;
+}
+
+.notifications .notification h1 {
+    color: aqua;
+    font-size: 26px;
+}
+
+.msg2 .msg .yes {
+    background-color: rgb(102, 22, 75);
+}
+
+@media screen and (max-width: 1060px) {
+    .post_info .disc {
+        display: block;
     }
-    
-    body {
-        background-color: rgb(29, 36, 53);
+    .disc1,
+    .disc2 {
+        width: 100%;
     }
-    
-    .container {
-        display: flex;
-        flex-direction: row-reverse;
-        margin-top: 2px;
-        color: cornsilk;
-        padding: 20px;
+    .disc1 p {
+        max-width: 80%;
     }
-    
+}
+
+@media screen and (max-width: 810px) {
     .small-profile {
-        width: 350px;
-        height: 150px;
-        padding: 30px;
-        background-color: rgb(29, 29, 43);
-        border-radius: 30px;
+        width: 70%;
+        margin: 20px 20px 50px 20px;
+        height: auto;
+        text-align: center;
         position: relative;
-        top: 20px;
-        box-shadow: 0px 0px 1px rgb(146, 142, 142);
     }
-    
     .small-profile .profile-img img {
-        width: 150px;
-        height: 150px;
-        position: absolute;
-        border-radius: 50%;
-        top: -10%;
-        border: 3px solid rgb(206 221 236);
+        position: relative;
     }
-    
     .small-profile .profile-text {
-        float: right;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        float: none;
     }
-    
     .small-profile .profile-text h2 {
         font-size: 40px;
-        max-width: 200px;
+        width: 100%;
+        max-width: none;
         margin: 0;
         text-align: center;
         color: rgb(206 221 236);
         font-weight: 700;
     }
-    
-    .small-profile .profile-text h2:hover {
-        color: floralwhite;
-    }
-    
-    .small-profile .profile-text h5 {
-        color: rgb(206 221 236);
-        text-align: center;
-        font-weight: 300;
-    }
-    
-    .post_info {
-        width: 90%;
-        padding: 30px;
-        margin: 20px;
-        background-color: rgb(20, 25, 36);
-        border-radius: 20px;
-    }
-    
-    .post_info h6 {
-        font-size: 15px;
-        color: rgb(167, 165, 165);
-        border-bottom: 5px solid lightcoral;
-        padding-bottom: 10px;
-    }
-    
-    .post_info .title h1 {
-        text-transform: capitalize;
-        font-size: 5rem;
-    }
-    
-    .post_info .title h5 {
-        font-size: 1.2rem;
-        color: rgb(233, 138, 138);
-        text-transform: capitalize;
-    }
-    
-    .title {
-        margin-bottom: 5vh;
-    }
-    
-    .prices span {
-        font-size: 30px;
-        font-weight: 900;
-        letter-spacing: 1px;
-    }
-    
-    h4 .old {
-        font-size: 23px;
-        color: rgb(194, 168, 168);
-        text-decoration: line-through;
-    }
-    
-    .post_info .disc {
-        display: flex;
-    }
-    
-    .disc1,
-    .disc2 {
-        width: 50%;
-        margin-bottom: 20px;
-    }
-    
-    .disc .prices {
-        margin-bottom: 10px;
-    }
-    
-    .disc1 span {
-        text-transform: capitalize;
-    }
-    
-    .disc1 p {
-        font-size: 20px;
-        padding: 10px 20px 10px 10px;
-        text-align: justify;
-        color: rgb(211, 202, 185);
-        max-width: 300px;
-    }
-    
-    .disc2 img,
-    .add {
-        margin-top: 30px;
-        max-height: 500px;
-        max-width: 400px;
-    }
-    
-    .buttons {
-        display: flex;
-        margin-top: 15px;
-        color: snow;
-        position: relative;
-    }
-    
-    .buttons .btn,
-    input[type=submit] {
-        border: none;
-        outline: none;
-        padding: 12px 16px;
-        background-color: rgb(77, 77, 97);
-        font-weight: 1000;
-        border-radius: 30px;
-        font-size: 20px;
-        color: seashell;
-        margin-right: 20px;
-        min-width: 100px;
-        text-align: center;
-    }
-    
-    .buttons .lk {
-        /* background: rgb(228, 29, 122); */
-        background-color: rgb(71, 49, 70);
-        color: #e2b8dd;
-        cursor: pointer;
-        position: absolute;
-        right: 10px;
-    }
-    
-    .buttons .ulk {
-        /* background: rgb(231, 194, 179); */
-        background-color: #e2b8dd;
-        /* color: rgb(228, 29, 122); */
-        color: rgb(71, 49, 70);
-        cursor: pointer;
-        position: absolute;
-        right: 10px;
-    }
-    
-    .buttons .dn {
-        background-color: rgb(49, 71, 49);
-    }
-    
-    .sure {
-        padding: 20px;
-        position: relative;
-        left: 50%;
-        transform: translateX(-25%);
-        display: none;
-    }
-    
-    .post_info .active {
+    .container {
         display: block;
     }
-    
-    .buttons .dgr,
-    input[type=submit] {
-        background: tomato;
-        width: 100px;
-        cursor: pointer;
+    .post_info {
+        width: 70%;
     }
-    
-    .buyers-list {
-        margin-top: 50px;
-    }
-    
-    table {
-        background-color: rgb(41, 52, 66);
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        border-collapse: collapse;
-        width: 500px;
-        border-radius: 30px;
-        box-shadow: 0px 0px 10px 1px #807b7b;
-    }
-    
-    th,
-    td {
-        width: 100px;
-        text-transform: capitalize;
-        font-size: 20px;
-        padding: 12px 16px;
-        text-align: center;
-    }
-    
-    th {
-        background-color: rgb(29, 36, 46);
-        letter-spacing: 1px;
-    }
-    
-    td {
-        color: seashell;
-        letter-spacing: 1px;
-    }
-    
-    .sell {
-        padding: 6px 10px;
-        background-color: rgb(4, 148, 100);
-        font-weight: 1000;
-        border-radius: 10px;
-        font-size: 20px;
-        color: seashell;
-        min-width: 100px;
-        text-align: center;
-        cursor: pointer;
-    }
-    
-    .del {
-        cursor: pointer;
-        padding: 6px 10px;
-        font-weight: 1000;
-        border-radius: 10px;
-        font-size: 20px;
-        color: seashell;
-        min-width: 100px;
-        text-align: center;
-        background-color: rgb(148, 62, 4);
-    }
-    
-    @media screen and (max-width: 1060px) {
-        .post_info .disc {
-            display: block;
-        }
-        .disc1,
-        .disc2 {
-            width: 100%;
-        }
-        .disc1 p {
-            max-width: 80%;
-        }
-    }
-    
-    @media screen and (max-width: 810px) {
-        .small-profile {
-            width: 70%;
-            margin: 20px 20px 50px 20px;
-            height: auto;
-            text-align: center;
-            position: relative;
-        }
-        .small-profile .profile-img img {
-            position: relative;
-        }
-        .small-profile .profile-text {
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            float: none;
-        }
-        .small-profile .profile-text h2 {
-            font-size: 40px;
-            width: 100%;
-            max-width: none;
-            margin: 0;
-            text-align: center;
-            color: rgb(206 221 236);
-            font-weight: 700;
-        }
-        .container {
-            display: block;
-        }
-        .post_info {
-            width: 70%;
-        }
-    }
+}

@@ -17,9 +17,11 @@ urlpatterns = [
     path('likes/', views.like_post, name='post-like'),
     # path('buy/', views.buy_post, name='post-buy'),
     path('buy/', views.buy_post, name='post-buy'),
+    path('buyer_delete/', views.buyer_delete, name='post-buyer-delete'),
     path('addpost/', views.AddPost, name='add-post'),
     path('user/<str:username>/', views.UserPosts, name='user-posts'),
-    path('about/', views.about, name='pcube-about'),
+    path('notification/', views.notification, name='notification'),
+    path('notification_delete/', views.notification_clear, name='noti-clear'),
 ]
 
 if settings.DEBUG:

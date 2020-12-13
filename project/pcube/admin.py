@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Post, Buy
+from .models import Post, Buy, Notification
 
 # Register your models here.
 admin.site.register(Post)
 admin.site.register(Buy)
+admin.site.register(Notification)

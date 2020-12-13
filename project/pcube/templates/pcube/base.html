@@ -22,7 +22,7 @@
         <label class="logo"><a href="{% url 'pcube-home' %}" style="color: aliceblue;">P-cube</a></label>
         <ul class="list">
             <li class="ls"><a class="active" href="{% url 'pcube-home' %}">Home</a></li>
-            <li class="ls"><a href="{% url 'pcube-about' %}">about</a></li>
+            <li class="ls"><a href="{% url 'notification' %}">Notification</a></li>
             {% if user.is_authenticated %}
                 <li class="ls"><a href="{% url 'profile' %}">Profile</a></li>
                 <li class="ls"><a href="{% url 'logout' %}">Logout</a></li> 
