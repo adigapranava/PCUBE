@@ -14,25 +14,39 @@
             </div>
         </div>
         {% if request.user == object.owner %}
-            <div class="buyers-list" id="buyers">
-                <table>
-                    <th colspan = "4" style="border-radius: 30px 30px 0 0;border-bottom:5px solid #aaa;">Buyers</th>
-                    <tr>
-                        <th>username</th>
-                        <th>price</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {% for buyer in buyers %}
-                    <tr>
-                        <td>{{buyer.user_id.username}}</td>
-                        <td>&#8377; {{buyer.price}}</td>
-                        <td> <button class="sell" value="{{buyer.user_id.id}}" onclick="sell(this)">sell</button></td>
-                        <td> <button class="del" value="{{buyer.user_id.id}}" onclick="dell(this)">del</button></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
+            {% if not object.sold %}
+                    <div class="buyers-list" id="buyers">
+                        <table>
+                            <th colspan = "4" style="border-radius: 30px 30px 0 0;border-bottom:5px solid #aaa;">Buyers</th>
+                            <tr>
+                                <th>username</th>
+                                <th>price</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            {% for buyer in buyers %}
+                            <tr>
+                                <td>{{buyer.user_id.username}}</td>
+                                <td>&#8377; {{buyer.price}}</td>
+                                <td> <button class="sell" value="{{buyer.user_id.id}}" onclick="sell(this)">sell</button></td>
+                                <td> <button class="del" value="{{buyer.user_id.id}}" onclick="dell(this)">del</button></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            {% else %}
+                    {% if msgs%}
+                    <div class="notifications">
+                        <h1>Notification</h1>
+                        {% for msg in msgs %}
+                        <div class="notification">
+                            <h1>{{msg.title}}</h1>
+                            <h3>{{msg.discription}}</h3>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+            {% endif %}
             
             {% elif msgs%}
             <div class="notifications">
@@ -101,6 +115,7 @@
                 <input class="btn dgr" onclick="del()" type="button" value="Delete"> 
                 <button class="btn lk">{{total_likes}} Like{{total_likes|pluralize}}</button>
             {% else %} 
+                {% if not object.sold %}
                 {% if is_requested %}
                     <form method="POST" action="{% url 'post-buy' %}" class="buttons">
                     {% csrf_token %}
@@ -108,6 +123,7 @@
                     </form>
                 {% else %}
                     <input class="btn" onclick="del()" type="button" value="Request"> 
+                {% endif %}
                 {% endif %}
                 <form action="{% url 'post-like' %}" method="POST">
                     {% csrf_token %} {% if is_liked %}
@@ -118,6 +134,13 @@
                 </form>
             {% endif %}
         </div>
+    {% if object.sold %}
+        <div class="sold">
+        <div class="sold-txt">
+            SOLD
+        </div>
+        </div>
+    {% endif %}
     </div>
 </div>
 
@@ -132,7 +155,7 @@
         <div class="head">Pcube</div>
         <div class="msg">
             <h3>Are you sure you want to send?</h2>
-            <form method="POST" action="{% url 'post-buy' %}" class="buttons">
+            <form method="POST" action="{% url 'post-sell' %}" class="buttons">
             {% csrf_token %}
                 <input id="del2" onclick="cncldel()" type="text" name="user_id" value="">
                 <input class="btn" onclick="cnclsend()" type="button" value="Cancel">

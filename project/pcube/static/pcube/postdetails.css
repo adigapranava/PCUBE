@@ -64,6 +64,7 @@ body {
     margin: 20px;
     background-color: rgb(20, 25, 36);
     border-radius: 20px;
+    position: relative;
 }
 
 .post_info h6 {
@@ -326,6 +327,27 @@ td {
 
 .msg2 .msg .yes {
     background-color: rgb(102, 22, 75);
+}
+
+.sold {
+    position: absolute;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    background-color: rgb(6, 161, 102);
+    text-align: end;
+    padding: 20px;
+    box-sizing: border-box;
+    color: rgb(228, 253, 6);
+    font-weight: 900;
+    font-size: 50px;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    border-radius: 0 30px 0 0;
+}
+
+.sold-txt {
+    transform: rotateZ(45deg);
 }
 
 @media screen and (max-width: 1060px) {

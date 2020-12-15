@@ -18,7 +18,9 @@ class Post(models.Model):
     phone = models.CharField(max_length= 15)
     oldprice = models.PositiveIntegerField()
     newprice = models.PositiveIntegerField()
-    owner = models.ForeignKey(User,on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='owner',on_delete=models.CASCADE)
+    soldto = models.ForeignKey(User, related_name='sold_to', blank=True, null=True, default=None ,on_delete=models.SET_NULL)
+    sold =  models.BooleanField(default=False)
     image = models.ImageField(default='placeholder.jpg', upload_to='Posts', height_field=None)
 
     def __str__(self):

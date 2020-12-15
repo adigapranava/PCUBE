@@ -61,7 +61,10 @@ def PostDetailView(request, pk):
     is_liked = False
     is_requested = False
     buyers = Buy.objects.order_by('-price').filter(post_id = pk)
-    msg = Notification.objects.filter(post = post, user = request.user)
+    try:
+        msg = Notification.objects.filter(post = post, user = request.user)        
+    except:
+        msg = []
 
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
@@ -145,37 +148,75 @@ def like_post(request):
 #buy post
 def buy_post(request):
     if request.user.is_authenticated:
-        # try:
-        post = Post.objects.get(id = request.POST.get('post_id'))
-        if Buy.objects.filter(post_id = post, user_id = request.user).exists():
-            price = Buy.objects.get(post_id = post, user_id = request.user).price
-            Buy.objects.filter(post_id = post, user_id = request.user).delete()
-            Notification.objects.filter(post = post, user=request.user).delete()
-            Notification.objects.filter(post = post, user=post.owner).delete()
-            ttl = "Your have canceled your Request"
-            msg = "Your have cancelled your Request on "+ post.title + " for Rs " + str(price)
-            noti = Notification(user = request.user, post = post, title =  ttl, discription=msg)
-            noti.save()
-        else:
-            buyer = Buy(post_id = post, user_id = request.user, price = request.POST.get('price'))
-            buyer.save()
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+            if Buy.objects.filter(post_id = post, user_id = request.user).exists():
+                price = Buy.objects.get(post_id = post, user_id = request.user).price
+                Buy.objects.filter(post_id = post, user_id = request.user).delete()
+                Notification.objects.filter(post = post, user=request.user).delete()
+                Notification.objects.filter(post = post, user=post.owner).delete()
+                ttl = "Your have canceled your Request"
+                msg = "Your have cancelled your Request on "+ post.title + " for Rs " + str(price)
+                noti = Notification(user = request.user, post = post, title =  ttl, discription=msg)
+                noti.save()
+            else:
+                buyer = Buy(post_id = post, user_id = request.user, price = request.POST.get('price'))
+                buyer.save()
 
-            #msg to owner
-            ttl = "Your have got an other coustomer"
-            msg = "Your"+ post.title + " product is Requested for " + request.POST.get('price')+" by "+ request.user.username
-            noti = Notification(user = post.owner, post = post, title =  ttl, discription=msg)
-            noti.save()
+                #msg to owner
+                ttl = "Your have got an other coustomer"
+                msg = "Your"+ post.title + " product is Requested for " + request.POST.get('price')+" by "+ request.user.username
+                noti = Notification(user = post.owner, post = post, title =  ttl, discription=msg)
+                noti.save()
 
-            #msg to buyer
-            ttl = "Your have requested a product"
-            msg = "Your have Requested "+ post.title + " for Rs " + request.POST.get('price')
-            noti = Notification(user = request.user, post = post, title =  ttl, discription=msg)
-            noti.save()
-        return HttpResponseRedirect("/post/{id}/#like".format(id= post.id))
-        # except:
-            # return HttpResponseNotFound()
+                #msg to buyer
+                ttl = "Your have requested a product"
+                msg = "Your have Requested "+ post.title + " for Rs " + request.POST.get('price')
+                noti = Notification(user = request.user, post = post, title =  ttl, discription=msg)
+                noti.save()
+            return HttpResponseRedirect("/post/{id}/#like".format(id= post.id))
+        except:
+            return HttpResponseNotFound()
     else:
         request.session['prev'] = f"/post/{request.POST.get('post_id')}/#like"
+        return redirect('login')
+
+def sell_post(request):
+    if request.user.is_authenticated:
+        post = Post.objects.get(id = request.POST.get('post_id'))
+        user = User.objects.get(id = request.POST.get('user_id'))
+        buyer = Buy.objects.get(post_id = post, user_id = user)
+
+        post.sold = True
+        post.soldto = user
+        post.save()
+
+        Notification.objects.filter(post = post, user=user).delete()
+        Notification.objects.filter(post = post, user=post.owner).delete()
+
+        #msg to other_buyer
+        usrs_m = Notification.objects.filter(post = post)
+        for usr_m in usrs_m:
+            usr_m.title = "This product is sold out for Rs "+str(buyer.price)
+            usr_m.dicsription = "Your request for "+post.title+" is rejected and was sold out"
+            usr_m.save()
+
+        #msg to owner
+        ttl = "Your Product is sold"
+        msg = "Your "+ post.title + " product is sold for Rs" + str(buyer.price) +" to "+ user.username + ".Their phone number "+ user.profile.phoneno
+        noti = Notification(user = post.owner, post = post, title =  ttl, discription=msg)
+        noti.save()
+
+        #msg to selected_buyer
+        ttl = "Your Request is approved"
+        msg = "Your Request for "+ post.title + " for "+ str(buyer.price) + " is approved. You can contact Ph: "+ post.owner.profile.phoneno + " for more details."
+        noti = Notification(user = user, post = post, title =  ttl, discription=msg)
+        noti.save()
+
+        Buy.objects.get(post_id = post).delete()
+        return HttpResponseRedirect("/post/{id}/#buyer".format(id= post.id))
+    else:
+        request.session['prev'] = f"/post/{post.id}/#buyer"
         return redirect('login')
 
 def buyer_delete(request):
@@ -209,7 +250,7 @@ class PostListView(ListView):
 def UserPosts(request, username):
     try:
         user = User.objects.get(username = username)
-        post = serializers.serialize('json', user.post_set.all())
+        post = serializers.serialize('json', user.owner.all())
         context = {
             'user': user,
             'post': post
@@ -219,8 +260,12 @@ def UserPosts(request, username):
         return HttpResponseNotFound()
 
 def notification(request):
-    msgs = Notification.objects.order_by('-date_posted').filter(user = request.user)
-    noti_count = msgs.count()
+    try:
+        msgs = Notification.objects.order_by('-date_posted').filter(user = request.user)
+        noti_count = msgs.count()
+    except:
+        msgs = []
+        noti_count = 0
     context = {
         'msgs':msgs,
         'msgs_count': noti_count

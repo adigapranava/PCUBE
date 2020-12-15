@@ -17,6 +17,7 @@ urlpatterns = [
     path('likes/', views.like_post, name='post-like'),
     # path('buy/', views.buy_post, name='post-buy'),
     path('buy/', views.buy_post, name='post-buy'),
+    path('sell/', views.sell_post, name='post-sell'),
     path('buyer_delete/', views.buyer_delete, name='post-buyer-delete'),
     path('addpost/', views.AddPost, name='add-post'),
     path('user/<str:username>/', views.UserPosts, name='user-posts'),
