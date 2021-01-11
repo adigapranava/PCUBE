@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
+import os
 import json
 # Create your views here.
 
@@ -286,7 +287,8 @@ def allposts(request):
     return HttpResponse(response, content_type='application/json')
 
 def send_company_name(request):
-    f = open('/home/pranava_adiga/Desktop/PCUBE/project/pcube/company_name.json')
+    path =  os.path.abspath(os.getcwd())
+    f = open(path+'/pcube/company_name.json')
     response =  json.load(f)
     return JsonResponse(response)
     # return JsonResponse(response, safe = False)
