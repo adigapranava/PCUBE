@@ -9,7 +9,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #09161d;
+    background-image: url("https://securecdn.pymnts.com/wp-content/uploads/2020/01/mukeshambani-relianceindustries-retail-amazon-flipkart-india-eCommerce.jpg");
+    background-color: rgba(15, 15, 15, 0.795);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -179,9 +184,9 @@ nav ul li a:hover {
 
 @keyframes bckcngr {
     from {
-        background-color: #03899b;
+        background-color: #414050;
     }
     to {
-        background-color: #194753;
+        background-color: #414050;
     }
 }

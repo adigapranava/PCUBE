@@ -95,7 +95,8 @@ function display(selected_posts) {
     var i;
     for (i = selected_posts.length - 1; i >= 0; i--) {
         // console.log(posts[i].fields);
-        $('.box-container').append('<div class="card"><div class="imgBx"><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '"></div><div class="contentBx"><hr style="width:100%"><h1>' + selected_posts[i].fields.title + '</h1><h5>' + selected_posts[i].fields.brand + '</h5><h2 class="price">&#8377;' + selected_posts[i].fields.newprice + '</h2><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '" class="buy">More Info</a></div></div>');
+        // $('.box-container').append('<div class="card"><div class="imgBx"><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '"></div><div class="contentBx"><hr style="width:100%"><h1>' + selected_posts[i].fields.title + '</h1><h5>' + selected_posts[i].fields.brand + '</h5><h2 class="price">&#8377;' + selected_posts[i].fields.newprice + '</h2><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '" class="buy">More Info</a></div></div>');
+        $('.box-container').append('<div class="product"><p class="product-title">' + selected_posts[i].fields.title + '</p><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '" alt="image" /><div class="product-text"><p class="brand">' + selected_posts[i].fields.brand + '</p><h3>&#8377;' + selected_posts[i].fields.newprice + '</h3><button><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '">View Product</a></button></div></div>');
     }
 }
 

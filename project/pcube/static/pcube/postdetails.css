@@ -157,7 +157,6 @@ input[type=submit] {
 }
 
 .buttons .lk {
-    /* background: rgb(228, 29, 122); */
     background-color: rgb(71, 49, 70);
     color: #e2b8dd;
     cursor: pointer;
@@ -166,9 +165,7 @@ input[type=submit] {
 }
 
 .buttons .ulk {
-    /* background: rgb(231, 194, 179); */
     background-color: #e2b8dd;
-    /* color: rgb(228, 29, 122); */
     color: rgb(71, 49, 70);
     cursor: pointer;
     position: absolute;
@@ -183,7 +180,7 @@ input[type=submit] {
     padding: 20px;
     position: relative;
     left: 50%;
-    transform: translateX(-25%);
+    transform: translateX(-30%);
     display: none;
 }
 
@@ -312,6 +309,7 @@ td {
     background-color: #201e1e;
     border-radius: 30px;
     color: aliceblue;
+    max-width: 500px;
 }
 
 .notifications .notification {
@@ -395,5 +393,8 @@ td {
     }
     .post_info {
         width: 70%;
+    }
+    .sure {
+        transform: translateX(-60%);
     }
 }

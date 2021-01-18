@@ -7,27 +7,132 @@
 
 
 {% block content %}
-        <div class="profile-block">
-        <h1>Profile</h1>
-        <hr/>
-        <div class="profile-img">
-            <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+    <div class="whole-site">
+        <div class="part part1">
+            <div class="profile-block">
+                <h1>Profile</h1>
+                <hr/>
+                <div class="profile-img">
+                    <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+                </div>
+                <div class="profile-items">
+                    <p>Full Name</p>
+                    <h3>{{ user.profile.fullname }}</h3>
+                    <p>Email</p>
+                    <h3>{{ user.email }}</h3>
+                    <p>Phone-No</p>
+                    <h3>{{ user.profile.phoneno }}</h3>
+                    <p>Address</p>
+                    <h3>{{ user.profile.address }}</h3>
+                    <p>State</p>
+                    <h3>{{ user.profile.state }}</h3>
+                    <p>City</p>
+                    <h3>{{ user.profile.city }}</h3>
+                    <br>
+                    <a href="{% url 'profile_update' %}"><i class="fa fa-edit"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="profile-items">
-            <p>Full Name</p>
-            <h3>{{ user.profile.fullname }}</h3>
-            <p>Email</p>
-            <h3>{{ user.email }}</h3>
-            <p>Phone-No</p>
-            <h3>{{ user.profile.phoneno }}</h3>
-            <p>Address</p>
-            <h3>{{ user.profile.address }}</h3>
-            <p>State</p>
-            <h3>{{ user.profile.state }}</h3>
-            <p>City</p>
-            <h3>{{ user.profile.city }}</h3>
-            <br>
-            <a href="{% url 'profile_update' %}">Update</a>
+
+        <div class="part part2">
+            <div class="options">
+                <input type="radio" id="liked_r" name="option" value="liked_r"  onchange="changed(this);" checked>
+                <label for="liked_r">Liked</label><br>
+                <input type="radio" id="requested_r" name="option" value="requested_r" onchange="changed(this);" >
+                <label for="requested_r">Requested</label> 
+                <input type="radio" id="bought_r" name="option" value="bought_r" onchange="changed(this);" >
+                <label for="bought_r">Bought</label><br>
+                <input type="radio" id="sold_r" name="option" value="sold_r" onchange="changed(this);" >
+                <label for="sold_r">Sold</label> 
+                <input type="radio" id="unsold_r" name="option" value="unsold_r" onchange="changed(this);" >
+                <label for="unsold_r">Unsold</label> 
+            </div>
+
+            <div class="my-list">
+
+                <div class="options_div liked" id="liked">
+                    {% for like in  liked%}
+                        <div class="product">
+                            <p class="product-title">{{like.title}}</p>
+                            <img src="{{like.image.url}}" alt="image" />
+                            <div class="product-text">
+                            <p class="brand">{{like.brand}}</p>
+                            <h3>&#8377;{{like.newprice}}</h3>
+                            <button>
+                                <a href="{% url 'post-detail' like.id %}">View Product</a>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="options_div bought" id="bought">
+                    {% for item in  bought%}
+                        <div class="product">
+                            <p class="product-title">{{item.title}}</p>
+                            <img src="{{item.image.url}}" alt="image" />
+                            <div class="product-text">
+                            <p class="brand">{{item.brand}}</p>
+                            <h3>&#8377;{{item.newprice}}</h3>
+                            <button>
+                                <a href="{% url 'post-detail' item.id %}">View Product</a>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="options_div sold" id="sold">
+                    {% for item in  sold%}
+                        <div class="product">
+                            <p class="product-title">{{item.title}}</p>
+                            <img src="{{item.image.url}}" alt="image" />
+                            <div class="product-text">
+                            <p class="brand">{{item.brand}}</p>
+                            <h3>&#8377;{{item.newprice}}</h3>
+                            <button>
+                                <a href="{% url 'post-detail' item.id %}">View Product</a>
+                            </button>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="options_div unsold" id="unsold">
+                    {% for item in  unsold%}
+                        <div class="product">
+                            <p class="product-title">{{item.title}}</p>
+                            <img src="{{item.image.url}}" alt="image" />
+                            <div class="product-text">
+                            <p class="brand">{{item.brand}}</p>
+                            <h3>&#8377;{{item.newprice}}</h3>
+                            <button>
+                                <a href="{% url 'post-detail' item.id %}">View Product</a>
+                            </button>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="options_div requested" id="requested">
+                    {% for item in  requested%}
+                        <div class="product">
+                            <p class="product-title">{{item.title}}</p>
+                            <img src="{{item.image.url}}" alt="image" />
+                            <div class="product-text">
+                            <p class="brand">{{item.brand}}</p>
+                            <h3>&#8377;{{item.newprice}}</h3>
+                            <button>
+                                <a href="{% url 'post-detail' item.id %}">View Product</a>
+                            </button>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
         </div>
     </div>
+
+<script src="{% static 'users/profile.js' %}"></script>
 {% endblock content %}

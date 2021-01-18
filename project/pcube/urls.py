@@ -1,5 +1,4 @@
 
-from django.urls import path
 from django.urls import path, include
 from django.conf import settings
 # from .views import PostListView, PostDetailView

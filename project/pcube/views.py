@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
-import os
 import json
+import os
 # Create your views here.
 
 '''def home(request):
@@ -121,7 +121,7 @@ def UpdatePost(request, pk):
             }
             return render(request, 'pcube/updatepost.html',context)
         else:
-          return HttpResponseNotFound("Forbidden")            
+          return HttpResponseNotFound("<h1 style='color:blue'>Forbidden</h1>")
     else:
         request.session['prev'] = f'/post/{pk}/update'
         return redirect('login')
@@ -184,38 +184,41 @@ def buy_post(request):
 
 def sell_post(request):
     if request.user.is_authenticated:
-        post = Post.objects.get(id = request.POST.get('post_id'))
-        user = User.objects.get(id = request.POST.get('user_id'))
-        buyer = Buy.objects.get(post_id = post, user_id = user)
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+            user = User.objects.get(id = request.POST.get('user_id'))
+            buyer = Buy.objects.get(post_id = post, user_id = user)
 
-        post.sold = True
-        post.soldto = user
-        post.save()
+            post.sold = True
+            post.soldto = user
+            post.save()
 
-        Notification.objects.filter(post = post, user=user).delete()
-        Notification.objects.filter(post = post, user=post.owner).delete()
+            Notification.objects.filter(post = post, user=user).delete()
+            Notification.objects.filter(post = post, user=post.owner).delete()
 
-        #msg to other_buyer
-        usrs_m = Notification.objects.filter(post = post)
-        for usr_m in usrs_m:
-            usr_m.title = "This product is sold out for Rs "+str(buyer.price)
-            usr_m.dicsription = "Your request for "+post.title+" is rejected and was sold out"
-            usr_m.save()
+            #msg to other_buyer
+            usrs_m = Notification.objects.filter(post = post)
+            for usr_m in usrs_m:
+                usr_m.title = "This product is sold out for Rs "+str(buyer.price)
+                usr_m.dicsription = "Your request for "+post.title+" is rejected and was sold out"
+                usr_m.save()
 
-        #msg to owner
-        ttl = "Your Product is sold"
-        msg = "Your "+ post.title + " product is sold for Rs" + str(buyer.price) +" to "+ user.username + ".Their phone number "+ user.profile.phoneno
-        noti = Notification(user = post.owner, post = post, title =  ttl, discription=msg)
-        noti.save()
+            #msg to owner
+            ttl = "Your Product is sold"
+            msg = "Your "+ post.title + " product is sold for Rs" + str(buyer.price) +" to "+ user.username + ".Their phone number "+ user.profile.phoneno
+            noti = Notification(user = post.owner, post = post, title =  ttl, discription=msg)
+            noti.save()
 
-        #msg to selected_buyer
-        ttl = "Your Request is approved"
-        msg = "Your Request for "+ post.title + " for "+ str(buyer.price) + " is approved. You can contact Ph: "+ post.owner.profile.phoneno + " for more details."
-        noti = Notification(user = user, post = post, title =  ttl, discription=msg)
-        noti.save()
+            #msg to selected_buyer
+            ttl = "Your Request is approved"
+            msg = "Your Request for "+ post.title + " for "+ str(buyer.price) + " is approved. You can contact Ph: "+ post.owner.profile.phoneno + " for more details."
+            noti = Notification(user = user, post = post, title =  ttl, discription=msg)
+            noti.save()
 
-        Buy.objects.get(post_id = post).delete()
-        return HttpResponseRedirect("/post/{id}/#buyer".format(id= post.id))
+            Buy.objects.get(post_id = post).delete()
+            return HttpResponseRedirect("/post/{id}/#buyer".format(id= post.id))
+        except:
+            return HttpResponseNotFound()
     else:
         request.session['prev'] = f"/post/{post.id}/#buyer"
         return redirect('login')

@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from .models import Profile
+from pcube.models import Post,Buy
 
 # queue = []
 
@@ -59,7 +60,25 @@ def logout(request):
 def profile(request):
     try:
         user = User.objects.get(username=request.user)
-        return render(request, 'users/profile.html')
+        liked = Post.objects.filter(likes = user)
+        bought = Post.objects.filter(soldto = user)
+        sold = Post.objects.filter(owner = user, sold = True)
+        unsold = Post.objects.filter(owner = user, sold = False)
+        requested_b = Buy.objects.filter(user_id = user)
+        requested = Post.objects.none()
+        for re in requested_b:
+            requested = requested | Post.objects.filter(id = re.post_id.id)
+            
+        
+
+        context = {
+            'liked': liked,
+            'bought': bought,
+            'sold': sold,
+            'unsold': unsold,
+            'requested': requested,
+        }
+        return render(request, 'users/profile.html',context)
     except:
         # queue.append('profile')
         request.session['prev'] = 'profile'
