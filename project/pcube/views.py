@@ -4,6 +4,7 @@ from .models import Post, Buy, Notification
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from django.core import serializers
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
 import json
 import os
@@ -295,3 +296,22 @@ def send_company_name(request):
     response =  json.load(f)
     return JsonResponse(response)
     # return JsonResponse(response, safe = False)
+
+def post_search_view(request):
+    return render(request, 'pcube/post_search.html')    
+
+def post_search_api(request, *args, **kwargs):
+    response = []
+    if request.method == "GET":
+        search_query = request.GET.get("q")
+        search_results = []
+        if len(search_query) > 0:
+            search_results = Post.objects.filter(
+                Q(title__icontains=search_query, sold = False)|
+                Q(discription__icontains=search_query, sold = False)|
+                Q(brand__icontains=search_query, sold = False)
+                )
+
+        response = serializers.serialize('json', search_results)
+
+    return HttpResponse(response, content_type='application/json')

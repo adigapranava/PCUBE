@@ -1,60 +1,56 @@
-
-{% extends 'pcube/base.html' %}
-{% load static %}
-
-{% block headers %}
-    <link rel="stylesheet" type="text/css" href="{% static 'pcube/addpost.css' %}">
-{% endblock headers %}
-
-
-{% block content %}
-    <div class="post-container">
-        <h1>UPDATE POST </h1>
-        <hr>
-        <form method="POST" action="" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="post-details">
-                <p>Product Title</p>
-                <input type="text" name="title" id="product-title" required value="{{post.title}}">
-                <p>Product type</p>
-                <div class="radios">
-                    <input type="radio" id="fashion" name="type" value="fashion" onchange="handleChange(this);" required>
-                    <label for="fashion">Fashion</label>
-                    <input type="radio" id="electronics" name="type" value="electronics" onchange="handleChange(this);"required>
-                    <label for="electronics">Electronics</label>
-                    <input type="radio" id="mobiles" name="type" value="mobiles" onchange="handleChange(this);" required>
-                    <label for="mobiles">Mobiles</label>
-                </div>
-                <p>Brand</p>
-                <div class="selects" id="selects">
-                    <select name="brand" id="company">
+ {% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'pcube/addpost.css' %}">
+<script>
+    var post_brand = "{{ post.brand| safe }}";
+    var post_type = "{{ post.post_type| safe }}";
+</script>
+{% endblock headers %} {% block content %}
+<div class="post-container">
+    <h1>UPDATE POST </h1>
+    <hr>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="post-details">
+            <p>Product Title</p>
+            <input type="text" name="title" id="product-title" required value="{{post.title}}">
+            <p>Product type</p>
+            <div class="radios">
+                <input type="radio" id="other" name="type" value="other" checked="checked" onchange="handleChange(this);" required>
+                <label for="other">Other</label>
+            </div>
+            <p>Brand</p>
+            <div class="selects" id="selects">
+                <select name="brand" id="company">
+                        <option value="other">other</option>
                     </select>
-                </div>
-                <p>Discription</p>
-                <textarea id="product-disc" name="product-disc" cols="40" rows="5" required >{{post.discription}}</textarea>
-                <p>Old price</p>
-                <div class="price">
-                    <label for="">&#8377;</label>
-                    <input id="price" name="old-price" id="old-price" type="number" min="10" required value="{{post.oldprice}}">
-                </div>
-                <p>Your price</p>
-                <div class="price">
-                    <label for="">&#8377;</label>
-                    <input id="price" name="new-price" id="new-price" type="number" min="10" required value="{{post.newprice}}">
-                </div>
             </div>
+            <p>Discription</p>
+            <textarea id="product-disc" name="product-disc" cols="40" rows="5" required>{{post.discription}}</textarea>
+            <p>Old price</p>
+            <div class="price">
+                <label for="">&#8377;</label>
+                <input id="price1" name="old-price" id="old-price" type="number" min="10" required value="{{post.oldprice}}">
+            </div>
+            <p>Your price</p>
+            <div class="price">
+                <label for="">&#8377;</label>
+                <input id="price2" name="new-price" id="new-price" type="number" min="10" required value="{{post.newprice}}">
+            </div>
+        </div>
 
-            <div class="post-images">
-                <input type="file" name="img" id="file-input" accept="image/x-png,image/gif,image/jpeg" onchange="preview_image(event)">
-                <label for="file-input">Choose Img<i class="fas fa-camera"></i></label>
-                <div class="post-image">
-                    <img id="output_image" src="{{post.image.url}}">
-                </div>
-                <a href="{% url 'post-detail' post.id %}">Cancle</a>
-                <input type="submit" value="Update">
+        <div class="post-images">
+            <input type="file" name="img" id="file-input" accept="image/x-png,image/gif,image/jpeg" onchange="preview_image(event)">
+            <label for="file-input">Choose Img<i class="fas fa-camera"></i></label>
+            <div class="post-image">
+                <img id="output_image" src="{{post.image.url}}">
             </div>
-        </form>
-    </div>
-    <script src="{% static 'pcube/addpost.js' %}"></script>
+            <a href="{% url 'post-detail' post.id %}">Cancle</a>
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</div>
+<script src="{% static 'pcube/updatepost.js' %}"></script>
+<script>
+</script>
 
 {% endblock content %}

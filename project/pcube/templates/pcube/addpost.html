@@ -18,16 +18,13 @@
                 <input type="text" name="title" id="product-title" required>
                 <p>Product type</p>
                 <div class="radios">
-                    <input type="radio" id="fashion" name="type" value="fashion" onchange="handleChange(this);" required>
-                    <label for="fashion">Fashion</label>
-                    <input type="radio" id="electronics" name="type" value="electronics" onchange="handleChange(this);"required>
-                    <label for="electronics">Electronics</label>
-                    <input type="radio" id="mobiles" name="type" value="mobiles" onchange="handleChange(this);" required>
-                    <label for="mobiles">Mobiles</label>
+                    <input type="radio" id="other" name="type" value="other" checked="checked" onchange="handleChange(this);" required>
+                    <label for="other">Other</label>
                 </div>
                 <p>Brand</p>
                 <div class="selects" id="selects">
                     <select name="brand" id="company">
+                        <option value="other">other</option>
                     </select>
                 </div>
                 <p>Discription</p>
@@ -35,12 +32,12 @@
                 <p>Old price</p>
                 <div class="price">
                     <label for="">&#8377;</label>
-                    <input id="price" name="old-price" id="old-price" type="number" min="10" required>
+                    <input id="price1" name="old-price" id="old-price" type="number" min="10" required>
                 </div>
                 <p>Your price</p>
                 <div class="price">
                     <label for="">&#8377;</label>
-                    <input id="price" name="new-price" id="new-price" type="number" min="10" required>
+                    <input id="price2" name="new-price" id="new-price" type="number" min="10" required>
                 </div>
             </div>
 

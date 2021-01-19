@@ -5,6 +5,8 @@ from django.conf import settings
 from . import views
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.conf.urls import url
+
 
 
 urlpatterns = [
@@ -16,12 +18,19 @@ urlpatterns = [
     path('likes/', views.like_post, name='post-like'),
     # path('buy/', views.buy_post, name='post-buy'),
     path('buy/', views.buy_post, name='post-buy'),
+    path('search/', views.post_search_api, name='post-search'),
     path('sell/', views.sell_post, name='post-sell'),
     path('buyer_delete/', views.buyer_delete, name='post-buyer-delete'),
     path('addpost/', views.AddPost, name='add-post'),
     path('user/<str:username>/', views.UserPosts, name='user-posts'),
     path('notification/', views.notification, name='notification'),
     path('notification_delete/', views.notification_clear, name='noti-clear'),
+]
+
+import django.views.static
+urlpatterns += [
+   url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': settings.DEBUG}),
+   url(r'^media/(?P<path>.*)$', django.views.static.serve,{'document_root': settings.MEDIA_ROOT}),
 ]
 
 if settings.DEBUG:

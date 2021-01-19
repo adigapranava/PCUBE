@@ -1,0 +1,59 @@
+ {% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'pcube/filter.css' %}">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endblock headers %} {% block content %}
+<div class="box-container"></div>
+<div class="filter-div">
+    <div class="filter-div2">
+        <div class="filter-box">
+
+            <div class="radios">
+                <input type="radio" id="all" name="type" value="all" checked="checked" onchange="handleChange(this);">
+                <label for="all">All</label><br>
+                <input type="radio" id="fashion" name="type" value="fashion" onchange="handleChange(this);">
+                <label for="fashion">Fashion</label><br>
+                <input type="radio" id="electronics" name="type" value="electronics" onchange="handleChange(this);">
+                <label for="electronics">Electronics</label><br>
+                <input type="radio" id="mobiles" name="type" value="mobiles" onchange="handleChange(this);">
+                <label for="mobiles">Mobiles</label>
+            </div>
+            <div class="selects" id="selects">
+                <p>Company</p>
+                <select name="company" id="company">
+                        <option value="all">All</option>
+                    </select>
+            </div>
+            <div class="searchs">
+                <p>Starting rate : &#8377;</p>
+                <input type="text" id="start-rate">
+                <br>
+                <p>Ending rate: &#8377;</p>
+                <input type="text" id="end-rate">
+            </div>
+            <button class="fil-btn" onclick="filter()">Filter</button>
+        </div>
+        <div id="filter-search">
+            <i class="fa fa-filter" style="font-size:36px"></i>
+        </div>
+        <div class="filter-msg">
+            filter
+        </div>
+    </div>
+</div>
+
+
+
+<div class="addpost-div">
+    <div class="addpost-div2">
+        <div id="addpost">
+            <a href="{% url 'add-post' %}"><i class="fa fa-paper-plane" style="font-size:36px"></i></a>
+        </div>
+        <div class="addpost-msg">
+            Add Post
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'pcube/filter2.js' %}"></script>
+{% endblock content %}
