@@ -124,7 +124,7 @@
             <form action="{% url 'post-like' %}" method="POST">
                 {% csrf_token %} {% if is_liked %}
                 <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% else %}
-                <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button> {% endif %}
+                <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% endif %}
             </form>
             {% endif %}
         </div>

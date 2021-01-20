@@ -29,8 +29,8 @@ class Post(models.Model):
     def total_likes(self):
         return self.likes.count()
     
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
         
