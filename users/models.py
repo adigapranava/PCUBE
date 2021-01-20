@@ -10,6 +10,7 @@ class Profile(models.Model):
     address = models.TextField(blank=True, null=True)
     state = models.CharField(max_length= 20, blank=True, null=True)
     city = models.CharField(max_length= 20, blank=True, null=True)
+    is_varified = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics', height_field=None)
 
     def __str__(self):

@@ -1,5 +1,6 @@
 .inputbox {
-    width: 500px;
+    width: 80vw;
+    max-width: 500px;
     position: absolute;
     top: 55%;
     left: 50%;

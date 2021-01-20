@@ -1,63 +1,64 @@
 {% extends 'pcube/base.html' %} {% load static %} {% block headers %}
 <link rel="stylesheet" type="text/css" href="{% static 'pcube/postdetails.css' %}"> {% endblock headers %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <div class="container">
     <div class="owner_info">
         <div class="small-profile">
             <div class="profile-img">
-                <img src="{{object.owner.profile.image.url}}" alt="">
+                <img class="img" src="{{object.owner.profile.image.url}}" alt="">
             </div>
             <div class="profile-text">
                 <a href="{% url 'user-posts' object.owner.username %}">
                     <h2>{{object.owner.profile.fullname}}</h2>
                 </a>
+                {% if object.owner.profile.is_varified %}
+                    <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 20px;position: relative;left: 147px;top: -55px;""></i>
+                {% endif %}
                 <h5>{{ object.owner.email }}</h5>
             </div>
         </div>
-        {% if request.user == object.owner %}
-            {% if not object.sold %}
-                    <div class="buyers-list" id="buyers">
-                        <table>
-                            <th colspan = "4" style="border-radius: 30px 30px 0 0;border-bottom:5px solid #aaa;">Buyers</th>
-                            <tr>
-                                <th>username</th>
-                                <th>price</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            {% for buyer in buyers %}
-                            <tr>
-                                <td>{{buyer.user_id.username}}</td>
-                                <td>&#8377; {{buyer.price}}</td>
-                                <td> <button class="sell" value="{{buyer.user_id.id}}" onclick="sell(this)">sell</button></td>
-                                <td> <button class="del" value="{{buyer.user_id.id}}" onclick="dell(this)">del</button></td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-            {% else %}
-                    {% if msgs%}
-                    <div class="notifications">
-                        <h1>Notification</h1>
-                        {% for msg in msgs %}
-                        <div class="notification">
-                            <h1>{{msg.title}}</h1>
-                            <h3>{{msg.discription}}</h3>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-            {% endif %}
-            
-            {% elif msgs%}
-            <div class="notifications">
-                <h1>Notification</h1>
-                {% for msg in msgs %}
-                <div class="notification">
-                    <h1>{{msg.title}}</h1>
-                    <h3>{{msg.discription}}</h3>
-                </div>
+        {% if request.user == object.owner %} {% if not object.sold %}
+        <div class="buyers-list" id="buyers">
+            <table>
+                <th colspan="4" style="border-radius: 30px 30px 0 0;border-bottom:5px solid #aaa;">Buyers</th>
+                <tr>
+                    <th>username</th>
+                    <th>price</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for buyer in buyers %}
+                <tr>
+                    <td><a href="{% url 'user-posts' buyer.user_id.username %}" style="color: #ddd;">{{buyer.user_id.username}}</a></td>
+                    <td>&#8377; {{buyer.price}}</td>
+                    <td> <button class="sell" value="{{buyer.user_id.id}}" onclick="sell(this)">sell</button></td>
+                    <td> <button class="del" value="{{buyer.user_id.id}}" onclick="dell(this)">del</button></td>
+                </tr>
                 {% endfor %}
+            </table>
+        </div>
+        {% else %} {% if msgs%}
+        <div class="notifications">
+            <h1>Notification</h1>
+            {% for msg in msgs %}
+            <div class="notification">
+                <h1>{{msg.title}}</h1>
+                <h3>{{msg.discription}}</h3>
             </div>
+            {% endfor %}
+        </div>
+        {% endif %} {% endif %} {% elif msgs%}
+        <div class="notifications">
+            <h1>Notification</h1>
+            {% for msg in msgs %}
+            <div class="notification">
+                <h1>{{msg.title}}</h1>
+                <h3>{{msg.discription}}</h3>
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
     <div class="post_info">
@@ -102,7 +103,7 @@
                 {% csrf_token %}
                 <input class="btn" onclick="cncl()" type="button" value="Cancel">
                 <input class="btn" type="number" name="price" id="price" min="{{ object.newprice }}" required>
-                
+
                 <button class="btn dn" type="submit" name="post_id" value="{{ object.id }}">Done</button>
             </form>
             {% endif %}
@@ -111,36 +112,29 @@
         <hr>
         <div class="buttons">
             {% if request.user == object.owner %}
-                <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
-                <input class="btn dgr" onclick="del()" type="button" value="Delete"> 
-                <button class="btn lk">{{total_likes}} Like{{total_likes|pluralize}}</button>
-            {% else %} 
-                {% if not object.sold %}
-                {% if is_requested %}
-                    <form method="POST" action="{% url 'post-buy' %}" class="buttons">
-                    {% csrf_token %}
-                        <button class="btn" type="submit" name="post_id" value="{{object.id}}">Cancel Request</button>
-                    </form>
-                {% else %}
-                    <input class="btn" onclick="del()" type="button" value="Request"> 
-                {% endif %}
-                {% endif %}
-                <form action="{% url 'post-like' %}" method="POST">
-                    {% csrf_token %} {% if is_liked %}
-                    <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> 
-                    {% else %}
-                    <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button>
-                    {% endif %}
-                </form>
+            <a class="btn" href="{% url 'post-update' object.id %}">Update</a>
+            <input class="btn dgr" onclick="del()" type="button" value="Delete">
+            <button class="btn lk">{{total_likes}} Like{{total_likes|pluralize}}</button> {% else %} {% if not object.sold %} {% if is_requested %}
+            <form method="POST" action="{% url 'post-buy' %}" class="buttons">
+                {% csrf_token %}
+                <button class="btn" type="submit" name="post_id" value="{{object.id}}">Cancel Request</button>
+            </form>
+            {% else %}
+            <input class="btn" onclick="del()" type="button" value="Request"> {% endif %} {% endif %}
+            <form action="{% url 'post-like' %}" method="POST">
+                {% csrf_token %} {% if is_liked %}
+                <button id="like" class="btn ulk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart" style="font-size:25px;"></i></button> {% else %}
+                <button id="like" class="btn lk" type="submit" name="post_id" value="{{ object.id }}"><i class="fa fa-heart-o" style="font-size:25px;"></i></button> {% endif %}
+            </form>
             {% endif %}
         </div>
-    {% if object.sold %}
+        {% if object.sold %}
         <div class="sold">
-        <div class="sold-txt">
-            SOLD
+            <div class="sold-txt">
+                SOLD
+            </div>
         </div>
-        </div>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 
@@ -155,47 +149,49 @@
         <div class="head">Pcube</div>
         <div class="msg">
             <h3>Are you sure you want to send?</h2>
-            <form method="POST" action="{% url 'post-sell' %}" class="buttons">
-            {% csrf_token %}
-                <input id="del2" onclick="cncldel()" type="text" name="user_id" value="">
-                <input class="btn" onclick="cnclsend()" type="button" value="Cancel">
-                <button class="btn yes" type="submit" name="post_id" value="{{object.id}}">Yes</button>
-            </form>
+                <form method="POST" action="{% url 'post-sell' %}" class="buttons">
+                    {% csrf_token %}
+                    <input id="del2" onclick="cncldel()" type="text" name="user_id" value="">
+                    <input class="btn" onclick="cnclsend()" type="button" value="Cancel">
+                    <button class="btn yes" type="submit" name="post_id" value="{{object.id}}">Yes</button>
+                </form>
         </div>
     </div>
     <div class="msg2">
         <div class="head">Pcube</div>
         <div class="msg">
             <h3>Are you sure you want to Delete?</h2>
-            <form method="POST" action="{% url 'post-buyer-delete' %}" class="buttons">
-            {% csrf_token %}
-                <input id="del" onclick="cncldel()" type="text" name="user_id" value="">
-                <input class="btn" onclick="cncldel()" type="button" value="Cancel">
-                <button class="btn yes" type="submit" name="post_id" value="{{object.id}}">Yes</button>
-            </form>
+                <form method="POST" action="{% url 'post-buyer-delete' %}" class="buttons">
+                    {% csrf_token %}
+                    <input id="del" onclick="cncldel()" type="text" name="user_id" value="">
+                    <input class="btn" onclick="cncldel()" type="button" value="Cancel">
+                    <button class="btn yes" type="submit" name="post_id" value="{{object.id}}">Yes</button>
+                </form>
         </div>
     </div>
 </div>
 {% endif %}
 
 <script src="{% static 'pcube/postdetails.js' %}"></script>
-{% if request.user == object.owner %}
-   <style>
-        .post_info {
+{% comment %} {% if request.user == object.owner %}
+<style>
+    .post_info {
         width: 50%;
     }
-    .owner_info{
+    
+    .owner_info {
         width: 50%;
     }
-    .disc2 img{
+    
+    .disc2 img {
         max-height: 400px;
         max-width: 300px;
         z-index: -10;
     }
+    
     .small-profile {
-        postition:relative;
+        postition: relative;
         left: 25%;
     }
-   </style>
-{%endif%}
-{% endblock content %}
+</style>
+{%endif%} {% endcomment %} {% endblock content %}

@@ -348,7 +348,7 @@ td {
     transform: rotateZ(45deg);
 }
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1160px) {
     .post_info .disc {
         display: block;
     }
@@ -361,7 +361,7 @@ td {
     }
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 1100px) {
     .small-profile {
         width: 70%;
         margin: 20px 20px 50px 20px;

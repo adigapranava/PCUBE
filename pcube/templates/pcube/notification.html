@@ -24,4 +24,61 @@
         </div>
         {% endfor %}
     </div>
+    <div class="addpost-div">
+        <div class="addpost-div2">
+            <div id="addpost">
+                <a href="{% url 'add-post' %}"><i class="fa fa-paper-plane" style="font-size:36px"></i></a>
+            </div>
+            <div class="addpost-msg">
+                Add Post
+            </div>
+        </div>
+    </div>
+    <style>
+         #addpost {
+            background-color: #e0e0e0;
+            color: rgb(19, 18, 17);
+            text-shadow: 1px 1px #666565;
+            padding: 10px;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0px 0px 10px #050505;
+            cursor: pointer;
+        }
+        
+        .addpost-div {
+            position: fixed;
+            top: 85%;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .addpost-div2 {
+            position: relative;
+        }
+        
+        .addpost-div .addpost-msg {
+            background-color: #222020;
+            color: #cedda6;
+            font-size: 16px;
+            padding: 3px;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 2px;
+            display: none;
+            position: relative;
+            top: -10px;
+        }
+        
+        #addpost a {
+            color: #1d1d1c;
+        }
+        
+        .addpost-div:hover .addpost-msg {
+            display: block;
+        }
+    </style>
 {% endblock content %}

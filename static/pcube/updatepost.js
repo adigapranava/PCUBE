@@ -1,4 +1,4 @@
-const MAINURL = "http://127.0.0.1:8000/";
+const MAINURL = "https://pcube-marketing.herokuapp.com/";
 var isPaused = true;
 
 function preview_image(event) {
