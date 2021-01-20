@@ -4,12 +4,12 @@
     ],
     "mobile": ["apple", "samsung", "motorola", "nokia",
         "realme", "mi", "lenovo", "lg", "vivo", "oppo",
-        "gione", "one-plus", "huawaei", "zte", "tcl", "sony"
+        "gione", "one-plus", "huawaei", "zte", "tcl", "sony", "xiaomi"
     ],
     "electronic": ["pegion", "samsung", "lg", "hp", "mac",
         "butterfly", "bajaj", "havells", "philips", "bosch",
         "sony", "boat", "crompton", "prestige", "parasonic",
-        "casio", "apple", "nicon", "canon", "dell", "acer", "asus"
+        "casio", "apple", "nicon", "canon", "dell", "acer", "asus", "mi"
     ]
 
 }

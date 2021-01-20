@@ -1,5 +1,8 @@
 // var posts = new Array(),
 // companys;
+var posts, companys, MAINURL, company_array;
+
+MAINURL = "http://127.0.0.1:8000/";
 
 $("#filter-search").click(function() {
     $(".filter-box").toggle();
@@ -76,34 +79,49 @@ function clear_filters() {
 }
 
 function handleChange(src) {
-    if (src.value == "fashion")
-        var y = companys["fashion"];
-    else if (src.value == "electronics")
-        var y = companys["electronic"];
-    else if (src.value == "mobiles")
-        var y = companys["mobile"];
-    else {
-        var y = companys["fashion"].concat(companys["electronic"]);
-        y = y.concat(companys["mobile"]);
+    var y, f = 0;
+    Object.keys(companys).forEach(function(key) {
+        if (src.value == key) {
+            y = companys[key];
+            f = 1;
+        }
+    });
+    if (f == 0) {
+        y = company_array;
     }
     clear_filters()
     filter_companies(y);
 }
 
 
+// //// display the selected posts
 function display(selected_posts) {
     var i;
     for (i = selected_posts.length - 1; i >= 0; i--) {
-        // console.log(posts[i].fields);
-        // $('.box-container').append('<div class="card"><div class="imgBx"><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '"></div><div class="contentBx"><hr style="width:100%"><h1>' + selected_posts[i].fields.title + '</h1><h5>' + selected_posts[i].fields.brand + '</h5><h2 class="price">&#8377;' + selected_posts[i].fields.newprice + '</h2><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '" class="buy">More Info</a></div></div>');
-        $('.box-container').append('<div class="product"><p class="product-title">' + selected_posts[i].fields.title + '</p><img src="http://127.0.0.1:8000/media/' + selected_posts[i].fields.image + '" alt="image" /><div class="product-text"><p class="brand">' + selected_posts[i].fields.brand + '</p><h3>&#8377;' + selected_posts[i].fields.newprice + '</h3><button><a href="http://127.0.0.1:8000/post/' + selected_posts[i].pk + '">View Product</a></button></div></div>');
+        if (!selected_posts[i].fields.sold)
+            $('.box-container').append('<div class="product"><p class="product-title">' +
+                selected_posts[i].fields.title +
+                '</p><img src="' + MAINURL + 'media/' +
+                selected_posts[i].fields.image +
+                '" alt="image" /><div class="product-text"><p class="brand">' +
+                selected_posts[i].fields.brand +
+                '</p><h3>&#8377;' +
+                selected_posts[i].fields.newprice +
+                '</h3><a href="' + MAINURL + 'post/' +
+                selected_posts[i].pk +
+                '"><button>View Product</button></a></div></div>');
     }
 }
 
+// add companys to dropdown by filtering
 function filter_companies(y) {
+    // remove duplicates from array
+    y = y.filter(function(item, pos) {
+        return y.indexOf(item) == pos;
+    })
     y.sort();
+
     select = document.getElementById('company');
-    // console.log(y);
     for (var i = 0; i < y.length; i++) {
         var opt = document.createElement('option');
         opt.value = y[i];
@@ -117,13 +135,36 @@ function onPageLoad() {
     $(".filter-box").toggle();
     display(posts);
 
-    var url = "http://127.0.0.1:8000/companynames/";
+    // get all brands details
+    var url = MAINURL + "companynames/";
     $.get(url, function(data, status) {
-        // console.log("got response for allpost request");
         if (data) {
             companys = data;
-            var y = companys["fashion"].concat(companys["electronic"]);
-            y = y.concat(companys["mobile"]);
+            var y = new Array;
+            var radios = document.getElementsByClassName('radios')[0];
+            Object.keys(companys).forEach(function(key) {
+                // create a radio buttons;
+                var rad = document.createElement("input");
+                rad.type = "radio";
+                rad.value = key;
+                rad.id = key;
+                rad.name = "type";
+                rad.onclick = function() {
+                    handleChange(this)
+                };
+
+                var label = document.createElement("label");
+                label.htmlFor = key;
+                label.innerText = key;
+
+                radios.appendChild(rad);
+                radios.appendChild(label);
+
+                // array
+                var value = companys[key];
+                y = y.concat(value);
+            });
+            company_array = y;
             filter_companies(y);
         }
     });
