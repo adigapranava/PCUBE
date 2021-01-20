@@ -2,7 +2,7 @@
 // companys;
 var posts, companys, MAINURL, company_array;
 
-MAINURL = "http://127.0.0.1:8000/";
+MAINURL = "https://pcube-marketing.herokuapp.com/";
 
 $("#filter-search").click(function() {
     $(".filter-box").toggle();
