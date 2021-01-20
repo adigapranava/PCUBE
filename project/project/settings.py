@@ -26,7 +26,7 @@ SECRET_KEY = '^2&h3v)w9mecr3hs6p!2+yt745%zr0+_)5#v&@wr0^%*^(zc51'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['pcube-marketing.herokuapp.com','127.0.0.1']
 
 
 # Application definition
