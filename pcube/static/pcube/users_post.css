@@ -15,16 +15,19 @@
         width: 25%;
     }
     
-    .small-profile .profile-img img {
+    .profile-img .proimg {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
+        top: -10%;
+    }
+    
+    .small-profile .profile-img img {
         height: 20vw;
         width: 20vw;
         max-width: 150px;
         max-height: 150px;
         border-radius: 50%;
-        top: -10%;
         border: 3px solid rgb(206 221 236);
     }
     
@@ -56,4 +59,11 @@
         left: 200px;
         top: -60px;
         width: 150px;
+    }
+    
+    @media only screen and (max-width: 910px) {
+        .profile-img .proimg i {
+            position: static;
+            background-color: black;
+        }
     }

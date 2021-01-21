@@ -26,12 +26,15 @@ body {
     box-shadow: 0px 0px 1px rgb(146, 142, 142);
 }
 
+.small-profile .profile-img .proimg {
+    position: absolute;
+    top: -10%;
+}
+
 .small-profile .profile-img img {
     width: 150px;
     height: 150px;
-    position: absolute;
     border-radius: 50%;
-    top: -10%;
     border: 3px solid rgb(206 221 236);
 }
 
@@ -369,7 +372,7 @@ td {
         text-align: center;
         position: relative;
     }
-    .small-profile .profile-img img {
+    .small-profile .profile-img .proimg {
         position: relative;
     }
     .small-profile .profile-text {

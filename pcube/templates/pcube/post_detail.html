@@ -7,15 +7,18 @@
     <div class="owner_info">
         <div class="small-profile">
             <div class="profile-img">
-                <img class="img" src="{{object.owner.profile.image.url}}" alt="">
+                <div class="proimg">
+                    <img class="img" src="{{object.owner.profile.image.url}}" alt="">
+                    {% if object.owner.profile.is_varified %}
+                        <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -19px;background: #2491ff;border-radius: 50%;border: 3px solid #2491ff;"></i>
+                    {% endif %}
+                </div>
             </div>
             <div class="profile-text">
                 <a href="{% url 'user-posts' object.owner.username %}">
                     <h2>{{object.owner.profile.fullname}}</h2>
                 </a>
-                {% if object.owner.profile.is_varified %}
-                    <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 20px;position: relative;left: 147px;top: -55px;""></i>
-                {% endif %}
+                
                 <h5>{{ object.owner.email }}</h5>
             </div>
         </div>

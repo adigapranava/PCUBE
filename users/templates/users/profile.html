@@ -3,6 +3,9 @@
 
 {% block headers %}
         <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 {% endblock headers %}
 
 
@@ -14,6 +17,9 @@
                 <hr/>
                 <div class="profile-img">
                     <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+                    {% if user.profile.is_varified %}
+                        <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -10x;background: white;border-radius: 50%;"></i>
+                    {% endif %}
                 </div>
                 <div class="profile-items">
                     <p>Full Name</p>

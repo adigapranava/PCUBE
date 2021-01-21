@@ -14,13 +14,15 @@
 {% endblock headers %} {% block content %}
 <div class="small-profile">
     <div class="profile-img">
-        <img src="{{user.profile.image.url}}" alt="">
-    </div>
+                <div class="proimg">
+                    <img class="img" src="{{user.profile.image.url}}" alt="">
+                    {% if user.profile.is_varified %}
+                        <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -19px;background: #2491ff;border-radius: 50%;border: 3px solid #2491ff;"></i>
+                    {% endif %}
+                </div>
+            </div>
     <div class="profile-text">
         <h2>{{user.profile.fullname}}</h2>
-        {% if user.profile.is_varified %}
-            <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 35px;position: relative;left: 170px;top: -82px;""></i>
-        {% endif %}
         <h5>{{ user.email }}</h5>
         <h6 id="user_pk">{{ user.pk }}</h6>
     </div>
