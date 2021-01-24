@@ -193,8 +193,9 @@ td {
 
 .title h1 {
     text-transform: capitalize;
-    font-size: 3rem;
-    max-width: 4rem;
+    font-size: 3.5rem;
+    width: 18rem;
+    font-weight: 1000;
 }
 
 .title h5 {
@@ -250,11 +251,6 @@ h4 .old {
     position: relative;
 }
 
-.sure form {
-    margin: 0 !important;
-    background-color: #928e8e;
-}
-
 .sure form .form-itms {
     position: relative;
     left: 50%;
@@ -285,16 +281,19 @@ h4 .old {
 
 .buttons .dgr,
 input[type=submit] {
-    background: tomato;
+    background: tomato !important;
     width: 100px;
     cursor: pointer;
 }
 
 .buttons {
     display: flex;
-    margin-top: 4rem;
     color: snow;
     position: relative;
+}
+
+.btns-divs {
+    margin-top: 5rem;
 }
 
 .buttons .btn,
@@ -314,7 +313,7 @@ input[type=submit] {
 }
 
 .buttons .lk {
-    background-color: rgb(71, 49, 70);
+    background-color: #473146;
     color: #e2b8dd;
     cursor: pointer;
     /* position: absolute;
@@ -325,12 +324,17 @@ input[type=submit] {
     background-color: #e2b8dd;
     color: rgb(71, 49, 70);
     cursor: pointer;
+    /* position: absolute;
+    right: 10px; */
+}
+
+#like {
     position: absolute;
-    right: 10px;
+    right: 1rem;
 }
 
 .buttons .dn {
-    background-color: rgb(49, 71, 49);
+    background-color: #314731;
 }
 
 
@@ -497,6 +501,6 @@ input[type=submit] {
         max-width: 90%;
     }
     .post-div2 {
-        transform: translateY(-280px);
+        transform: translateY(-230px);
     }
 }
