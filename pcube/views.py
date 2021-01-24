@@ -266,7 +266,7 @@ def UserPosts(request, username):
 
 def notification(request):
     try:
-        msgs = Notification.objects.order_by('-date_posted').filter(user = request.user)
+        msgs = Notification.objects.order_by('-date_posted').filter(user = request.user, read = False)
         noti_count = msgs.count()
     except:
         msgs = []
@@ -278,7 +278,9 @@ def notification(request):
     return render(request, 'pcube/notification.html',context)
 
 def notification_clear(request):
-    Notification.objects.filter(id = request.POST['noti_id']).delete()
+    noti = Notification.objects.get(id = request.POST['noti_id'])
+    noti.read = True;
+    noti.save();
     return redirect('notification')
 
 ##Api handler

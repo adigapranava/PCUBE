@@ -54,3 +54,4 @@ class Notification(models.Model):
     h1 = models.CharField(max_length= 30)
     discription = discription = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
+    read =  models.BooleanField(default=False)

@@ -4,7 +4,8 @@
     background-color: #131211;
     border-radius: 30px;
     color: aliceblue;
-    width: 55%;
+    width: 90%;
+    max-width: 800px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
