@@ -10,11 +10,11 @@ import json
 import os
 # Create your views here.
 
-'''def home(request):
+def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request, 'pcube/home.html', context)'''
+    return render(request, 'pcube/home.html', context)
 
 
 #add A post

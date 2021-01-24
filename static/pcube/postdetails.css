@@ -1,29 +1,43 @@
 * {
     margin: 0;
     padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
 
-body {
-    background-color: rgb(29, 36, 53);
-}
-
-.container {
+main {
     display: flex;
-    flex-direction: row-reverse;
-    margin-top: 2px;
-    color: cornsilk;
-    padding: 20px;
 }
+
+.row1 {
+    width: 60%;
+    z-index: 1;
+}
+
+.row2 {
+    width: 40%;
+}
+
+.r2c {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0;
+}
+
+
+/* Small profile css */
 
 .small-profile {
+    box-sizing: content-box;
     width: 350px;
     height: 150px;
     padding: 30px;
-    background-color: rgb(29, 29, 43);
+    background-color: #1d1d2b;
     border-radius: 30px;
-    position: relative;
     top: 20px;
-    box-shadow: 0px 0px 1px rgb(146, 142, 142);
+    box-shadow: 0px 0px 1px #928e8e;
 }
 
 .small-profile .profile-img .proimg {
@@ -61,28 +75,129 @@ body {
     font-weight: 300;
 }
 
-.post_info {
-    width: 90%;
-    padding: 30px;
-    margin: 20px;
-    background-color: rgb(20, 25, 36);
-    border-radius: 20px;
-    position: relative;
+
+/* table design */
+
+table {
+    background-color: #33334e;
+    border-collapse: collapse;
+    width: 75%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px #807b7b;
+    color: #ffffff;
+    font-weight: 200;
 }
 
-.post_info h6 {
-    font-size: 15px;
-    color: rgb(167, 165, 165);
-    border-bottom: 5px solid lightcoral;
-    padding-bottom: 10px;
-}
-
-.post_info .title h1 {
+th,
+td {
+    width: 100px;
     text-transform: capitalize;
-    font-size: 5rem;
+    font-size: 1rem;
+    padding: 10px 14px;
+    text-align: center;
 }
 
-.post_info .title h5 {
+th {
+    background-color: #1d1d2b;
+    letter-spacing: 0.7px;
+}
+
+td {
+    color: seashell;
+    letter-spacing: 0.7px;
+}
+
+.sell {
+    padding: 6px 8px;
+    background-color: #049464;
+    font-weight: 1000;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: seashell;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.del {
+    cursor: pointer;
+    padding: 6px 8px;
+    font-weight: 1000;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: seashell;
+    min-width: 100px;
+    text-align: center;
+    background-color: #943e04;
+    border: none;
+    outline: none;
+}
+
+
+/* Notifications */
+
+.notifications {
+    padding: 10px;
+    background-color: #1d1d2b;
+    border-radius: 10px;
+    color: aliceblue;
+    width: 90%;
+}
+
+.notifications .notification {
+    margin: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #b8dae2;
+}
+
+.notifications .notification h1 {
+    color: aqua;
+    font-size: 26px;
+}
+
+
+/* POST INFO */
+
+.post-div {
+    background-color: #1d1d2b;
+    margin: 1rem 1rem 0 1rem;
+    border-radius: 20px 20px 0 0;
+    color: cornsilk;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.prices h3,
+.prices h4 {
+    font-weight: 500;
+}
+
+.disc {
+    display: flex;
+}
+
+.disc1,
+.disc2 {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.post-div .date {
+    color: #a7a5a5;
+    border-bottom: 5px solid #f08080;
+    padding: 0.5rem;
+}
+
+.title h1 {
+    text-transform: capitalize;
+    font-size: 3rem;
+    max-width: 4rem;
+}
+
+.title h5 {
     font-size: 1.2rem;
     color: rgb(233, 138, 138);
     text-transform: capitalize;
@@ -93,25 +208,15 @@ body {
 }
 
 .prices span {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 900;
     letter-spacing: 1px;
 }
 
 h4 .old {
-    font-size: 23px;
-    color: rgb(194, 168, 168);
+    font-size: 18px;
+    color: #c2a8a8;
     text-decoration: line-through;
-}
-
-.post_info .disc {
-    display: flex;
-}
-
-.disc1,
-.disc2 {
-    width: 50%;
-    margin-bottom: 20px;
 }
 
 .disc .prices {
@@ -126,7 +231,7 @@ h4 .old {
     font-size: 20px;
     padding: 10px 20px 10px 10px;
     text-align: justify;
-    color: rgb(211, 202, 185);
+    color: #c7c2b8;
     max-width: 300px;
 }
 
@@ -134,12 +239,60 @@ h4 .old {
 .add {
     margin-top: 30px;
     max-height: 500px;
-    max-width: 400px;
+    max-width: 360px;
+}
+
+.sure {
+    width: 100%;
+    text-align: center;
+    /* z-index: -1; */
+    padding: 1rem;
+    position: relative;
+}
+
+.sure form {
+    margin: 0 !important;
+    background-color: #928e8e;
+}
+
+.sure form .form-itms {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline;
+    /* background-color: #807b7b; */
+}
+
+.sure h3 {
+    font-weight: 200;
+    font-size: 25px;
+}
+
+.post-div2 {
+    background-color: #1d1d2b;
+    margin: 0 1rem 1rem 1rem;
+    border-radius: 0 0 20px 20px;
+    color: cornsilk;
+    padding: 1rem;
+    position: relative;
+    transform: translateY(-180px);
+    transition: transform 0.5s;
+}
+
+.row1 .active {
+    transform: translateY(0);
+}
+
+.buttons .dgr,
+input[type=submit] {
+    background: tomato;
+    width: 100px;
+    cursor: pointer;
 }
 
 .buttons {
     display: flex;
-    margin-top: 15px;
+    margin-top: 4rem;
     color: snow;
     position: relative;
 }
@@ -157,14 +310,15 @@ input[type=submit] {
     margin-right: 20px;
     min-width: 100px;
     text-align: center;
+    margin-top: 1rem;
 }
 
 .buttons .lk {
     background-color: rgb(71, 49, 70);
     color: #e2b8dd;
     cursor: pointer;
-    position: absolute;
-    right: 10px;
+    /* position: absolute;
+    right: 10px; */
 }
 
 .buttons .ulk {
@@ -179,86 +333,8 @@ input[type=submit] {
     background-color: rgb(49, 71, 49);
 }
 
-.sure {
-    padding: 20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-30%);
-    display: none;
-}
 
-.post_info .active {
-    display: block;
-}
-
-.buttons .dgr,
-input[type=submit] {
-    background: tomato;
-    width: 100px;
-    cursor: pointer;
-}
-
-.buyers-list {
-    margin-top: 50px;
-}
-
-table {
-    background-color: rgb(41, 52, 66);
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border-collapse: collapse;
-    width: 500px;
-    border-radius: 30px;
-    box-shadow: 0px 0px 10px 1px #807b7b;
-}
-
-th,
-td {
-    width: 100px;
-    text-transform: capitalize;
-    font-size: 20px;
-    padding: 12px 16px;
-    text-align: center;
-}
-
-th {
-    background-color: rgb(29, 36, 46);
-    letter-spacing: 1px;
-}
-
-td {
-    color: seashell;
-    letter-spacing: 1px;
-}
-
-.sell {
-    padding: 6px 10px;
-    background-color: rgb(4, 148, 100);
-    font-weight: 1000;
-    border-radius: 10px;
-    font-size: 20px;
-    color: seashell;
-    min-width: 100px;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    outline: none;
-}
-
-.del {
-    cursor: pointer;
-    padding: 6px 10px;
-    font-weight: 1000;
-    border-radius: 10px;
-    font-size: 20px;
-    color: seashell;
-    min-width: 100px;
-    text-align: center;
-    background-color: rgb(148, 62, 4);
-    border: none;
-    outline: none;
-}
+/* NOTIFICATIONS */
 
 .msg1,
 .msg2 {
@@ -278,14 +354,14 @@ td {
 
 .msg1 .head,
 .msg2 .head {
-    color: rgb(49, 53, 53);
+    color: #313535;
     font-size: 25px;
-    border-bottom: 3px solid rgb(104, 104, 104);
+    border-bottom: 3px solid #686868;
 }
 
 .msg1 .msg,
 .msg2 .msg {
-    color: rgb(27, 27, 27);
+    color: #1b1b1b;
     padding: 10px 16px;
 }
 
@@ -295,7 +371,7 @@ td {
 }
 
 .msg1 .msg .yes {
-    background-color: rgb(41, 102, 22);
+    background-color: #296616;
 }
 
 #del {
@@ -312,7 +388,7 @@ td {
     background-color: #201e1e;
     border-radius: 30px;
     color: aliceblue;
-    max-width: 500px;
+    max-width: 450px;
 }
 
 .notifications .notification {
@@ -327,13 +403,16 @@ td {
 }
 
 .msg2 .msg .yes {
-    background-color: rgb(102, 22, 75);
+    background-color: #66164b;
 }
+
+
+/* SOLD BADGE */
 
 .sold {
     position: absolute;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
-    background-color: rgb(6, 161, 102);
+    background-color: #06a166;
     text-align: end;
     padding: 20px;
     box-sizing: border-box;
@@ -351,26 +430,25 @@ td {
     transform: rotateZ(45deg);
 }
 
-@media screen and (max-width: 1160px) {
-    .post_info .disc {
-        display: block;
+@media screen and (max-width: 1100px) {
+    main {
+        flex-direction: column-reverse;
     }
-    .disc1,
-    .disc2 {
+    .row1 {
         width: 100%;
     }
-    .disc1 p {
-        max-width: 80%;
+    .row2 {
+        width: 100%;
     }
-}
-
-@media screen and (max-width: 1100px) {
+    /* Small Profile css < 1100px */
     .small-profile {
-        width: 70%;
+        width: 80%;
         margin: 20px 20px 50px 20px;
         height: auto;
         text-align: center;
         position: relative;
+        left: 50%;
+        transform: translateX(-50%);
     }
     .small-profile .profile-img .proimg {
         position: relative;
@@ -391,13 +469,34 @@ td {
         color: rgb(206 221 236);
         font-weight: 700;
     }
-    .container {
-        display: block;
+    /* table design */
+    table {
+        width: 90%;
     }
-    .post_info {
-        width: 70%;
+}
+
+@media screen and (max-width: 850px) {
+    /* POST INFO */
+    .disc {
+        flex-direction: column;
     }
-    .sure {
-        transform: translateX(-60%);
+    .disc1,
+    .disc2 {
+        width: 100%;
+    }
+    .title h1 {
+        max-width: none;
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    .disc2 img,
+    .add {
+        margin-top: 30px;
+        max-height: 500px;
+        max-width: 90%;
+    }
+    .post-div2 {
+        transform: translateY(-280px);
     }
 }
