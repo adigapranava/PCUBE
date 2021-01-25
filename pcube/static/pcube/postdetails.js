@@ -1,3 +1,5 @@
+const MAINURL = "https://pcube-marketing.herokuapp.com/post/";
+
 function del() {
     var x = document.getElementById("sure");
     x.classList.add("active");
@@ -42,4 +44,39 @@ function checkform(ele) {
         return false;
     }
     return true;
+}
+
+
+
+// Copy link
+
+function myFunction(item, ques) {
+    var text = MAINURL + item + "/#question-no-" + ques;
+    copyText(text);
+}
+
+function myFunction2(item) {
+    var text = MAINURL + item;
+    copyText(text);
+}
+
+function copyText(text) {
+    var temp = document.createElement('input');
+    temp.value = text;
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(temp);
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    temp.remove();
+
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Link Copied: ";
+    var tooltip2 = document.getElementById("myTooltip2");
+    tooltip2.innerHTML = "Link Copied: ";
+}
+
+function outFunc() {
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copy Link to clipboard";
 }

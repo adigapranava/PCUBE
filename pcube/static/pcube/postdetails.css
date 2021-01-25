@@ -185,10 +185,18 @@ td {
     margin-bottom: 20px;
 }
 
-.post-div .date {
+.post-div .post-top {
     color: #a7a5a5;
     border-bottom: 5px solid #f08080;
     padding: 0.5rem;
+    position: relative;
+}
+
+.post-div .post-top .tooltip {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+    font-size: 25px;
 }
 
 .title h1 {
@@ -469,6 +477,7 @@ input[type=submit] {
 
 .ques h2 {
     width: 80%;
+    cursor: pointer;
 }
 
 .ques-ans-pair .ans {
@@ -538,6 +547,47 @@ input[type=submit] {
     color: seashell;
     margin-right: 20px;
     min-width: 100px;
+}
+
+
+/* copy link to clipboard */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 @media screen and (max-width: 1100px) {
