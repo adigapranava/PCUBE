@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import Post, Buy, Notification
+from .models import (
+    Post, Buy, Notification, 
+    Question, Answer)
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
+from django.urls import reverse
 from django.core import serializers
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
+from django.http import (
+    HttpResponse, HttpResponseRedirect, 
+    JsonResponse, HttpResponseNotFound)
 import json
 import os
 # Create your views here.
@@ -68,6 +73,9 @@ def PostDetailView(request, pk):
     except:
         msg = []
 
+    ques = Question.objects.filter(post = post)
+    anss = Answer.objects.filter(post = post)
+
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
 
@@ -81,6 +89,8 @@ def PostDetailView(request, pk):
         'buyers': buyers,
         'total_likes': post.total_likes(),
         'msgs': msg,
+        'questions': ques,
+        'answers': anss
     }
     return render(request, 'pcube/post_detail.html',context)
 
@@ -283,6 +293,44 @@ def notification_clear(request):
     noti.save();
     return redirect('notification')
 
+def addques(request):
+    if request.user.is_authenticated:
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+        except:
+            return HttpResponseNotFound()
+        ques = Question(post= post, user= request.user, ques= request.POST.get('question'))
+        ques.save()
+        # return redirect('post-detail', pk= request.POST.get('post_id'))
+        return HttpResponseRedirect("/post/{id}/#ask".format(id= post.id))
+    else:
+        request.session['prev'] = f"/post/{request.POST.get('post_id')}/#ask"
+        return redirect('login')
+
+def addans(request):
+    if request.user.is_authenticated:
+        try:
+            post = Post.objects.get(id = request.POST.get('post_id'))
+        except:
+            return HttpResponseNotFound()
+        ques = Question(id= request.POST.get('ques-id'))
+        # ques.is_answered = True
+        # ques.save()
+        ans = Answer(
+            ques= ques,
+            post= post, 
+            ans=request.POST.get('answer')
+            )
+        ans.save()
+        # return redirect('post-detail', pk= request.POST.get('post_id'))
+        return HttpResponseRedirect("/post/{id}/#question-no-{qno}".format(
+            id= post.id, 
+            qno= ques.id)
+            )
+    else:
+        request.session['prev'] = f"/post/{request.POST.get('post_id')}/#ask"
+        return redirect('login')
+
 ##Api handler
 def filter(request):
     return render(request, 'pcube/filter.html')    
@@ -317,3 +365,4 @@ def post_search_api(request, *args, **kwargs):
         response = serializers.serialize('json', search_results)
 
     return HttpResponse(response, content_type='application/json')
+    

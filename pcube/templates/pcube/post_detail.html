@@ -131,6 +131,40 @@
                 
             </div>
 
+            <div class="ques-div">
+            <h1 class="ques-title">Qusetions</h1>
+            {% for question in questions %} 
+                <div class="ques-ans-pair">
+                    <h2 class="ques" id="question-no-{{question.id}}">Q-  {{question.ques}}</h2>
+
+                    {% comment %} {% if question.is_answered %} {% endcomment %}
+                        {% for answer in answers %}
+                            {% if answer.ques == question %}
+                                <h3 class="ans">{{ answer.ans }}</h3>
+                            {% endif %}
+                        {% endfor %}
+                    {% comment %} {% else %} {% endcomment %}
+                        {% if request.user == object.owner %}
+                            <form action="{% url 'ans-question' %}" method="post"  onSubmit="return checkform(this)">
+                                {% csrf_token %}
+                                <input type="text" style="padding: 7px;width: 60%;border-radius: 10px;" class="btn" placeholder="answer now.." name="answer" required>
+                                <button type="submit" style="padding: 7px;border-radius: 10px;background-color:#ff6347;" class="dgr" value="{{question.id}}" name="ques-id">Send</button>
+                                <input type="hidden" value="{{object.id}}" name="post_id">
+                            </form>
+                        {% endif %}
+                    {% comment %} {% endif %} {% endcomment %}
+                </div>
+            {% endfor %}
+            <div class="ask" id="ask">
+                <form action="{% url 'ask-question' %}" method="post" onSubmit="return checkform(this)" >
+                    {% csrf_token %}
+                    <input type="text" style="padding: 7px;width: 60%;border-radius: 10px;" class="btn" placeholder="Ask a question.." name="question" required id="ask-question">
+                    <button type="submit" style="padding: 7px;border-radius: 10px; background-color:#ff6347;" class="btn dgr" name="post_id" value="{{object.id}}">Send</button>
+                </form>
+            </div>
+        </div>
+
+
         </div>
         <div class="row2">
 

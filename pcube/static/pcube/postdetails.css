@@ -281,7 +281,7 @@ h4 .old {
 
 .buttons .dgr,
 input[type=submit] {
-    background: tomato !important;
+    background: #ff6347 !important;
     width: 100px;
     cursor: pointer;
 }
@@ -432,6 +432,68 @@ input[type=submit] {
 
 .sold-txt {
     transform: rotateZ(45deg);
+}
+
+
+/* Ques and Ans */
+
+.ques-div {
+    width: 95%;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #1d1d2b;
+    color: #9aada6;
+}
+
+.ques-title {
+    color: #52a7f7;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.ques-ans-pair {
+    background-color: #29293d;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.ques-ans-pair .ques {
+    color: #fff8dc;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8a9e9c;
+}
+
+.ques-ans-pair .ans {
+    padding: 0.5rem 1rem;
+}
+
+.ask {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}
+
+.ques-ans-pair form {
+    margin-top: 10px;
+}
+
+.ques-ans-pair form input,
+.ques-ans-pair form button,
+.ask form input,
+.ask form button {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: rgb(77, 77, 97);
+    font-weight: 1000;
+    border-radius: 30px;
+    font-size: 20px;
+    color: seashell;
+    margin-right: 20px;
+    min-width: 100px;
 }
 
 @media screen and (max-width: 1100px) {

@@ -21,6 +21,7 @@ class Post(models.Model):
     owner = models.ForeignKey(User, related_name='owner',on_delete=models.CASCADE)
     soldto = models.ForeignKey(User, related_name='sold_to', blank=True, null=True, default=None ,on_delete=models.SET_NULL)
     sold =  models.BooleanField(default=False)
+    notify = models.BooleanField(default=False)
     image = models.ImageField(default='placeholder.jpg', upload_to='Posts', height_field=None)
 
     def __str__(self):
@@ -55,3 +56,20 @@ class Notification(models.Model):
     discription = discription = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     read =  models.BooleanField(default=False)
+
+class Question(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_answered = models.BooleanField(default=False)
+    ques = models.CharField(max_length= 30)
+
+    def __str__(self):
+        return self.ques
+
+class Answer(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True)
+    ans = models.CharField(max_length= 30)
+
+    def __str__(self):
+        return self.ans

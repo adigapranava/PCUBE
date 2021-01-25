@@ -25,6 +25,10 @@ urlpatterns = [
     path('user/<str:username>/', views.UserPosts, name='user-posts'),
     path('notification/', views.notification, name='notification'),
     path('notification_delete/', views.notification_clear, name='noti-clear'),
+
+    # quesitions
+    path('askquesetion/', views.addques, name='ask-question'),
+    path('ansquesetion/', views.addans, name='ans-question'),
 ]
 
 import django.views.static

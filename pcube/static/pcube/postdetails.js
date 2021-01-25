@@ -29,3 +29,16 @@ function cnclsend() {
 function cncldel() {
     $('.msg2').removeClass('active');
 }
+
+
+function checkform(ele) {
+    var value = ele.getElementsByTagName('input')[1].value;
+    var patt1 = /\w/g;
+    var variables = value.match(patt1);
+    console.log(variables);
+    if (variables == null || variables.length < 2) {
+        alert('Please enter the valid Text:');
+        return false;
+    }
+    return true;
+}
