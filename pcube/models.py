@@ -48,20 +48,20 @@ class Buy(models.Model):
     def __str__(self):
         return self.post_id.title
 
-class Notification(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length= 30)
-    h1 = models.CharField(max_length= 30)
-    discription = discription = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
-    read =  models.BooleanField(default=False)
-
 class Question(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_answered = models.BooleanField(default=False)
-    ques = models.CharField(max_length= 30)
+    likes = models.ManyToManyField(User, related_name='queslikes', blank=True)
+    notify = models.ManyToManyField(User, related_name='notify', blank=True)
+    ques = models.CharField(max_length= 150)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def likedby(self):
+        return self.likes.all()
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.ques
@@ -69,7 +69,18 @@ class Question(models.Model):
 class Answer(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
     ques = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True)
-    ans = models.CharField(max_length= 30)
+    ans = models.CharField(max_length= 150)
 
     def __str__(self):
         return self.ans
+
+
+class Notification(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ques = models.ForeignKey(Question, on_delete=models.CASCADE, blank=True, null=True, default=None)
+    title = models.CharField(max_length= 30)
+    h1 = models.CharField(max_length= 30)
+    discription = discription = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    read =  models.BooleanField(default=False)

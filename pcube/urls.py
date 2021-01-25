@@ -29,6 +29,7 @@ urlpatterns = [
     # quesitions
     path('askquesetion/', views.addques, name='ask-question'),
     path('ansquesetion/', views.addans, name='ans-question'),
+    path('likequesetion/', views.likeques, name='like-question'),
 ]
 
 import django.views.static

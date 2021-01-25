@@ -464,6 +464,11 @@ input[type=submit] {
     color: #fff8dc;
     padding-bottom: 10px;
     border-bottom: 2px solid #8a9e9c;
+    position: relative;
+}
+
+.ques h2 {
+    width: 80%;
 }
 
 .ques-ans-pair .ans {
@@ -474,6 +479,45 @@ input[type=submit] {
     width: 100%;
     text-align: center;
     padding: 1rem;
+}
+
+.que-by {
+    display: flex;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.que-by img {
+    width: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.more-options {
+    position: absolute;
+    right: 1rem;
+    top: -0.5rem;
+}
+
+.more-options button {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin: 0;
+    background: none !important;
+    color: #9aada6 !important;
+}
+
+.more-options span {
+    margin: 0;
+}
+
+.que-by .info h3 {
+    color: #b8dae2;
+    font-size: 27px;
+}
+
+.que-by .info h5 {
+    color: #a59ea3;
 }
 
 .ques-ans-pair form {
@@ -564,5 +608,8 @@ input[type=submit] {
     }
     .post-div2 {
         transform: translateY(-230px);
+    }
+    .more-options {
+        position: relative;
     }
 }

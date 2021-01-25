@@ -36,6 +36,7 @@ function checkform(ele) {
     var patt1 = /\w/g;
     var variables = value.match(patt1);
     console.log(variables);
+    console.log("variables");
     if (variables == null || variables.length < 2) {
         alert('Please enter the valid Text:');
         return false;

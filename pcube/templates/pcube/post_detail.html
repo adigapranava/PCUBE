@@ -4,6 +4,7 @@
 
 {% block headers %} 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'pcube/postdetails.css' %}">
@@ -134,8 +135,45 @@
             <div class="ques-div">
             <h1 class="ques-title">Qusetions</h1>
             {% for question in questions %} 
+                
                 <div class="ques-ans-pair">
-                    <h2 class="ques" id="question-no-{{question.id}}">Q-  {{question.ques}}</h2>
+                    <div class="que-by">
+                        <div class="profile-img">
+                            <div class="proimg">
+                                <img class="img" src="{{question.user.profile.image.url}}" alt="profile_img">
+                                {% if question.user.profile.is_varified %}
+                                <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 17px;position: relative;left: -35px;top: -6px;background: #2491ff;border-radius: 50%;border: 2px solid #2491ff;"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h3>{{question.user.username}}</h3>
+                            <h5>{{question.date_posted}}</h5>
+                        </div>
+                    </div>
+                    <div class="ques">
+                        <h2 id="question-no-{{question.id}}">Q-  {{question.ques}}</h2>
+                        
+                        <form class="more-options" action="{% url 'like-question' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{object.id}}" name="post_id">
+                            {% if request.user in question.likedby %}
+                                <button type="submit" value="{{question.id}}" name="ques-id">
+                                    <i class="fa fa-thumbs-up" style="font-size:30px"></i>
+                                    &nbsp;
+                                    <span>{{question.total_likes}}</span>
+                                </button>
+                            {% else %}
+                                <button type="submit" value="{{question.id}}" name="ques-id">
+                                    <i class="fa fa-thumbs-o-up" style="font-size:30px"></i>
+                                    &nbsp;
+                                    <span>{{question.total_likes}}</span>
+                                </button>                                    
+                            {% endif %}
+                            
+                        </form>
+                    </div>
+                    
 
                     {% comment %} {% if question.is_answered %} {% endcomment %}
                         {% for answer in answers %}
@@ -147,7 +185,7 @@
                         {% if request.user == object.owner %}
                             <form action="{% url 'ans-question' %}" method="post"  onSubmit="return checkform(this)">
                                 {% csrf_token %}
-                                <input type="text" style="padding: 7px;width: 60%;border-radius: 10px;" class="btn" placeholder="answer now.." name="answer" required>
+                                <input type="text" style="padding: 7px;width: 60%;border-radius: 10px;" class="btn" placeholder="Answer Now.." name="answer" required>
                                 <button type="submit" style="padding: 7px;border-radius: 10px;background-color:#ff6347;" class="dgr" value="{{question.id}}" name="ques-id">Send</button>
                                 <input type="hidden" value="{{object.id}}" name="post_id">
                             </form>

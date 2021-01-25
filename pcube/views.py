@@ -313,9 +313,10 @@ def addans(request):
             post = Post.objects.get(id = request.POST.get('post_id'))
         except:
             return HttpResponseNotFound()
-        ques = Question(id= request.POST.get('ques-id'))
-        # ques.is_answered = True
-        # ques.save()
+        ques = Question.objects.get(id= request.POST.get('ques-id'))
+        print(ques)
+        ques.is_answered = True
+        ques.save()
         ans = Answer(
             ques= ques,
             post= post, 
@@ -328,7 +329,33 @@ def addans(request):
             qno= ques.id)
             )
     else:
-        request.session['prev'] = f"/post/{request.POST.get('post_id')}/#ask"
+        request.session['prev'] = "/post/{id}/#question-no-{qno}".format(
+            id= post.id, 
+            qno= ques.id
+            )
+        return redirect('login')
+
+def likeques(request):
+    if request.user.is_authenticated:
+        try:
+            ques = Question.objects.get(id = request.POST.get('ques-id'))
+        except:
+            return HttpResponseNotFound()
+            
+
+        if ques.likes.filter(id=request.user.id).exists():
+            ques.likes.remove(request.user)
+        else:
+            ques.likes.add(request.user)
+        return HttpResponseRedirect("/post/{id}/#question-no-{qid}".format(
+            id= request.POST.get('post_id'),
+            qid= request.POST.get('ques-id')
+            ))
+    else:
+        request.session['prev'] = "/post/{id}/#question-no-{qid}".format(
+            id= request.POST.get('post_id'),
+            qid= request.POST.get('ques-id')
+            )
         return redirect('login')
 
 ##Api handler
