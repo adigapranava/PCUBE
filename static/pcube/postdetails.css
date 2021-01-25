@@ -468,8 +468,7 @@ input[type=submit] {
 }
 
 .ques h2 {
-    width: 90%;
-    background-color: #52a7f7;
+    width: 80%;
 }
 
 .ques-ans-pair .ans {
