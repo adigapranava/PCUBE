@@ -149,6 +149,39 @@ nav ul li a:hover {
     display: none;
 }
 
+#notification-container {
+    position: fixed;
+    bottom: 10px;
+    right: 80px;
+}
+
+.noti-li {
+    position: relative;
+}
+
+#noti-count {
+    font-size: 15px;
+    margin: 0;
+    position: absolute;
+    top: 26px;
+    right: -7px;
+    line-height: normal;
+    padding: 5px 10px;
+    background-color: tomato;
+    border-radius: 50%;
+}
+
+.toast {
+    background-color: #e0e0e0;
+    color: #1d1d1c;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem;
+    box-shadow: 2px 2px 10px rgb(41, 39, 39);
+    position: relative;
+    z-index: 1000;
+}
+
 @media screen and (max-width: 850px) {
     label.logo {
         padding: 0 50px;
@@ -180,6 +213,17 @@ nav ul li a:hover {
     }
     #check:checked~ul {
         left: 0;
+    }
+    #noti-count {
+        font-size: 15px;
+        margin: 0;
+        position: absolute;
+        top: 20px;
+        right: 30%;
+        line-height: normal;
+        padding: 5px 10px;
+        background-color: tomato;
+        border-radius: 50%;
     }
 }
 

@@ -1,6 +1,7 @@
 var posts, companys, MAINURL, company_array;
 
 MAINURL = window.location.href;
+MAINURL = MAINURL.split('#')[0];
 
 $("#filter-search").click(function() {
     $(".filter-box").toggle();

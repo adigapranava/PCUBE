@@ -13,6 +13,9 @@ from django.http import (
     JsonResponse, HttpResponseNotFound)
 import json
 import os
+
+from datetime import datetime, timedelta
+from django.utils import timezone
 # Create your views here.
 
 def home(request):
@@ -278,6 +281,10 @@ def notification(request):
     try:
         msgs = Notification.objects.order_by('-date_posted').filter(user = request.user, read = False)
         noti_count = msgs.count()
+        unread_msgs = msgs.filter(showed = False)
+        for unread_msg in unread_msgs:
+            unread_msg.showed = True
+            unread_msg.save()
     except:
         msgs = []
         noti_count = 0
@@ -301,7 +308,12 @@ def addques(request):
             return HttpResponseNotFound()
         ques = Question(post= post, user= request.user, ques= request.POST.get('question'))
         ques.save()
-        # return redirect('post-detail', pk= request.POST.get('post_id'))
+
+        #TODO: if post.notify is tru then only:
+        ttl = "Your Product has got a new question"
+        msg = request.POST.get('question')
+        noti = Notification(user = post.owner, ques = ques, post=post, title =  ttl, discription=msg)
+        noti.save()
         return HttpResponseRedirect("/post/{id}/#ask".format(id= post.id))
     else:
         request.session['prev'] = f"/post/{request.POST.get('post_id')}/#ask"
@@ -314,7 +326,6 @@ def addans(request):
         except:
             return HttpResponseNotFound()
         ques = Question.objects.get(id= request.POST.get('ques-id'))
-        print(ques)
         ques.is_answered = True
         ques.save()
         ans = Answer(
@@ -323,7 +334,12 @@ def addans(request):
             ans=request.POST.get('answer')
             )
         ans.save()
-        # return redirect('post-detail', pk= request.POST.get('post_id'))
+
+        ttl = "Your Question is answred"
+        msg = request.POST.get('answer')
+        noti = Notification(user = ques.user, ques = ques, post=post, title =  ttl, discription=msg)
+        noti.save()
+        
         return HttpResponseRedirect("/post/{id}/#question-no-{qno}".format(
             id= post.id, 
             qno= ques.id)
@@ -392,4 +408,23 @@ def post_search_api(request, *args, **kwargs):
         response = serializers.serialize('json', search_results)
 
     return HttpResponse(response, content_type='application/json')
+
+
+def latest_notification(request):
+    try:
+        time_threshold = datetime.now() - timedelta(seconds=30)
+        messages = Notification.objects.filter(date_posted__gt=time_threshold)
+        messages = messages.filter(user= request.user)
+        messages= messages.order_by('date_posted')
+        messages = serializers.serialize('json', messages)
+        msg_count = Notification.objects.filter(user= request.user, read = False).count()
+        # print(unread_msg_count)
+        response={
+            'messages' : messages,
+            'msg_count' : msg_count
+        }
+    
+    except:
+        response = serializers.serialize('json', [])        
+    return HttpResponse(json.dumps(response))
     

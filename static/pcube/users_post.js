@@ -2,7 +2,14 @@
 // companys;
 var posts, companys, MAINURL, company_array;
 
-MAINURL = "https://pcube-marketing.herokuapp.com/";
+// MAINURL = "https://pcube-marketing.herokuapp.com/";
+var temp = window.location.href;
+
+MAINURL = '';
+
+for (var i = 0; i < 3; i++) {
+    MAINURL += temp.split('/')[i] + '/'
+}
 
 $("#filter-search").click(function() {
     $(".filter-box").toggle();

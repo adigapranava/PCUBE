@@ -22,7 +22,10 @@
         <label class="logo"><a href="{% url 'pcube-home' %}" style="color: aliceblue;"><img src="{% static 'images/favicon2.png' %}" alt="logo" style="position: relative; top: -13px; height: 70px;"></a></label>
         <ul class="list">
             <li class="ls"><a class="active" href="{% url 'pcube-home' %}">Home</a></li>
-            <li class="ls"><a href="{% url 'notification' %}">Notification</a></li>
+            <li class="ls noti-li">
+                <a href="{% url 'notification' %}">Notification</a>
+                <p id="noti-count">0</p>
+            </li>
             {% if user.is_authenticated %}
             <li class="ls"><a href="{% url 'profile' %}">Profile</a></li>
             <li class="ls"><a href="{% url 'logout' %}">Logout</a></li>
@@ -34,31 +37,71 @@
     <div class="block">
         {% block content %} {% endblock content %}
     </div>
-    {% if messages %}
-    <div class="noti-box">
-        <div class="noti-top">
-            <div class="noti-logo">
-                P-CUBE
-            </div>
-            <div class="noti-cancel">
-                <i class="fa fa-remove"></i>
-            </div>
-        </div>
-        <div class="noti-text">
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    {% endif %}
+    <div id="notification-container"></div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $('.noti-box .noti-top .noti-cancel').on('click', function() {
+    /*$('.noti-box .noti-top .noti-cancel').on('click', function() {
         document.getElementsByClassName("noti-box")[0].style.display = 'none';
-    });
+    });*/
+
+    //check if Authenticated
+    var isAuthenticated = '{{request.user.is_authenticated}}' === 'True';
+    var notified = new Array();
+    var msgs;
+    var c = document.getElementById('noti-count');
+    const container = document.querySelector("#notification-container");
+
+    function createNotification(text) {
+        const notif = document.createElement('div');
+        notif.classList.add('toast');
+        notif.innerHTML = text
+        container.appendChild(notif);
+
+        setTimeout(() => {
+            notif.remove();
+        }, 3000)
+    }
+    {% for message in messages %}
+        createNotification("{{message}}");
+    {% endfor %}
+
+    function check_n_display(msgs){
+        for (let i = 0; i < msgs.length; i++) {
+            var ele = msgs[i].fields.title;
+            if (!notified.includes(msgs[i].pk)) {
+                notified.push(msgs[i].pk);
+                createNotification(ele);
+            }            
+        }
+    }   
+
+
+    var temp = window.location.href;
+    var URL = '';
+    for (var i = 0; i < 3; i++) {
+        URL += temp.split('/')[i] + '/'
+    }
+
+    function check() {
+        var url = URL+'latest_notification/';
+        $.get(url, function(data, status) {
+            if (data) {
+                data = JSON.parse(data);
+                var count = data["msg_count"];
+                msgs = data['messages'];
+                msgs = JSON.parse(msgs);
+                c.innerText = count;
+                if(msgs.length>0){
+                    check_n_display(msgs);
+                }                
+            }
+        });
+    }
+    if( isAuthenticated){
+        check();
+        var myVar = setInterval(check, 6000);
+    }
 </script>
 
 </html>

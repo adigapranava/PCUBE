@@ -1,4 +1,5 @@
-const MAINURL = "https://pcube-marketing.herokuapp.com/post/";
+var MAINURL = window.location.href;
+MAINURL = MAINURL.split('#')[0];
 
 function del() {
     var x = document.getElementById("sure");
@@ -51,12 +52,12 @@ function checkform(ele) {
 // Copy link
 
 function myFunction(item, ques) {
-    var text = MAINURL + item + "/#question-no-" + ques;
+    var text = MAINURL + "#question-no-" + ques;
     copyText(text);
 }
 
 function myFunction2(item) {
-    var text = MAINURL + item;
+    var text = MAINURL;
     copyText(text);
 }
 

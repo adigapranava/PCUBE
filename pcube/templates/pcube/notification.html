@@ -11,7 +11,7 @@
         <h2>Notification-{{msgs_count}}</h2>
         {% for msg in msgs %}
         <div class="notification">
-            <h1><a href="{% url 'post-detail' msg.post.id %}">{{msg.title}}</a>
+            <h1><a href="{% url 'post-detail' msg.post.id %}#question-no-{{msg.ques.id}}">{{msg.title}}</a>
                 <h5>{{msg.date_posted}}</h5>
                 <form action="{% url 'noti-clear' %}" method="POST">
                     {% csrf_token %} 

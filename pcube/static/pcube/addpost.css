@@ -2,7 +2,7 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%) scale(0.95, 0.95);
-    background-color: #1d1d1d;
+    background-color: #1d1d2b;
     color: whitesmoke;
     padding: 20px 50px 50px 50px;
     border-radius: 30px;
@@ -95,7 +95,7 @@ textarea:focus {
     outline: none;
     border: none;
     color: cornsilk;
-    background-color: #111;
+    background-color: #ff6347;
     padding: 10px 20px;
     border-radius: 30px;
     width: 100px;
@@ -105,9 +105,10 @@ textarea:focus {
 
 .post-container form .post-images input[type=submit]:hover {
     transition: 0.5s;
-    background-color: rgb(14, 14, 14);
-    box-shadow: 1px 1px 10px 4px #00ccff;
-    color: #aedbff;
+    background-color: #4772ff;
+    /* box-shadow: 1px 1px 10px 4px #00ccff; */
+    color: #f6fafd;
+    cursor: pointer;
 }
 
 .post-container form .post-images input[type=file] {
@@ -174,8 +175,8 @@ textarea:focus {
 .post-images a {
     border: none;
     outline: none;
-    background-color: #f5f5f5;
-    color: #1c1c1d;
+    background-color: #4772ff;
+    color: cornsilk;
     font-size: 20px;
     padding: 10px;
     position: absolute;

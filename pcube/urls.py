@@ -23,8 +23,10 @@ urlpatterns = [
     path('buyer_delete/', views.buyer_delete, name='post-buyer-delete'),
     path('addpost/', views.AddPost, name='add-post'),
     path('user/<str:username>/', views.UserPosts, name='user-posts'),
+
     path('notification/', views.notification, name='notification'),
     path('notification_delete/', views.notification_clear, name='noti-clear'),
+    path('latest_notification/', views.latest_notification, name='latest-notification'),
 
     # quesitions
     path('askquesetion/', views.addques, name='ask-question'),

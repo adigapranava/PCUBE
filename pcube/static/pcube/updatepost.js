@@ -1,5 +1,14 @@
-const MAINURL = "https://pcube-marketing.herokuapp.com/";
+// const MAINURL = "https://pcube-marketing.herokuapp.com/";
+var MAINURL;
 var isPaused = true;
+
+var temp = window.location.href;
+
+MAINURL = '';
+
+for (var i = 0; i < 3; i++) {
+    MAINURL += temp.split('/')[i] + '/'
+}
 
 function preview_image(event) {
     var reader = new FileReader();
