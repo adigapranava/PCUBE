@@ -182,6 +182,10 @@ nav ul li a:hover {
     z-index: 1000;
 }
 
+.block{
+    min-height: 100vh;
+}
+
 footer{
     margin-top: 3rem;
     background-color: #181717;
