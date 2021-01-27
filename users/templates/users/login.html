@@ -1,29 +1,45 @@
-{% extends 'pcube/base.html' %}
-{% load static %}
-
-{% block headers %}
-    <link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
-{% endblock headers %}
+{% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}"> {% endblock headers %} {% block content %}
 
 
-{% block content %}
-    <form method="POST" action="{% url 'login'%}">
-        {% csrf_token %}
-        <div class="inputbox">
-            <h2>Login</h2>
-            <div class="textbox">
-                <input type="text" placeholder="Username" name="username" required="">
-            </div>
-            <div class="textbox">
-                <input type="password" placeholder="Password" name="password" required="">
-            </div>
-            <a href="homepage.html">
-            {% if error %}
-                <h5 style="color: rgb(252, 110, 15);font-size: 18px;">{{error}}</h5>
-            {% endif %}
-            <input class="btn" type="submit" name="" value="Sign in"></a>
-            <div class="relative"><b>Not Registered? </b>
-            <a href="{% url 'register' %}" target="_self">SIGN UP</a>   </div>
+<form method="POST" action="{% url 'login'%}" name="loginForm" onsubmit="return(validate());">
+    {% csrf_token %}
+    <div class="inputbox">
+        <h2>Login</h2>
+        <div class="textbox">
+            <input type="text" placeholder="Username" name="username" required="">
         </div>
-    </form>
+        <div class="textbox">
+            <input type="password" placeholder="Password" name="password" required="">
+        </div>
+        <a href="homepage.html">
+            <h5 style="color: rgb(252, 110, 15);font-size: 18px;" id="error_text">{{error}}</h5>
+            <input class="btn" type="submit" name="" value="Sign in"></a>
+        <div class="relative"><b>Not Registered? </b>
+            <a href="{% url 'register' %}" target="_self">SIGN UP</a> </div>
+    </div>
+</form>
+
+<script>
+    function validate(e) {
+
+        //username varification
+        var username = document.loginForm.username.value;
+        var patt1 = /\W/g;
+        var result = username.search(patt1);
+        if (result != -1) {
+            document.getElementById("error_text").innerHTML = "username sholud not contain any special character except '_'";
+            document.loginForm.username.focus();
+            return false;
+        }
+
+        //password strength checking
+        var password1 = document.loginForm.password.value;
+        if (password1.length < 6) {
+            document.getElementById("error_text").innerHTML = "password sholud contain atleast 6 letter";
+            document.loginForm.password.focus();
+            return false;
+        }
+    }
+</script>
 {% endblock content %}

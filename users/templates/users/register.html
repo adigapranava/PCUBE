@@ -1,35 +1,65 @@
-{% extends 'pcube/base.html' %}
-{% load static %}
-
-{% block headers %}
-    <link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
-{% endblock headers %}
-
-
-{% block content %}
-    <form method="POST" action="{% url 'register'%}">
-        {% csrf_token %}
-        <div class="inputbox">
-            <h2>Sign Up</h2>
-            <div class="textbox">
-                <input type="text" placeholder="e-mail" name="email" required>
-            </div>
-            <div class="textbox">
-                <input type="text" placeholder="Username" name="username" required>
-            </div>
-            <div class="textbox">
-                <input type="password" placeholder="Password" name="password1" required>
-            </div>
-            <div class="textbox">
-                <input type="password" placeholder="confirm-Password" name="password2" required>
-            </div>
-            {% if error %}
-                <h5 style="color: rgb(252, 110, 15);font-size: 18px;">{{error}}</h5>
-            {% endif %}
-            <a href="homepage.html">
-            <input class="btn" type="submit" name="" value="register"></a>
-            <div class="relative"><b>Already have an account?</b>
-            <a href="{% url 'login' %}" target="_self">login</a>   </div>
+{% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}"> {% endblock headers %} {% block content %}
+<form method="POST" action="{% url 'register'%}" name="registerForm" onsubmit="return(validate());">
+    {% csrf_token %}
+    <div class="inputbox">
+        <h2>Sign Up</h2>
+        <div class="textbox">
+            <input type="text" placeholder="e-mail" name="email" required>
         </div>
-    </form>
+        <div class="textbox">
+            <input type="text" placeholder="Username" name="username" required>
+        </div>
+        <div class="textbox">
+            <input type="password" placeholder="Password" name="password1" required>
+        </div>
+        <div class="textbox">
+            <input type="password" placeholder="confirm-Password" name="password2" required>
+        </div>
+        <h5 style="color: rgb(252, 110, 15);font-size: 18px;" id="error_text">{{error}}</h5>
+        <input class="btn" type="submit" name="" value="register">
+        <div class="relative"><b>Already have an account?</b>
+            <a href="{% url 'login' %}" target="_self">login</a> </div>
+    </div>
+</form>
+<script>
+    function validate(e) {
+
+        //Email varification
+        var emailID = document.registerForm.email.value;
+        atpos = emailID.indexOf("@");
+        dotpos = emailID.lastIndexOf(".");
+
+        if (atpos < 1 || (dotpos - atpos < 2)) {
+            document.getElementById("error_text").innerHTML = "Please enter correct email ID";
+            document.registerForm.email.focus();
+            return false;
+        }
+
+        //username varification
+        var username = document.registerForm.username.value;
+        var patt1 = /\W/g;
+        var result = username.search(patt1);
+        if (result != -1) {
+            document.getElementById("error_text").innerHTML = "username sholud not contain any special character except '_'";
+            document.registerForm.username.focus();
+            return false;
+        }
+
+        //password strength checking
+        var password1 = document.registerForm.password1.value;
+        if (password1.length < 6) {
+            document.getElementById("error_text").innerHTML = "password sholud contain atleast 6 letter";
+            document.registerForm.password1.focus();
+            return false;
+        }
+
+        var password2 = document.registerForm.password2.value;
+        if (password1 != password2) {
+            document.getElementById("error_text").innerHTML = "password didnt match";
+            document.registerForm.password2.focus();
+            return false;
+        }
+    }
+</script>
 {% endblock content %}

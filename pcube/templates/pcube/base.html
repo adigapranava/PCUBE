@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'pcube/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon2.png' %}" />
     <title>PCUBE</title>
     {% block headers %} {% endblock headers %}
@@ -37,6 +38,43 @@
     <div class="block">
         {% block content %} {% endblock content %}
     </div>
+    <footer>
+        <div class="total-div">
+      <div class="copyright">
+        <div class="loc">
+            <div>
+            <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <p>Bull Temple Rd, Basavanagudi, Bengaluru, Karnataka 560019</p>
+        </div>
+        <div class="phn">
+            <div>
+            <i class="fas fa-phone-alt"></i>
+            </div>
+            <p>080 2662 2130</p>
+        </div>
+        <div class="mail">
+            <div>
+            <i class="fas fa-envelope"></i>
+            </div>
+            <a href="mailto:pcubedevelopers@email.com">pcubedevelopers@gmail.com</a>
+        </div>
+      </div>
+      <div class="social">
+        <h3>About the company</h3>
+        <p>This company mainly focuses on the marketing the products and 
+            consumers buying it everyone can sell their product on the best platform <strong>PCUBE</strong></p>
+        <div class="link">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/adigapranava/PCUBE"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      </div>
+      <hr>
+      <div class="about-us"><a href="{% url 'about_us' %}" target="_blank">About - Us</a></div>
+    </footer>
     <div id="notification-container"></div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

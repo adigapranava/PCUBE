@@ -24,5 +24,6 @@ urlpatterns = [
     path('logout/', user_views.logout, name='logout'),
     path('profile/', user_views.profile, name='profile'),
     path('profile_update/', user_views.profile_update, name='profile_update'),
+    path('about_us/', user_views.aboutus, name='about_us'),
     path('', include('pcube.urls')),
 ]

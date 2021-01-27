@@ -117,3 +117,6 @@ def profile_update(request):
     
     else:
         return render(request, 'users/profile_update.html')
+
+def aboutus(request):
+    return render(request, 'users/ss.html')
