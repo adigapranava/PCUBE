@@ -86,6 +86,7 @@ textarea:focus {
     color: #161616;
     border-radius: 10px;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .post-container form .post-images input[type=submit] {

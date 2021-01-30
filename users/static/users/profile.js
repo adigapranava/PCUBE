@@ -12,7 +12,6 @@ function show(name) {
         if (dec[i].id == name) {
             dec[i].style.display = 'block';
         } else {
-
             dec[i].style.display = 'none';
         }
     }

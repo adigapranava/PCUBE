@@ -309,7 +309,7 @@ input[type=submit] {
     border: none;
     outline: none;
     padding: 12px 16px;
-    background-color: rgb(77, 77, 97);
+    background-color: #4d4d61;
     font-weight: 1000;
     border-radius: 30px;
     font-size: 20px;
@@ -428,7 +428,7 @@ input[type=submit] {
     text-align: end;
     padding: 20px;
     box-sizing: border-box;
-    color: rgb(228, 253, 6);
+    color: #e4fd06;
     font-weight: 900;
     font-size: 50px;
     top: 0;

@@ -1,6 +1,5 @@
 .part {
     display: inline-table;
-    box-sizing: content-box;
 }
 
 .part1 {
@@ -49,6 +48,9 @@
     overflow: scroll;
     scrollbar-width: none;
 }
+
+
+/* to hide scrollbar */
 
 .my-list::-webkit-scrollbar {
     display: none;
@@ -115,8 +117,6 @@
 }
 
 .profile-block .profile-items a {
-    outline: none;
-    border: none;
     color: cornsilk;
     background-color: #000000;
     padding: 7px 12px;
@@ -133,6 +133,9 @@
     background-color: beige;
     color: black;
 }
+
+
+/* product infos */
 
 .product {
     position: relative;

@@ -5,22 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Google font API-->
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <!--fontawosome icon-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" 
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!--JQUERY get method -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="{% static 'pcube/main.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon2.png' %}" />
     <title>PCUBE</title>
-    {% block headers %} {% endblock headers %}
+    {% block headers %}
+    
+    {% endblock headers %}
 </head>
 
 <body>
+
+    <!--NAV BAR-->
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
           <i class="fa fa-bars"></i>
         </label>
-        <label class="logo"><a href="{% url 'pcube-home' %}" style="color: aliceblue;"><img src="{% static 'images/favicon2.png' %}" alt="logo" style="position: relative; top: -13px; height: 70px;"></a></label>
+        <label class="logo">
+            <a href="{% url 'pcube-home' %}" style="color: aliceblue;">
+                <img src="{% static 'images/favicon2.png' %}" alt="logo" style="position: relative; top: -13px; height: 70px;">
+            </a>
+        </label>
         <ul class="list">
             <li class="ls"><a class="active" href="{% url 'pcube-home' %}">Home</a></li>
             <li class="ls noti-li">
@@ -28,16 +42,22 @@
                 <p id="noti-count">0</p>
             </li>
             {% if user.is_authenticated %}
-            <li class="ls"><a href="{% url 'profile' %}">Profile</a></li>
-            <li class="ls"><a href="{% url 'logout' %}">Logout</a></li>
+                <!-- iff loged in -->
+                <li class="ls"><a href="{% url 'profile' %}">Profile</a></li>
+                <li class="ls"><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-            <li class="ls"><a href="{% url 'login' %}">sign-in</a></li>
+                <li class="ls"><a href="{% url 'login' %}">sign-in</a></li>
             {% endif %}
         </ul>
     </nav>
+
     <div class="block">
-        {% block content %} {% endblock content %}
+        {% block content %} 
+        
+        {% endblock content %}
     </div>
+
+    
     <footer>
         <div class="total-div">
       <div class="copyright">
@@ -45,7 +65,8 @@
             <div>
             <i class="fas fa-map-marker-alt"></i>
             </div>
-            <p>Bull Temple Rd, Basavanagudi, Bengaluru, Karnataka 560019</p>
+            <p>Bull Temple Rd, Basavanagudi, 
+            Bengaluru, Karnataka 560019</p>
         </div>
         <div class="phn">
             <div>
@@ -63,7 +84,9 @@
       <div class="social">
         <h3>About the company</h3>
         <p>This company mainly focuses on the marketing the products and 
-            consumers buying it everyone can sell their product on the best platform <strong>PCUBE</strong></p>
+            consumers buying it everyone can sell their product on the best 
+            platform <strong>PCUBE</strong>
+        </p>
         <div class="link">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -77,13 +100,9 @@
     </footer>
     <div id="notification-container"></div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    /*$('.noti-box .noti-top .noti-cancel').on('click', function() {
-        document.getElementsByClassName("noti-box")[0].style.display = 'none';
-    });*/
 
-    //check if Authenticated
+
+<script>
     var isAuthenticated = '{{request.user.is_authenticated}}' === 'True';
     var notified = new Array();
     var msgs;

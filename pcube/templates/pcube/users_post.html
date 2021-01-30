@@ -1,33 +1,44 @@
-{% extends 'pcube/base.html' %} {% load static %} {% block headers %}
-<link rel="stylesheet" type="text/css" href="{% static 'pcube/filter.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'pcube/users_post.css' %}">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<script>
-    var posts, companys;
-    posts = {{ post| safe }};
-    console.log(posts);
-</script>
-{% endblock headers %} {% block content %}
+{% extends 'pcube/base.html' %}
+{% load static %} 
+
+
+{% block headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pcube/filter.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pcube/users_post.css' %}">
+    <script>
+        var posts, companys;
+        posts = {{ post| safe }};
+    </script>
+{% endblock headers %} 
+
+
+{% block content %}
 <div class="small-profile">
+
     <div class="profile-img">
-                <div class="proimg">
-                    <img class="img" src="{{user.profile.image.url}}" alt="">
-                    {% if user.profile.is_varified %}
-                        <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -19px;background: #2491ff;border-radius: 50%;border: 3px solid #2491ff;"></i>
-                    {% endif %}
-                </div>
-            </div>
+        <div class="proimg">
+            <img class="img" src="{{user.profile.image.url}}" alt="">
+            {% if user.profile.is_varified %}
+                <i class="fas fa-check-circle" 
+                style="color: #3bffdc; font-size: 37px;
+                position: relative;left: -45px;top: -19px;background: #2491ff;
+                border-radius: 50%;border: 3px solid #2491ff;"></i>
+            {% endif %}
+        </div>
+    </div>
+
     <div class="profile-text">
         <h2>{{user.profile.fullname}}</h2>
         <h5>{{ user.email }}</h5>
         <h6 id="user_pk">{{ user.pk }}</h6>
     </div>
+
 </div>
+
+
 <div style="margin-top: 20px;" class="box-container"></div>
+
+
 <div class="filter-div">
     <div class="filter-div2">
         <div class="filter-box">
@@ -39,8 +50,8 @@
             <div class="selects" id="selects">
                 <p>Company</p>
                 <select name="company" id="company">
-                        <option value="all">All</option>
-                    </select>
+                    <option value="all">All</option>
+                </select>
             </div>
             <div class="searchs">
                 <p>Starting rate : &#8377;</p>

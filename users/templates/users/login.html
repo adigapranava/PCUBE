@@ -1,6 +1,13 @@
-{% extends 'pcube/base.html' %} {% load static %} {% block headers %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}"> {% endblock headers %} {% block content %}
+{% extends 'pcube/base.html' %} 
 
+{% load static %} 
+
+{% block headers %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
+{% endblock headers %} 
+ 
+ 
+{% block content %}
 
 <form method="POST" action="{% url 'login'%}" name="loginForm" onsubmit="return(validate());">
     {% csrf_token %}

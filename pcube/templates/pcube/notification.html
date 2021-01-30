@@ -1,5 +1,6 @@
 {% extends 'pcube/base.html' %}
-{%load static%}
+
+{% load static %} 
 
 {% block headers %}
     <link rel="stylesheet" type="text/css" href="{% static 'pcube/notification.css' %}">
@@ -9,6 +10,7 @@
 {% block content %}
     <div class="notifications">
         <h2>Notification-{{msgs_count}}</h2>
+
         {% for msg in msgs %}
         <div class="notification">
             <h1><a href="{% url 'post-detail' msg.post.id %}#question-no-{{msg.ques.id}}">{{msg.title}}</a>
@@ -17,12 +19,13 @@
                     {% csrf_token %} 
                     <button id="like" class="btn ulk" type="submit" name="noti_id" value="{{ msg.id }}">
                 </form>
-                <i class="fa fa-close" style="font-size:25px"></i>
+                <i class="fas fa-times" style="font-size:25px"></i>
                 </button> 
             </h1>
             <h3>{{msg.discription}}</h3>
         </div>
         {% endfor %}
+        
     </div>
     <div class="addpost-div">
         <div class="addpost-div2">

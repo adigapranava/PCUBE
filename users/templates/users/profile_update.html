@@ -33,14 +33,20 @@
                 <p>City</p>
                 <input type="text" name="city" id="city" value="{{ user.profile.city }}" required>
                 <br>
+
                 <a href="{% url 'profile' %}">Cancel</a>
                 <div class="btns">
                     <input type="submit" value="Update">
                 </div>
+                
             </div>
         </form>
     </div>
+    
     <script type='text/javascript'>
+
+
+    //credit: https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
     function preview_image(event) {
         var reader = new FileReader();
         reader.onload = function() {

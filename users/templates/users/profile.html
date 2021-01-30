@@ -3,9 +3,6 @@
 
 {% block headers %}
         <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 {% endblock headers %}
 
 
@@ -44,12 +41,16 @@
             <div class="options">
                 <input type="radio" id="liked_r" name="option" value="liked_r"  onchange="changed(this);" checked>
                 <label for="liked_r">Liked</label><br>
+
                 <input type="radio" id="requested_r" name="option" value="requested_r" onchange="changed(this);" >
                 <label for="requested_r">Requested</label> 
+
                 <input type="radio" id="bought_r" name="option" value="bought_r" onchange="changed(this);" >
                 <label for="bought_r">Bought</label><br>
+
                 <input type="radio" id="sold_r" name="option" value="sold_r" onchange="changed(this);" >
                 <label for="sold_r">Sold</label> 
+                
                 <input type="radio" id="unsold_r" name="option" value="unsold_r" onchange="changed(this);" >
                 <label for="unsold_r">Unsold</label> 
             </div>
@@ -62,12 +63,12 @@
                             <p class="product-title">{{like.title}}</p>
                             <img src="{{like.image.url}}" alt="image" />
                             <div class="product-text">
-                            <p class="brand">{{like.brand}}</p>
-                            <h3>&#8377;{{like.newprice}}</h3>
-                            <button>
-                                <a href="{% url 'post-detail' like.id %}">View Product</a>
-                            </button>
-                        </div>
+                                <p class="brand">{{like.brand}}</p>
+                                <h3>&#8377;{{like.newprice}}</h3>
+                                <button>
+                                    <a href="{% url 'post-detail' like.id %}">View Product</a>
+                                </button>
+                            </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -78,12 +79,12 @@
                             <p class="product-title">{{item.title}}</p>
                             <img src="{{item.image.url}}" alt="image" />
                             <div class="product-text">
-                            <p class="brand">{{item.brand}}</p>
-                            <h3>&#8377;{{item.newprice}}</h3>
-                            <button>
-                                <a href="{% url 'post-detail' item.id %}">View Product</a>
-                            </button>
-                        </div>
+                                <p class="brand">{{item.brand}}</p>
+                                <h3>&#8377;{{item.newprice}}</h3>
+                                <button>
+                                    <a href="{% url 'post-detail' item.id %}">View Product</a>
+                                </button>
+                            </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -94,12 +95,12 @@
                             <p class="product-title">{{item.title}}</p>
                             <img src="{{item.image.url}}" alt="image" />
                             <div class="product-text">
-                            <p class="brand">{{item.brand}}</p>
-                            <h3>&#8377;{{item.newprice}}</h3>
-                            <button>
-                                <a href="{% url 'post-detail' item.id %}">View Product</a>
-                            </button>
-                        </div>
+                                <p class="brand">{{item.brand}}</p>
+                                <h3>&#8377;{{item.newprice}}</h3>
+                                <button>
+                                    <a href="{% url 'post-detail' item.id %}">View Product</a>
+                                </button>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -110,12 +111,12 @@
                             <p class="product-title">{{item.title}}</p>
                             <img src="{{item.image.url}}" alt="image" />
                             <div class="product-text">
-                            <p class="brand">{{item.brand}}</p>
-                            <h3>&#8377;{{item.newprice}}</h3>
-                            <button>
-                                <a href="{% url 'post-detail' item.id %}">View Product</a>
-                            </button>
-                        </div>
+                                <p class="brand">{{item.brand}}</p>
+                                <h3>&#8377;{{item.newprice}}</h3>
+                                <button>
+                                    <a href="{% url 'post-detail' item.id %}">View Product</a>
+                                </button>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -126,12 +127,12 @@
                             <p class="product-title">{{item.title}}</p>
                             <img src="{{item.image.url}}" alt="image" />
                             <div class="product-text">
-                            <p class="brand">{{item.brand}}</p>
-                            <h3>&#8377;{{item.newprice}}</h3>
-                            <button>
-                                <a href="{% url 'post-detail' item.id %}">View Product</a>
-                            </button>
-                        </div>
+                                <p class="brand">{{item.brand}}</p>
+                                <h3>&#8377;{{item.newprice}}</h3>
+                                <button>
+                                    <a href="{% url 'post-detail' item.id %}">View Product</a>
+                                </button>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -139,6 +140,7 @@
             </div>
         </div>
     </div>
+    
     <div class="addpost-div">
         <div class="addpost-div2">
             <div id="addpost">

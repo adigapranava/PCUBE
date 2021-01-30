@@ -20,15 +20,14 @@ body {
 
 /* notification */
 
-.noti-box {
+
+/* .noti-box {
     position: fixed;
     top: 70px;
     right: 20px;
     width: 400px;
-    /* background-color: #363636; */
     background-color: hsl(0deg 0% 100%);
     z-index: 10;
-    /* border: rgb(187, 189, 188) solid 5px; */
 }
 
 .noti-box .noti-top {
@@ -55,7 +54,7 @@ body {
     font-size: 20px;
     color: #00140d;
     text-transform: capitalize;
-}
+} */
 
 .logo {
     width: 20%;
@@ -81,11 +80,6 @@ nav {
     transition: height 0.7s;
 }
 
-
-/* nav:hover {
-    height: 80px;
-} */
-
 label.logo {
     color: white;
     font-size: 35px;
@@ -94,11 +88,6 @@ label.logo {
     font-weight: bold;
     transition: line-height 0.7s;
 }
-
-
-/* nav:hover label.logo {
-    line-height: 80px;
-} */
 
 nav ul {
     float: right;
@@ -115,11 +104,6 @@ nav ul li {
     font-weight: 600;
     /* transition: line-height 0.7s; */
 }
-
-
-/* nav:hover ul li {
-    line-height: 80px;
-} */
 
 nav ul li a {
     color: white;
@@ -182,11 +166,11 @@ nav ul li a:hover {
     z-index: 1000;
 }
 
-.block{
+.block {
     min-height: 100vh;
 }
 
-footer{
+footer {
     margin-top: 3rem;
     background-color: #181717;
     width: 100%;
@@ -196,52 +180,53 @@ footer{
     box-sizing: border-box;
 }
 
-.total-div{
+.total-div {
     display: flex;
 }
 
-footer .copyright{
+footer .copyright {
     padding: 4rem;
 }
 
 footer .copyright .loc,
 footer .copyright .phn,
-footer .copyright .mail{
+footer .copyright .mail {
     display: flex;
     padding: 1rem;
 }
 
-footer .copyright i{
+footer .copyright i {
     background-color: #282525;
     padding: 0.75rem;
     border-radius: 50%;
 }
 
 footer .copyright p,
-footer .copyright a{
+footer .copyright a {
     padding: 0.5rem 0.5rem 0.5rem 1rem;
-    max-width: 200px; 
+    max-width: 200px;
 }
-footer .social{
+
+footer .social {
     padding: 4rem;
     text-align: center;
 }
 
-footer .social h3{
+footer .social h3 {
     padding: 1rem;
     font-size: 30px;
 }
 
-footer .social p{
+footer .social p {
     max-width: 350px;
     text-align: left;
 }
 
-footer .social .link{
+footer .social .link {
     padding-top: 2rem;
 }
 
-footer .social .link a{
+footer .social .link a {
     margin-right: 1rem;
     background-color: #282525;
     padding: 0.75rem;
@@ -249,16 +234,17 @@ footer .social .link a{
     border-radius: 5px;
 }
 
-footer .social .link a:hover{
+footer .social .link a:hover {
     color: #FF0161;
 }
 
-.about-us{
+.about-us {
     text-align: center;
     padding: 2rem;
     color: #aaa;
 }
-.about-us a{
+
+.about-us a {
     color: #aaa;
 }
 
@@ -305,8 +291,7 @@ footer .social .link a:hover{
         background-color: tomato;
         border-radius: 50%;
     }
-
-    .total-div{
+    .total-div {
         flex-direction: column;
     }
 }

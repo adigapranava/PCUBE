@@ -10,10 +10,13 @@ $("#filter-search").click(function() {
 function filter() {
     $(".filter-box").toggle();
     clear_divs();
+
     var company_selected = document.getElementById("company").value;
     var type = document.querySelector('input[name="type"]:checked').value;
     var min_p = parseFloat(document.getElementById("start-rate").value);
     var max_p = parseFloat(document.getElementById("end-rate").value);
+
+
     var filtered = new Array();
     // selecting company
     if (company_selected == "all") {

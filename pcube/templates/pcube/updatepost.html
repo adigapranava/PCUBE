@@ -1,13 +1,23 @@
- {% extends 'pcube/base.html' %} {% load static %} {% block headers %}
+ {% extends 'pcube/base.html' %}
+ {% load static %} 
+ 
+{% block headers %}
 <link rel="stylesheet" type="text/css" href="{% static 'pcube/addpost.css' %}">
+
 <script>
     var post_brand = "{{ post.brand| safe }}";
     var post_type = "{{ post.post_type| safe }}";
 </script>
-{% endblock headers %} {% block content %}
+{% endblock headers %} 
+
+
+
+{% block content %}
 <div class="post-container">
+
     <h1>UPDATE POST </h1>
     <hr>
+
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="post-details">
@@ -48,9 +58,8 @@
             <input type="submit" value="Update">
         </div>
     </form>
+
 </div>
 <script src="{% static 'pcube/updatepost.js' %}"></script>
-<script>
-</script>
 
 {% endblock content %}
