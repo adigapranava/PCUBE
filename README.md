@@ -1,4 +1,5 @@
-# PCUBE  <img src="https://github.com/adigapranava/PCUBE/blob/master/static/images/favicon2.png?raw=true">
+<img src="https://github.com/adigapranava/PCUBE/blob/master/static/images/favicon2.png?raw=true">
+# PCUBE  
 An E-commerce Website designed using Django. Similar to OLX but with some extra features and fun.
 
 ## KeyPoints
