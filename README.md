@@ -14,3 +14,61 @@ An E-commerce Website designed using Django. Similar to OLX but with some extra 
 * Filtering product based on BRAND, TYPE, PRICE
 * Notification on individual product
 * Ask Question about the Product
+
+
+## Installation 
+
+1. Fork and Clone
+    <ol>
+    <li>Fork PCUBE, the Repository</li>
+    <li>Clone the repo to your System</li>
+    </ol>
+
+
+2. Create a Virtual Environment for the Project
+
+    In Windows
+    ```bash
+    python -m venv venv
+    
+    venv\Scripts\activate
+    ```
+
+    In Ubuntu/MacOS
+    ```bash
+    python -m virtualenv venv
+    
+    source venv/bin/activate
+    ```
+   
+    If you are giving a different name then `venv`, then please mention it in `.gitigonre` first
+
+3. Install all the requirements
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Checkout to develop branch
+     ```git
+    git status
+    git pull
+    git branch
+    git checkout develop
+    
+    ```
+
+5. Create a super user.
+    In django if you want to access admin page, you need to create an account first.
+    ```djangotemplate
+    python manage.py createsuperuser
+    ```
+   Then select your username and password.
+
+6. Run server
+    ```bash
+    python manage.py runserver
+    ```
+7. Do the Development and send me a PR referencing the issue.
+
+
