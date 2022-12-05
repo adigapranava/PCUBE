@@ -1,0 +1,147 @@
+.box-container {
+    display: inline-block;
+    /*align-items: center;
+    min-height: 100vh;
+    background-color: #09161d;
+    width: 100vw;
+    align-items: center;*/
+}
+
+.card {
+    position: relative;
+    display: inline-block;
+    width: 290px;
+    height: 420px;
+    background-color: #122936;
+    border-radius: 20px;
+    overflow: hidden;
+    font-family: 'Didact Gothic', sans-serif;
+    margin: 20px;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -43%;
+    width: 100%;
+    height: 100%;
+    background: #2196f3;
+    transition: 0.5s;
+}
+
+.card:nth-child(4n+0)::before {
+    background: #f32160;
+}
+
+.card:nth-child(4n+1)::before {
+    background: #f36421;
+}
+
+.card:nth-child(4n+2)::before {
+    background: #a621f3;
+}
+
+.card:hover::before {
+    top: 0;
+}
+
+.card .imgBx {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+.card .imgBx img {
+    width: 250px;
+    height: 200px;
+    border: #000000 solid 1px;
+    border-radius: 20px;
+}
+
+
+/*.card:hover .imgBx img {
+    width: 75%;
+}*/
+
+.card .contentBx {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.card .contentBx h1 {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card .contentBx h5 {
+    color: rgb(235, 219, 219);
+    padding: 5px;
+}
+
+.card .contentBx .price {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 1000;
+    letter-spacing: 2px;
+}
+
+.card .contentBx .buy {
+    position: relative;
+    top: 80px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #2196f3;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.card .contentBx .buy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    border-radius: 30px;
+    height: 100%;
+    background-color: #e0e0e0;
+    pointer-events: none;
+    transform-style: linear;
+    opacity: 0;
+    transition-property: width, opacity transform, box-shadow;
+    transition-duration: 0.5s;
+}
+
+.card:hover .contentBx .buy {
+    top: 0;
+    opacity: 1;
+    background: #09161d;
+}
+
+.card .contentBx .buy:hover::before {
+    width: 100%;
+    opacity: .4;
+}

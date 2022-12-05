@@ -1,0 +1,62 @@
+.notifications {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #131211;
+    border-radius: 30px;
+    color: aliceblue;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
+
+.notifications h2 {
+    color: rgb(95, 238, 183);
+    font-size: 40px;
+    text-align: center;
+    padding: 12px 17px;
+    border-bottom: #fdf8f9 solid;
+}
+
+.notifications .notification {
+    margin: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #b8dae2;
+    position: relative
+}
+
+.notifications .notification h3 {
+    color: #bfc0c0;
+    padding-top: 20px;
+    font-size: 15px;
+}
+
+.notifications .notification h1 a {
+    color: #09c55e;
+    font-size: 26px;
+}
+
+.notifications .notification h5 {
+    color: #747370;
+}
+
+.notifications .notification h1 a:hover {
+    color: blanchedalmond;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    background-color: rgb(77, 77, 97);
+    border-radius: 30px;
+    font-size: 20px;
+    color: seashell;
+    min-width: 50px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
