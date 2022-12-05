@@ -26,7 +26,7 @@ SECRET_KEY = '^2&h3v)w9mecr3hs6p!2+yt745%zr0+_)5#v&@wr0^%*^(zc51'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['pcube-marketing.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['pcube-marketing.herokuapp.com','127.0.0.1', '.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -124,13 +124,12 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
 if DEBUG: 
    STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 else:
    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
