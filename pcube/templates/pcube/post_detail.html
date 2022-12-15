@@ -36,7 +36,9 @@
                     <p>{{ object.discription }}</p>
                     </div>
                     <div class="disc2">
-                        <img src="{{ object.image.url }}" alt="object.image.url">
+                        {% comment %} django get htts {% endcomment %}
+                        
+                        <img src="{{request.get_host_url }}/{{ object.image.url }}" alt="{{ request.get_host }}">
                         <br>
                         <div class="add">
                             <p>{{ object.address }}</p>
@@ -144,7 +146,7 @@
                     <div class="que-by">
                         <div class="profile-img">
                             <div class="proimg">
-                                <img class="img" src="{{question.user.profile.image.url}}" alt="profile_img">
+                                <img class="img" src="{{request.get_host_url }}/{{question.user.profile.image.url}}" alt="profile_img">
                                 {% if question.user.profile.is_varified %}
                                 <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 17px;position: relative;left: -35px;top: -6px;background: #2491ff;border-radius: 50%;border: 2px solid #2491ff;"></i>
                                 {% endif %}
@@ -220,7 +222,7 @@
             <div class="small-profile r2c">
                 <div class="profile-img">
                     <div class="proimg">
-                        <img class="img" src="{{object.owner.profile.image.url}}" alt="profile_img">
+                        <img class="img" src="{{request.get_host_url }}/{{object.owner.profile.image.url}}" alt="profile_img">
                         {% if object.owner.profile.is_varified %}
                         <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -19px;background: #2491ff;border-radius: 50%;border: 3px solid #2491ff;"></i>
                         {% endif %}

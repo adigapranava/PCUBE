@@ -13,7 +13,7 @@
                 <h1>Profile</h1>
                 <hr/>
                 <div class="profile-img">
-                    <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+                    <img src="{{request.get_host_url }}/{{ user.profile.image.url }}" alt="profile" id="profile-op">
                     {% if user.profile.is_varified %}
                         <i class="fas fa-check-circle" style="color: #3bffdc; font-size: 37px;position: relative;left: -45px;top: -10x;background: white;border-radius: 50%;"></i>
                     {% endif %}
@@ -61,7 +61,7 @@
                     {% for like in  liked%}
                         <div class="product">
                             <p class="product-title">{{like.title}}</p>
-                            <img src="{{like.image.url}}" alt="image" />
+                            <img src="{{request.get_host_url }}/{{like.image.url}}" alt="image" />
                             <div class="product-text">
                                 <p class="brand">{{like.brand}}</p>
                                 <h3>&#8377;{{like.newprice}}</h3>
@@ -77,7 +77,7 @@
                     {% for item in  bought%}
                         <div class="product">
                             <p class="product-title">{{item.title}}</p>
-                            <img src="{{item.image.url}}" alt="image" />
+                            <img src="{{request.get_host_url }}/{{item.image.url}}" alt="image" />
                             <div class="product-text">
                                 <p class="brand">{{item.brand}}</p>
                                 <h3>&#8377;{{item.newprice}}</h3>
@@ -93,7 +93,7 @@
                     {% for item in  sold%}
                         <div class="product">
                             <p class="product-title">{{item.title}}</p>
-                            <img src="{{item.image.url}}" alt="image" />
+                            <img src="{{request.get_host_url }}/{{item.image.url}}" alt="image" />
                             <div class="product-text">
                                 <p class="brand">{{item.brand}}</p>
                                 <h3>&#8377;{{item.newprice}}</h3>
@@ -109,7 +109,7 @@
                     {% for item in  unsold%}
                         <div class="product">
                             <p class="product-title">{{item.title}}</p>
-                            <img src="{{item.image.url}}" alt="image" />
+                            <img src="{{request.get_host_url }}/{{item.image.url}}" alt="image" />
                             <div class="product-text">
                                 <p class="brand">{{item.brand}}</p>
                                 <h3>&#8377;{{item.newprice}}</h3>
@@ -125,7 +125,7 @@
                     {% for item in  requested%}
                         <div class="product">
                             <p class="product-title">{{item.title}}</p>
-                            <img src="{{item.image.url}}" alt="image" />
+                            <img src="{{request.get_host_url }}/{{item.image.url}}" alt="image" />
                             <div class="product-text">
                                 <p class="brand">{{item.brand}}</p>
                                 <h3>&#8377;{{item.newprice}}</h3>

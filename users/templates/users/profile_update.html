@@ -13,7 +13,7 @@
         <form method="POST" action="{% url 'profile_update'%}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="profile-img">
-                <img src="{{ user.profile.image.url }}" alt="profile" id="profile-op">
+                <img src="{{request.get_host_url }}/{{ user.profile.image.url }}" alt="profile" id="profile-op">
                 <div class="prof-img-cngr">
                     <input type="file" name="pic" id="pic" accept="image/*" onchange="preview_image(event)" value="{{ user.profile.image.url }}">
                     <label for="pic">Choose Img</label>

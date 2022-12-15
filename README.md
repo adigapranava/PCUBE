@@ -17,6 +17,11 @@ An E-commerce Website designed using Django. Similar to OLX but with some extra 
 
 
 ## Installation 
+1. `git clone https://github.com/adigapranava/PCUBE.git`
+2. `cd PCUBE`
+3. `docker-compose up`
+
+## OR
 
 1. Fork and Clone
     <ol>

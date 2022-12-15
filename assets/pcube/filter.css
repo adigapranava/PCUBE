@@ -1,0 +1,304 @@
+.box-container {
+    text-align: center;
+    width: 100%;
+}
+
+#filter-search {
+    background-color: #e0e0e0;
+    color: #131211;
+    text-shadow: 1px 1px #666565;
+    padding: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 0px 10px #050505;
+    cursor: pointer;
+}
+
+.filter-div {
+    position: fixed;
+    top: 85%;
+    left: 20px;
+    z-index: 100;
+}
+
+.filter-div2 {
+    position: relative;
+}
+
+.filter-div .filter-msg {
+    background-color: #222020;
+    color: #cedda6;
+    font-size: 16px;
+    padding: 3px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 2px;
+    display: none;
+    position: relative;
+    top: -20px;
+}
+
+.filter-div:hover .filter-msg {
+    display: block;
+}
+
+.filter-div .filter-box {
+    padding: 20px;
+    position: absolute;
+    top: -245px;
+    width: 400px;
+    height: 200px;
+    /* background-color: rgb(32, 32, 32); */
+    background-color: #131211;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #050505;
+}
+
+.filter-div .filter-box .radios {
+    display: flex;
+    font-size: 20px;
+}
+
+.filter-div .filter-box .radios input[type="radio"] {
+    display: none;
+}
+
+.filter-div .filter-box .radios label {
+    padding: 5px 10px;
+    /* background-color: #131211; */
+    background-color: #e0e0e0;
+    margin-left: 5px;
+    width: 25%;
+    color: 131211;
+    box-shadow: 0px 0px 4px #3f3e3e;
+    transition: background-color 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-div .filter-box .radios input[type="radio"]:checked+label {
+    background-color: #353535;
+    color: #f3f3f3;
+}
+
+.filter-div .filter-box .selects select {
+    width: 200px;
+    padding: 2px 10px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.filter-div .filter-box .selects {
+    color: cornsilk;
+    margin-top: 10px;
+}
+
+.filter-div .filter-box .searchs {
+    color: cornsilk;
+    margin-top: 10px;
+}
+
+.filter-div .filter-box .searchs input {
+    background-color: #222121;
+    color: #e2e2de;
+    outline: none;
+    border: none;
+    height: 20px;
+    padding: 3px;
+    font-size: 20px;
+    width: 200px;
+}
+
+.filter-div .filter-box button {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    background-color: #000000;
+    color: #e9ebeb;
+    letter-spacing: 1px;
+    position: absolute;
+    font-weight: 600;
+    bottom: 10px;
+    /* border-radius: 10px; */
+    font-size: 20px;
+    right: 20px;
+    box-shadow: 0px 0px 4px #292828;
+}
+
+
+/*//////////////////*/
+
+#addpost {
+    background-color: #e0e0e0;
+    color: rgb(19, 18, 17);
+    text-shadow: 1px 1px #666565;
+    padding: 10px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 0px 10px #050505;
+    cursor: pointer;
+}
+
+.addpost-div {
+    position: fixed;
+    top: 85%;
+    right: 20px;
+    z-index: 100;
+}
+
+.addpost-div2 {
+    position: relative;
+}
+
+.addpost-div .addpost-msg {
+    background-color: #222020;
+    color: #cedda6;
+    font-size: 16px;
+    padding: 3px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 2px;
+    display: none;
+    position: relative;
+    top: -10px;
+}
+
+#addpost a {
+    color: #1d1d1c;
+}
+
+.addpost-div:hover .addpost-msg {
+    display: block;
+}
+
+.product {
+    position: relative;
+    display: inline-block;
+    max-width: 260px;
+    width: 260px;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid rgba(180, 180, 180, 0.4);
+    height: auto;
+    background-color: rgb(238, 236, 236);
+    border-radius: 10px;
+    color: blue;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(142, 140, 140, 1) 100%);
+    transition: transform 0.5s;
+}
+
+.product:hover {
+    box-shadow: 0px 15px 11px -10px rgba(44, 44, 44, 0.2);
+    transform: scale(1.05, 1.05);
+}
+
+.product-title {
+    padding: 10px 16px;
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 1px;
+    color: rgb(19, 17, 17);
+    font-weight: 700;
+    border-bottom: rgb(172, 169, 169) 1px solid;
+}
+
+.product-text {
+    color: rgb(49, 34, 34);
+    font-size: 19px;
+}
+
+.product-text .brand {
+    color: #363636;
+}
+
+img {
+    margin: 10px 0;
+    max-width: 250px;
+    height: 200px;
+}
+
+button {
+    position: relative;
+    width: 70%;
+    margin: 1em 10%;
+    padding: 10px 18px;
+    background-color: rgba(31, 35, 36, 0.9);
+    color: rgb(0, 0, 0);
+    font-style: solid;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.product-text a button {
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(214, 238, 238);
+    transition: color 0.2s;
+}
+
+button:hover {
+    background-color: rgb(3, 3, 3);
+    color: rgb(248, 201, 201);
+    /* top: -2px; */
+    box-shadow: 0px 15px 11px -10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+button:hover a {
+    color: #f0f0f0;
+}
+
+.fil-btn {
+    width: 100px;
+}
+
+.post-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 60vh;
+    background-color: #070606cb;
+}
+
+.post-search form {
+    color: #d9fadc;
+}
+
+.post-search form h2 {
+    font-size: 2.5rem;
+    padding: 1rem;
+    font-weight: 100;
+}
+
+.post-search .inputs {
+    font-size: 1.75rem;
+    background-color: #f3f3f349;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.post-search .inputs input {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 1.75rem;
+    color: #d6d5d5;
+    letter-spacing: 2px;
+}
+
+.post-search .inputs input::placeholder {
+    color: #c0c0c0;
+}

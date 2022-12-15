@@ -17,7 +17,7 @@
 
     <div class="profile-img">
         <div class="proimg">
-            <img class="img" src="{{user.profile.image.url}}" alt="">
+            <img class="img" src="{{request.get_host_url }}/{{user.profile.image.url}}" alt="">
             {% if user.profile.is_varified %}
                 <i class="fas fa-check-circle" 
                 style="color: #3bffdc; font-size: 37px;

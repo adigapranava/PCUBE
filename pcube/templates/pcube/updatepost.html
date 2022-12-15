@@ -52,7 +52,7 @@
             <input type="file" name="img" id="file-input" accept="image/x-png,image/gif,image/jpeg" onchange="preview_image(event)">
             <label for="file-input">Choose Img<i class="fas fa-camera"></i></label>
             <div class="post-image">
-                <img id="output_image" src="{{post.image.url}}">
+                <img id="output_image" src="{{request.get_host_url }}/{{post.image.url}}">
             </div>
             <a href="{% url 'post-detail' post.id %}">Cancle</a>
             <input type="submit" value="Update">
